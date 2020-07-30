@@ -1,0 +1,47 @@
+import prism from "./prism";
+
+export default {
+  prism,
+
+  primary: "#1A1A1B",
+  secondary: "#73737D",
+  grey: "#73737D",
+  lightGrey: "#a2aeb6",
+  background: "#fafafa",
+  darkBackground: "#1A1A1B",
+  accent: "#f65d2e",
+  hover: "rgba(0, 0, 0, 0.07)",
+  gradient: "linear-gradient(180deg, rgba(217, 219, 224, 0) 0%, #D9DBE0 100%)",
+  articleText: "#262c30",
+  track: "rgba(8, 8, 11, 0.3)",
+  progress: "#000",
+  card: "#fff",
+  error: "#EE565B",
+  success: "#46B17B",
+  errorBackground: "rgba(238, 86, 91, 0.1)",
+  horizontalRule: "rgba(8, 8, 11, 0.15)",
+  inputBackground: "rgba(0, 0, 0, 0.05)",
+  modes: {
+    dark: {
+      grey: "#73737D",
+      lightGrey: "#a2aeb6",
+      primary: "#fff",
+      secondary: "#fff",
+      accent: "#f65d2e",
+      background: "#1A1A1B",
+      darkBackground: "#fafafa",
+      hover: "rgba(255, 255, 255, 0.07)",
+      gradient:
+        "linear-gradient(180deg, #111216 0%, rgba(66, 81, 98, 0.36) 100%)",
+      articleText: "#fff",
+      track: "rgba(255, 255, 255, 0.3)",
+      progress: "#fff",
+      card: "#111111",
+      error: "#EE565B",
+      success: "#46B17B",
+      errorBackground: "rgba(238, 86, 91, 0.1)",
+      horizontalRule: "rgba(255, 255, 255, 0.15)",
+      inputBackground: "rgba(255, 255, 255, 0.07)",
+    },
+  },
+};

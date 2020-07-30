@@ -1,0 +1,25 @@
+{
+  "private": true,
+  "name": "www",
+  "version": "1.6.4",
+  "license": "MIT",
+  "scripts": {
+    "build": "echo 'removed build due to it failing: https://github.com/narative/gatsby-theme/issues/249'",
+    "develop": "rm -rf .cache && gatsby develop",
+    "clean": "gatsby clean",
+    "build": "gatsby build --prefix-paths",
+    "deploy": "gatsby build --prefix-paths && gh-pages -d public"
+  },
+  "dependencies": {
+    "@gianfaye/gatsby-theme": "^0.16.4",
+    "dotenv": "^8.0.0",
+    "gatsby": "^2.13.41",
+    "gatsby-plugin-google-analytics": "^2.1.6",
+    "gatsby-plugin-mailchimp": "^5.1.2",
+    "gatsby-plugin-manifest": "^2.2.4",
+    "gatsby-source-filesystem": "^2.1.9",
+    "gh-pages": "^3.1.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  }
+}
