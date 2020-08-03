@@ -5,6 +5,7 @@ import { useColorMode } from 'theme-ui';
 
 import NavigationFooter from '@components/Navigation/Navigation.Footer';
 import NavigationHeader from '@components/Navigation/Navigation.Header';
+import CustomerChat from '@components/CustomerChat/CustomerChat';
 import ArticlesContextProvider from '../../sections/articles/Articles.List.Context';
 
 import { globalStyles } from '@styles';
@@ -29,6 +30,7 @@ const Layout: React.FC<{}> = ({ children }) => {
         <NavigationHeader />
         {children}
         <NavigationFooter />
+        {/*<CustomerChat/>*/}
       </Container>
     </ArticlesContextProvider>
   );
