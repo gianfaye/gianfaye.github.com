@@ -278,9 +278,9 @@ const Item = styled.div<{ gridLayout: string }>`
 
 const ImageContainer = styled.div<{ narrow: boolean; gridLayout: string }>`
   position: relative;
-  height: ${p => (p.gridLayout === 'tiles' ? '370px' : '330px')};
-  box-shadow: 0 30px 60px -10px rgba(0, 0, 0, ${p => (p.narrow ? 0.22 : 0.3)}),
-    0 18px 36px -18px rgba(0, 0, 0, ${p => (p.narrow ? 0.25 : 0.33)});
+  height: ${p => (p.gridLayout === 'tiles' ? '370px' : '380px')};
+  // box-shadow: 0 30px 60px -10px rgba(0, 0, 0, ${p => (p.narrow ? 0.22 : 0.3)}),
+  //   0 18px 36px -18px rgba(0, 0, 0, ${p => (p.narrow ? 0.25 : 0.33)});
   //margin-bottom: ${p => (p.gridLayout === 'tiles' ? '30px' : 0)};
   overflow: hidden;
   z-index: 300;
@@ -377,7 +377,7 @@ const ProjectContent = styled.div<{
   //margin:  ${p => (p.gridLayout === 'tiles' ? '-100px 30px 20px 30px' : '110px -100px -30px 0')};
   //min-height: ${p => (p.gridLayout === 'tiles' ? 'unset' : '330px')};
   //margin: 140px 0 0px -100px;
-  margin: 140px 0 0px -100px;
+  margin: 80px 0 0px -100px;
   z-index: 600;
   display: block;
   position: relative;
