@@ -72,7 +72,7 @@ module.exports.local = {
           title
           work
           categories
-          date(formatString: "MMMM YYYY")
+          date(formatString: "MMM YYYY")
           dateForSEO: date
           timeToRead
           excerpt

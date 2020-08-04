@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import { Link } from "gatsby";
 
 import Headings from '@components/Headings';
 import Image, { ImagePlaceholder } from '@components/Image';
@@ -9,9 +10,6 @@ import { IProject, IWork } from '@types';
 
 import ProjectWorks from './Project.Works';
 import ProjectCategories from './Project.Categories';
-import {Link} from "gatsby";
-//import ProjectCategories from "../article/Project.Categories";
-//import ProjectWorks from "../article/Project.Works";
 
 interface ProjectHeroProps {
   project: IProject;
@@ -27,8 +25,22 @@ const ProjectHero = ({ project, works, categories }: ProjectHeroProps) => {
 
   return (
     <Hero>
+      <HeroImage id="ProjectImage__Hero">
+        {hasHeroImage ? (
+          <Image src={project.hero.full} />
+        ) : (
+          <ImagePlaceholder />
+        )}
+        <HeroTaglineContainer>
+          <HeroTagline id="heroTagline">
+            <HeroTaglineText>
+              {project.title}
+            </HeroTaglineText>
+          </HeroTagline>
+        </HeroTaglineContainer>
+      </HeroImage>
       <Header>
-        <HeroCrumbs>
+        <HeroCrumbs id="ProjectBreadcrumb">
           <HeroCrumb as={Link} to={'/'}>
             HOME
           </HeroCrumb>
@@ -41,23 +53,16 @@ const ProjectHero = ({ project, works, categories }: ProjectHeroProps) => {
             {project.title}
           </HeroCrumb>
         </HeroCrumbs>
-        <HeroHeading>{project.title}</HeroHeading>
+        <HeroHeading id="ProjectTitle">{project.title}</HeroHeading>
         <HeroExcerpt>{project.excerpt}</HeroExcerpt>
         <HeroSubtitle hasMultipleWorks={hasMultipleWorks}>
-          <ProjectCategories categories={categories} />
           <ProjectWorks works={works} />
+          <ProjectCategories categories={categories} />
           <ProjectMeta hasMultipleWorks={hasMultipleWorks}>
-            {project.date} · {project.timeToRead} min read
+            {project.date}
           </ProjectMeta>
         </HeroSubtitle>
       </Header>
-      <HeroImage id="ProjectImage__Hero">
-        {hasHeroImage ? (
-          <Image src={project.hero.full} />
-        ) : (
-          <ImagePlaceholder />
-        )}
-      </HeroImage>
     </Hero>
   );
 };
@@ -92,26 +97,87 @@ const Hero = styled.div`
   `}
 `;
 
-const ProjectMeta = styled.div<{ hasMultipleWorks: boolean }>`
-  margin-left: ${p => (p.hasMultipleWorks ? '10px' : '0')};
-  padding: 10px 5px;
-  width: 100%;
-  text-align: right;
-  font-size: 16px;
-  line-height: 1.54;
-  font-style: italic;
-
+const HeroTaglineContainer = styled.div`
   ${mediaqueries.phablet`
-    margin-left: 0;
+    display: none;
   `}
+`;
+
+const HeroTagline = styled.div`
+  height: 60px;
+  width: 43.75vw;
+  max-width: 700px;
+  text-align: right;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  //position: absolute;
+  position: fixed;
+  bottom: 100%;
+  right: 0;
+  transform-origin: right bottom;
+  transform: rotate(-90deg);
+  width: 52.812vw;
+  max-width: 845px;
+  bottom: auto;
+  //top: calc(100% + -15px);
+  top: 50px;
+  z-index: 10;
+  opacity: 0;
+
+  &.show{
+    opacity: 1;
+  }
+`;
+
+const HeroTaglineText = styled.span`
+  font-family: ${p => p.theme.fonts.sansSerif};
+  color: ${p => p.theme.colors.primary};
+  text-transform: uppercase;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .2em;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: block;
+  padding-right: 60px;
+
+  &::after{
+    background-color: ${p => p.theme.colors.primary};
+    content: '';
+    display: inline-block;
+    height: 1px;
+    width: 40px;
+    margin-left: 20px;
+    position: absolute;
+    right: 0;
+    top: 29px;
+  }
+`;
+
+const ProjectMeta = styled.div<{ hasMultipleWorks: boolean }>`
+  margin-left: 7px;
+  padding: 14px 5px;
+  text-align: left;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: ${p => p.theme.fonts.sansSerif};
+  color: ${p => p.theme.colors.primary};
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  height: max-content;
+  opacity: 0.3;
 `;
 
 const Header = styled.header`
   position: relative;
   z-index: 10;
-  margin: 40px auto 120px;
+  // margin: 40px auto 120px;
+  //margin: 40px auto;
+  margin: 80px auto 10px auto;
   padding-left: 28px;
-  max-width: 1200px;
+  max-width: 1000px;
 
   ${mediaqueries.desktop`
     padding-left: 0;
@@ -133,9 +199,11 @@ const Header = styled.header`
 `;
 
 const HeroCrumbs = styled.div`
-  display: inline;
+  display: block;
   text-decoration: none;
   padding-bottom: 3px;
+  text-align: center;
+  width: 100%;
 
   ${mediaqueries.tablet`
     display: none;
@@ -189,12 +257,14 @@ const HeroCrumb = styled(Headings.h5)`
 `;
 
 const HeroHeading = styled(Headings.h1)`
-  font-size: 100px;
+  font-size: 60px;
   font-family: ${p => p.theme.fonts.serif};
   margin-bottom: 25px;
-  font-weight: 400;
-  line-height: 1.32;
-  margin: 25px 0;
+  font-weight: 400;line-height: 1;
+  margin-bottom: 15px;
+  text-align: center;
+  max-width: 800px;
+  margin: 45px auto 20px auto;
 
   ${mediaqueries.tablet`
     margin-bottom: 20px;
@@ -207,12 +277,13 @@ const HeroHeading = styled(Headings.h1)`
 `;
 
 const HeroExcerpt = styled(Headings.h4)`
-  font-size: 26px;
+  font-size: 24px;
   font-family: "Sentinel Italic";
   font-style: italic;
   font-weight: 400;
-  margin-bottom: 20px;
-  max-width: 900px;
+  max-width: 700px;
+  text-align: center;
+  margin: 0 auto 30px auto;
 
   ${mediaqueries.tablet`
     margin-bottom: 20px;
@@ -229,8 +300,9 @@ const HeroSubtitle = styled.div<{ hasMultipleWorks: boolean }>`
   display: flex;
   font-size: 18px;
   color: ${p => p.theme.colors.grey};
-  padding: 0px 0 30px;
-  border-bottom: 5px solid ${p => p.theme.colors.primary};
+  // padding: 0px 0 30px;
+  // border-bottom: 5px solid ${p => p.theme.colors.primary};
+  justify-content: center;
 
   ${p => mediaqueries.phablet`
     font-size: 14px;
@@ -264,11 +336,16 @@ const HeroImage = styled.div`
   position: relative;
   z-index: 1;
   width: 100%;
-  max-width: 944px;
-  overflow: hidden;
+  // max-width: 944px;
+  // overflow: hidden;
   margin: 0 auto;
-  box-shadow: 0 30px 60px -10px rgba(0, 0, 0, 0.2),
-    0 18px 36px -18px rgba(0, 0, 0, 0.22);
+  // box-shadow: 0 30px 60px -10px rgba(0, 0, 0, 0.2),
+  //   0 18px 36px -18px rgba(0, 0, 0, 0.22);
+  margin-top: 30px;
+
+  img {
+    z-index: 50;
+  }
 
   ${mediaqueries.tablet`
     max-width: 100%;

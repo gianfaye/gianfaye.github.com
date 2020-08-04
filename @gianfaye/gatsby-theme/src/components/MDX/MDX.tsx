@@ -129,6 +129,8 @@ const HeadingsCSS = css`
     font-weight: 400;
     text-transform: uppercase;
     letter-spacing: 3px;
+    font-size: 28px;
+    margin-bottom: 10px;
   }
 `;
 

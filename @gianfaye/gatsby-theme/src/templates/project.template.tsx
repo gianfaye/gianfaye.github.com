@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import styled from '@emotion/styled';
 import throttle from 'lodash/throttle';
 import { graphql, useStaticQuery } from 'gatsby';
+import { Disqus, CommentCount } from 'gatsby-plugin-disqus';
 
 import Layout from '@components/Layout';
 import MDXRenderer from '@components/MDX';
@@ -19,7 +20,7 @@ import ProjectsNext from '../sections/project/Project.Next';
 import ProjectSEO from '../sections/project/Project.SEO';
 import ProjectShare from '../sections/project/Project.Share';
 
-import { TemplateProject } from "@types";
+import { Template } from "@types";
 
 const siteQuery = graphql`
   {
@@ -35,7 +36,7 @@ const siteQuery = graphql`
   }
 `;
 
-const Project: TemplateProject = ({ pageContext, location }) => {
+const Project: Template = ({ pageContext, location }) => {
   const contentSectionRef = useRef<HTMLElement>(null);
 
   const [hasCalculated, setHasCalculated] = useState<boolean>(false);
@@ -45,6 +46,12 @@ const Project: TemplateProject = ({ pageContext, location }) => {
   const name = results.allSite.edges[0].node.siteMetadata.name;
 
   const { project, works, mailchimp, next, categories } = pageContext;
+
+  let disqusConfig = {
+    url: `${'https://gianfaye.com'+location.pathname}`,
+    identifier: project.id,
+    title: project.title,
+  };
 
   useEffect(() => {
     const calculateBodySize = throttle(() => {
@@ -89,7 +96,7 @@ const Project: TemplateProject = ({ pageContext, location }) => {
         categories={categories}
       />
       <ProjectAside contentHeight={contentHeight}>
-        <Progress contentHeight={contentHeight} />
+        {/*<Progress contentHeight={contentHeight} />*/}
       </ProjectAside>
       <MobileControls>
         <ProjectControls />
@@ -99,10 +106,14 @@ const Project: TemplateProject = ({ pageContext, location }) => {
           <ProjectShare />
         </MDXRenderer>
       </ProjectBody>
-      {mailchimp && project.subscription && <Subscription />}
+      <CommentsContainer>
+        <CommentCount config={disqusConfig} placeholder={''} />
+        <Disqus config={disqusConfig} />
+      </CommentsContainer>
+      {/*{mailchimp && project.subscription && <Subscription />}*/}
       {next.length > 0 && (
         <NextProject narrow>
-          <FooterNext>More projects from {name}</FooterNext>
+          <FooterNext>Explore more projects</FooterNext>
           <ProjectsNext projects={next} />
           <FooterSpacer />
         </NextProject>
@@ -124,9 +135,17 @@ const MobileControls = styled.div`
   `}
 `;
 
+const CommentsContainer = styled.div`
+  position: relative;
+  margin: 0 auto;
+  max-width: 700px;
+  margin-bottom: 100px;
+`;
+
 const ProjectBody = styled.article`
   position: relative;
-  padding: 160px 0 35px;
+  //padding: 160px 0 35px 0;
+  padding: 0 0 35px 0;
   transition: background 0.2s linear;
 
   ${mediaqueries.desktop`
@@ -151,7 +170,7 @@ const NextProject = styled(Section)`
 const FooterNext = styled.h3`
   position: relative;
   opacity: 0.25;
-  margin-bottom: 100px;
+  margin-bottom: 50px;
   font-weight: 400;
   color: ${p => p.theme.colors.primary};
 
@@ -163,7 +182,7 @@ const FooterNext = styled.h3`
     content: '';
     position: absolute;
     background: ${p => p.theme.colors.grey};
-    width: ${(910 / 1140) * 100}%;
+    width: ${(980 / 1140) * 100}%;
     height: 1px;
     right: 0;
     top: 11px;

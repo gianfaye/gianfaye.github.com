@@ -132,7 +132,7 @@ const WorkLink = styled.div`
   display: flex;
   align-items: center;
   color: inherit;
-  margin-left: 10px;
+  margin-right: 10px;
   letter-spacing: 1px;
 
   strong {

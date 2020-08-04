@@ -29,6 +29,7 @@ interface ProjectsNextProps {
 const ProjectsNext: React.FC<ProjectsNextProps> = ({ projects }) => {
   if (!projects) return null;
   const numberOfProjects = projects.length;
+  //console.log('projects', projects);
   return (
     <Grid numberOfProjects={numberOfProjects}>
       <GridItem project={projects[0]} />
@@ -60,13 +61,19 @@ const GridItem: React.FC<GridItemProps> = ({ project, narrow }) => {
         <ImageContainer>
           <Image src={imageSource} />
         </ImageContainer>
-        <Title dark hasOverflow={hasOverflow}>
-          {project.title}
-        </Title>
-        <Excerpt hasOverflow={hasOverflow}>{project.excerpt}</Excerpt>
-        <MetaData>
-          {project.date} · {project.timeToRead} min read
-        </MetaData>{" "}
+        <ProjectContent>
+          <ProjectTaxonomy>
+            <span className="Project__Categories">{project.categories}</span>
+            <span className="Project__Works">{project.work}</span>
+          </ProjectTaxonomy>
+          <Title dark hasOverflow={hasOverflow}>
+            {project.title}
+          </Title>
+          <MetaData>
+            <span className="Project__Date">{project.date}</span> &bull; &nbsp;
+            <span className="Project__TimeToRead">{project.timeToRead} min read</span>
+          </MetaData>{" "}
+        </ProjectContent>
       </Item>
     </ProjectLink>
   );
@@ -80,30 +87,34 @@ const limitToTwoLines = css`
   overflow-wrap: normal;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
-  display: -webkit-box;
+  //display: -webkit-box;
+  display: inline;
   white-space: normal;
   overflow: hidden;
+  //min-height: 84px;
+  margin-bottom: 25px;
 
   ${mediaqueries.phablet`
     -webkit-line-clamp: 3;
   `}
 `;
+
 const Grid = styled.div<{ numberOfProjects: number }>`
   position: relative;
   display: grid;
   ${p => {
-    if (p.numberOfProjects === 1) {
-      return `
+  if (p.numberOfProjects === 1) {
+    return `
       grid-template-columns: 1fr;
       grid-template-rows: 1
     `;
-    } else {
-      return `
-      grid-template-columns: ${wide} ${narrow};
+  } else {
+    return `
+      grid-template-columns: ${wide} ${wide};
       grid-template-rows: 2;
       `;
-    }
-  }}
+  }
+}}
   column-gap: 30px;
   margin: 0 auto;
   max-width: ${p => (p.numberOfProjects === 1 ? "680px" : "100%")};
@@ -117,31 +128,32 @@ const Grid = styled.div<{ numberOfProjects: number }>`
   `}
 `;
 
-const ImageContainer = styled.div`
+const ImageContainer = styled.div<{ narrow: boolean; }>`
   position: relative;
-  height: 280px;
-  box-shadow: 0 30px 60px -10px rgba(0, 0, 0, ${p => (p.narrow ? 0.22 : 0.3)}),
+  height: '220px';
+  //box-shadow: 0 30px 60px -10px rgba(0, 0, 0, ${p => (p.narrow ? 0.22 : 0.3)}),
     0 18px 36px -18px rgba(0, 0, 0, ${p => (p.narrow ? 0.25 : 0.33)});
-  margin-bottom: 30px;
-  transition: transform 0.3s var(--ease-out-quad),
-    box-shadow 0.3s var(--ease-out-quad);
+  overflow: hidden;
+  z-index: 300;
+  display: block;
 
   & > div {
     height: 100%;
+    transition: transform 0.3s var(--ease-out-quad),
+    scale 0.3s var(--ease-out-quad);
   }
 
   ${mediaqueries.tablet`
-    height: 220px;
-    margin-bottom: 35px;
+    height: 200px;
+    //margin-bottom: 35px;
   `}
 
   ${mediaqueries.phablet`
-    height: 200px;
+    overflow: hidden;
     margin-bottom: 0;
     box-shadow: none;
-    overflow: hidden;
-    border-top-right-radius: 5px;
-    border-top-left-radius: 5px;
+    //border-top-right-radius: 5px;
+    //border-top-left-radius: 5px;
   `}
 `;
 
@@ -156,20 +168,33 @@ const Item = styled.div`
   }
 `;
 
-const Title = styled(Headings.h3)`
-  font-size: 22px;
-  line-height: 1.4;
-  margin-bottom: ${p => (p.hasOverflow ? "45px" : "10px")};
-  color: ${p => p.theme.colors.primary};
-  font-family: ${p => p.theme.fonts.serif};
-  transition: color 0.3s ease-in-out;
-  ${limitToTwoLines};
 
-  ${mediaqueries.tablet`
+const Title = styled(Headings.h2)`
+  font-size: 28px;
+  font-weight: 400;
+  font-family: ${p => p.theme.fonts.serif};
+  margin-bottom: '25px';
+  //transition: color 0.3s ease-in-out;
+  ${limitToTwoLines};
+  background-size: 0 100%;
+  background-repeat: no-repeat;
+  text-decoration: none;
+  -webkit-transition: background-size .8s ease;
+  transition: background-size .8s ease;
+  background-image: -webkit-gradient(linear,left top,left bottom,color-stop(99%,transparent),color-stop(1%,${p => p.theme.colors.primary}));
+  background-image: linear-gradient(180deg,transparent 99%,${p => p.theme.colors.primary} 0);
+
+  ${mediaqueries.desktop`
     margin-bottom: 15px;
   `}
+
+  ${mediaqueries.tablet`
+    font-size: 24px;
+  `}
+
   ${mediaqueries.phablet`
-    padding: 30px 20px 0;
+    font-size: 22px;
+    padding: 0;
     margin-bottom: 10px;
     -webkit-line-clamp: 3;
   `}
@@ -199,19 +224,74 @@ const Excerpt = styled.p<{ narrow: boolean; hasOverflow: boolean }>`
   `}
 `;
 
-const MetaData = styled.div`
-  font-weight: 600;
-  font-size: 16px;
-  color: ${p => p.theme.colors.grey};
-  opacity: 0.33;
 
-  ${mediaqueries.phablet`
-    max-width: 100%;
-    padding:  0 20px 30px;
+const ProjectContent = styled.div<{
+  gridLayout: string;
+}>`
+  padding: 30px;
+  background: ${p => p.theme.colors.card};
+  //margin:  ${p => (p.gridLayout === 'tiles' ? '-150px 30px 20px 30px' : '110px 0 -30px -100px')};
+  z-index: 600;
+  display: block;
+  position: relative;
+
+  ${mediaqueries.tablet`
+    margin: 0 auto;
+    width: 100%;
   `}
 `;
 
-const ProjectLink = styled(Link)<{ narrow: string }>`
+const MetaData = styled.div<{
+  gridLayout: string;
+}>`
+  font-weight: 400;
+  font-size: 16px;
+  color: ${p => p.theme.colors.lightGrey};
+  margin-top: ${p => (p.gridLayout === 'tiles' ? '20px' : '10px')};;
+  //opacity: 0.5;
+  //font-style: italic;
+
+  ${mediaqueries.phablet`
+    max-width: 100%;
+    padding: 0;
+  `}
+`;
+
+const ProjectTaxonomy = styled.div<{
+  gridLayout: string;
+}>`
+  font-weight: 600;
+  font-size: 12px;
+  font-family: ${p => p.theme.fonts.sansSerif};
+  color: ${p => p.theme.colors.primary};
+  text-transform: uppercase;
+  opacity: 0.8;
+  letter-spacing: 2px;
+  margin-bottom: ${p => (p.gridLayout === 'tiles' ? '20px' : '10px')};
+  text-overflow: ellipsis;
+  overflow-wrap: normal;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  white-space: normal;
+  overflow: hidden;
+
+
+  .Project__Categories{
+    margin-right: 5px;
+    color: ${p => p.theme.colors.lightGrey};
+    margin-left: 1px;
+  }
+  .Project__Works{
+  }
+
+  ${mediaqueries.phablet`
+    max-width: 100%;
+    padding: 0;
+  `}
+`;
+
+const ProjectLink = styled(Link)`
   position: relative;
   display: block;
   width: 100%;
@@ -221,35 +301,38 @@ const ProjectLink = styled(Link)<{ narrow: string }>`
   z-index: 1;
   transition: transform 0.33s var(--ease-out-quart);
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  //border-bottom: 5px solid ${p => p.theme.colors.primary};
 
-  &:hover ${ImageContainer} {
-    transform: translateY(-1px);
-    box-shadow: 0 50px 80px -20px rgba(0, 0, 0, 0.27),
+  &:hover ${ImageContainer} > div, &:focus ${ImageContainer} > div{
+    //transform: translateY(-1px);
+    //box-shadow: 0 50px 80px -20px rgba(0, 0, 0, 0.27),
       0 30px 50px -30px rgba(0, 0, 0, 0.3);
+    transform: scale(1.1);
   }
 
   &:hover h2,
   &:focus h2 {
-    color: ${p => p.theme.colors.accent};
+    //color: ${p => p.theme.colors.accent};
+    background-size: 100% 100%;
+    cursor: pointer;
   }
 
-  &[data-a11y="true"]:focus::after {
-    content: "";
+  &[data-a11y='true']:focus::after {
+    content: '';
     position: absolute;
-    left: -2%;
+    left: -1.5%;
     top: -2%;
-    width: 104%;
+    width: 103%;
     height: 104%;
     border: 3px solid ${p => p.theme.colors.accent};
     background: rgba(255, 255, 255, 0.01);
+    //border-radius: 5px;
   }
-
-  ${p => p.narrow === "true" && mediaqueries.tablet`display: none;`}
 
   ${mediaqueries.phablet`
     &:hover ${ImageContainer} {
       transform: none;
-      box-shadow: initial;
+      //box-shadow: initial;
     }
 
     &:active {
