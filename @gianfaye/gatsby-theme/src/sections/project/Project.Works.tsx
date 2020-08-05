@@ -142,6 +142,16 @@ const WorkLink = styled.div`
   &:hover strong {
     color: ${p => p.theme.colors.primary};
   }
+
+  ${mediaqueries.phablet`
+    text-align: center;
+    display: block;
+    margin-right: 0;
+
+    strong{
+      max-width: unset;
+    }
+  `};
 `;
 
 const CoWorksList = styled.div`

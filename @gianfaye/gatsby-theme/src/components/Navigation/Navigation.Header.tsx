@@ -115,8 +115,21 @@ const SharePageButton: React.FC<{}> = () => {
 };
 
 const ToggleMenu: React.FC<{}> = () => {
-  const [colorMode] = useColorMode();
+  // const [colorMode] = useColorMode();
+  // const isDark = colorMode === `dark`;
+  const [colorMode, setColorMode] = useColorMode();
   const isDark = colorMode === `dark`;
+  const fill = isDark ? "#fff" : "#000";
+
+  function toggleColorMode(event) {
+    event.preventDefault();
+    setColorMode(isDark ? `light` : `dark`);
+
+    let alignProgress = document.getElementById("alignProgress");
+    if(alignProgress){
+      alignProgress.classList.add("hide");
+    }
+  }
 
   const menu = [
     {
@@ -141,8 +154,8 @@ const ToggleMenu: React.FC<{}> = () => {
     },
     {
       id: 4,
-      name: 'Colophon',
-      slug: '/colophon'
+      name: 'Timeline',
+      slug: '/timeline'
     },
   ];
 
@@ -153,6 +166,7 @@ const ToggleMenu: React.FC<{}> = () => {
       data-a11y="false"
       aria-label="Open menu"
       title="Open menu"
+      onClick={toggleColorMode}
     >
       <MenuList menu={menu}/>
       {/*<Icons.MenuIcon fill={fill}/>*/}
@@ -262,8 +276,8 @@ const NavigationHeader: React.FC<{}> = () => {
                     <MenuLink as={Link} to={'/blog'} activeClassName={'active'}>
                       Blog
                     </MenuLink>
-                    <MenuLink as={Link} to={'/colophon'} activeClassName={'active'}>
-                      Colophon
+                    <MenuLink as={Link} to={'/timeline'} activeClassName={'active'}>
+                      Timeline
                     </MenuLink>
                   </MenuLinks>
                 </MenuContainer>
@@ -539,7 +553,8 @@ const IconWrapper = styled.button<{ isDark: boolean }>`
   }
 
   &#MenuIcon svg{
-    margin: -2px 0 0 -10px;
+    margin: 0;
+    padding: 0;
   }
 
   &:hover {
@@ -562,10 +577,6 @@ const IconWrapper = styled.button<{ isDark: boolean }>`
     display: inline-flex;
     //transform: scale(0.708);
     //margin-left: 10px;
-
-    &#MenuIcon svg{
-      margin: -5px 0 0 -14px;
-    }
   `}
 `;
 

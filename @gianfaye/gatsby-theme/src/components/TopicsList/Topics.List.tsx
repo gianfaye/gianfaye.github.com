@@ -298,7 +298,8 @@ const IconOpenContainer = styled.div`
   `}
 
   ${mediaqueries.phablet`
-    top: 20px;
+    top: 67px;
+    right: 37px;
   `}
 
   svg {

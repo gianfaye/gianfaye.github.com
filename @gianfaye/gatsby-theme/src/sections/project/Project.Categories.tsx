@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from "@emotion/styled";
+import mediaqueries from "@styles/media";
 
 export default function ProjectCategories({ categories }) {
   return (
@@ -14,6 +15,10 @@ export default function ProjectCategories({ categories }) {
 const ProjectCategoryContainer = styled.div`
   padding: 10px 0;
   min-width: fit-content;
+
+  ${mediaqueries.phablet`
+    text-align: center;
+  `};
 `;
 const ProjectCategory = styled.span`
   font-family: ${p => p.theme.fonts.sansSerif};
@@ -26,4 +31,8 @@ const ProjectCategory = styled.span`
   letter-spacing: 2px;
   padding: 7px 10px 5px 10px;
   margin-top: -4px;
+
+  ${mediaqueries.phablet`
+    display: inline-block;
+  `};
 `;

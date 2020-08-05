@@ -168,6 +168,12 @@ const ProjectMeta = styled.div<{ hasMultipleWorks: boolean }>`
   letter-spacing: 2px;
   height: max-content;
   opacity: 0.3;
+
+  ${mediaqueries.phablet`
+    text-align: center;
+    padding: 0;
+    margin: 0;
+  `}
 `;
 
 const Header = styled.header`
@@ -192,8 +198,10 @@ const Header = styled.header`
   `}
 
   ${mediaqueries.phablet`
-    padding-left: 0;
-    margin: 60px 40px;
+    margin: 30px;
+    padding: 60px 40px;
+    background: #FFF;
+    border: 1px solid;
   `}
 
 `;
@@ -355,6 +363,7 @@ const HeroImage = styled.div`
     margin: 0 auto;
     width: calc(100vw - 40px);
     height: 220px;
+    display: none;
 
     & > div {
       height: 220px;

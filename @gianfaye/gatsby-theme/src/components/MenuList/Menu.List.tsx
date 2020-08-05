@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {Link, useStaticQuery} from 'gatsby';
+import {Link, useStaticQuery, graphql} from 'gatsby';
 import styled from '@emotion/styled';
 import OutsideClickHandler from "react-outside-click-handler";
 import { useColorMode } from "theme-ui";
@@ -29,38 +29,12 @@ const MenuList: React.FC<IWork> = ({ menu }) => {
 
   const fill = colorMode === "dark" ? "#fff" : "#000";
 
-  //const hasSelectedWork = Object.keys(selectedWork).length;
-
-  const worksBlank = {
-    id: 0,
-    name: 'all projects I worked on',
-    avatar: '',
-    bio: '',
-    slug: '/projects',
-    worksPage: true,
-    featured: false,
-    color: ''
-  };
-
-  //const worksWithDefaultAll = [ worksBlank, ...works ];
-
   return (
-    <WorksContainer onClick={() => setIsOpen(!isOpen)} isOpen={isOpen}>
-      {/*{ selectedWork.avatar &&*/}
-      {/*  <WorkBackground src={selectedWork.avatar.large} />*/}
-      {/*}*/}
-      <CoMenuList /*style={listWidth}*/>
-        {/*{works.map((work, index) => (*/}
-        {/*  <CoWorkAvatar style={{ left: `${index * 15}px` }} key={work.name}>*/}
-        {/*    <RoundedImage src={work.avatar.small} />*/}
-        {/*  </CoWorkAvatar>*/}
-        {/*))}*/}
-      </CoMenuList>
+    <MenuContainer onClick={() => setIsOpen(!isOpen)} isOpen={isOpen}>
       <NameContainer>Menu</NameContainer>
       <IconContainer>
         <Icons.MenuIcon fill={fill} />
       </IconContainer>
-
 
       {isOpen && (
         <OutsideClickHandler onOutsideClick={() => setIsOpen(!isOpen)}>
@@ -76,62 +50,31 @@ const MenuList: React.FC<IWork> = ({ menu }) => {
             <IconOpenContainer>
               <Icons.CloseIcon fill={fill} />
             </IconOpenContainer>
-            {menu.map((menuItem, index) => (
-              <CoMenuListItemOpen key={menuItem.name}>
-                <WorkLink
-                  as={Link}
-                  to={menuItem.slug}
-                >
-                  {/*<CoWorkAvatarOpen>*/}
-                  {/*  <RoundedImage src={menuItem.avatar.small} />*/}
-                  {/*</CoWorkAvatarOpen>*/}
-                  <WorkNameOpen>{menuItem.name}</WorkNameOpen>
-                </WorkLink>
-              </CoMenuListItemOpen>
-            ))}
+            <MenuHeaderContainer>
+              <MenuHeader>
+                Explore
+              </MenuHeader>
+            </MenuHeaderContainer>
+            <CoMenuListContainer>
+              {menu.map((menuItem, index) => (
+                <CoMenuListItemOpen key={menuItem.name}>
+                  <MenuLink
+                    as={Link}
+                    to={menuItem.slug}
+                  >
+                    {menuItem.name}
+                  </MenuLink>
+                </CoMenuListItemOpen>
+              ))}
+            </CoMenuListContainer>
           </CoMenuListOpen>
         </OutsideClickHandler>
       )}
-
-      {/*{works.map((work, index) => {*/}
-      {/*  //return console.log('work', work);*/}
-      {/*  console.log('work.color', work.color);*/}
-      {/*  return (*/}
-      {/*    <WorkContainer key={index} color={work.color}>*/}
-      {/*      <WorksAvatar*/}
-      {/*        as={work.worksPage ? Link : 'div'}*/}
-      {/*        to={work.slug}*/}
-      {/*      >*/}
-      {/*        <WorksAvatarInner>*/}
-      {/*          <RoundedImage*/}
-      {/*            isEven={index % 2 == 0}*/}
-      {/*            src={work.avatar.large}*/}
-      {/*          />*/}
-      {/*        </WorksAvatarInner>*/}
-      {/*      </WorksAvatar>*/}
-      {/*      <div>*/}
-      {/*        { work.id == selectedWork.id ? 'SELECTED TOPIC' : 'not selected'}*/}
-      {/*      </div>*/}
-      {/*      <WorksText dangerouslySetInnerHTML={{ __html: work.name }} />*/}
-      {/*    </WorkContainer>*/}
-      {/*  );*/}
-      {/*})}*/}
-    </WorksContainer>
+    </MenuContainer>
   );
 };
 
 export default MenuList;
-
-// const WorksContainer = styled.div`
-//   width: 100%;
-//   display: grid;
-//   grid-gap: 16px;
-//   //grid-template-columns: repeat(auto-fill,minmax(150px,215px));
-//   //grid-template-columns: repeat(auto-fill,minmax(200px,365px));
-//   grid-template-columns: repeat(auto-fill,minmax(250px,265px));
-//   justify-content: center;
-// `;
-
 
 const LogoLink = styled(Link)`
   position: relative;
@@ -156,8 +99,7 @@ const LogoLink = styled(Link)`
   }
 `;
 
-
-const WorksContainer = styled.div<{ isOpen: boolean }>`
+const MenuContainer = styled.div<{ isOpen: boolean }>`
   position: relative;
   //display: flex;
   display: inline-block;
@@ -183,12 +125,12 @@ const WorksContainer = styled.div<{ isOpen: boolean }>`
     transition: opacity 0.3s;
     cursor: pointer;
     opacity: 0;
+    height: 50px;
   }
 
   &:hover::before {
     opacity: 1;
   }
-
 
   ${mediaqueries.phablet`
     //font-size: 14px;
@@ -207,86 +149,6 @@ const WorksContainer = styled.div<{ isOpen: boolean }>`
     }
   `}
 `;
-
-const WorkContainer = styled.div<{ color: string }>`
-  position: relative;
-  display: flex;
-  height: 304px;
-  cursor: pointer;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
-  border-radius: 7px;
-  padding: 24px 0;
-  background-color: #${p => p.color};
-  background-repeat: no-repeat;
-  background-size: 100%;
-  border: 1px solid rgba(29,29,29,.1);
-  overflow: hidden;
-`;
-
-const WorksAvatar = styled.div`
-  display: block;
-  position: relative;
-  height: 100%;
-  width: 100%;
-
-  &[data-a11y='true']:focus::after {
-    content: '';
-    position: absolute;
-    left: -5px;
-    top: -5px;
-    width: 50px;
-    height: 50px;
-    border: 2px solid ${p => p.theme.colors.accent};
-  }
-`;
-
-const RoundedImage = styled(Image)<{ isEven: boolean }>`
-  height: 180px;
-
-  img {
-    object-position: ${p => p.isEven ? `left` : `right`} !important;
-    //object-position: right !important;
-  }
-`;
-
-const WorkBackground = styled(Image)<{ isEven: boolean }>`
-  width: 300px;
-  position: absolute !important;
-  left: -20vw;
-  top: -30px;
-  z-index: 0;
-  display: block;
-  filter: grayscale(100%);
-}
-`;
-
-const WorksAvatarInner = styled.div`
-  height: 100%;
-  overflow: hidden;
-`;
-
-const WorksText = styled.p`
-  max-width: 430px;
-  font-size: 16px;
-  margin-bottom: 20px;
-  text-transform: uppercase;
-  text-align: left;
-  padding: 0 60px 0 30px;
-  font-weight: bold;
-  display: block;
-  //opacity: 0.5;
-  line-height: 1.45;
-  font-family: ${p => p.theme.fonts.sansSerif};
-  //color: ${p => p.theme.colors.grey};
-
-  a {
-    //color: ${p => p.theme.colors.grey};
-    text-decoration: underline;
-  }
-`;
-
 
 const NameContainer = styled.strong`
   position: relative;
@@ -323,6 +185,7 @@ const IconContainer = styled.div`
   svg{
     width: 30px;
     height: 30px;
+    margin: -7px 0 0 0px !important;
   }
 
   ${mediaqueries.phablet`
@@ -341,19 +204,32 @@ const IconOpenContainer = styled.div`
   top: 20px;
   right: 21px;
 
-  ${mediaqueries.desktop`
-    top: 10px;
-  `}
-
-  ${mediaqueries.phablet`
-    top: 40px;
-    right: 30px;
-  `}
-
   svg {
     width: 30px;
     height: 30px;
   }
+
+  ${mediaqueries.desktop`
+    top: 10px;
+  `}
+
+  ${mediaqueries.desktop_medium`
+    top: 62px;
+    right: 35px;
+  `}
+`;
+
+
+const MenuHeaderContainer = styled.div`
+
+`;
+
+const MenuHeader = styled.h5`
+  font-size: 40px;
+  letter-spacing: 2px;
+  margin: 30px 0 20px 0;
+  text-align: left;
+  color: ${p => p.theme.colors.primary};
 `;
 
 
@@ -395,93 +271,39 @@ const CoMenuListOpen = styled.ul`
     left: 0;
   `}
 
-  ${mediaqueries.phablet`
+  ${mediaqueries.desktop_medium`
     //width: 280px;
-    padding: 30px;
+    padding: 50px 40px;
   `}
+`;
+
+const CoMenuListContainer = styled.ul`
+  display: block;
+  list-style-type: none;
 `;
 
 const CoMenuListItemOpen = styled.li`
   margin: 20px 0 10px 0;
-
-  a {
-    width: 100%;
-    margin-left: 0;
-  }
-
-  // &:not(:last-child) {
-  //   margin-bottom: 10px;
-  // }
 `;
 
-const CoWorkAvatarOpen = styled.div`
-  height: 25px;
-  width: 25px;
-  border-radius: 50%;
-  margin-right: 15px;
-  background: ${p => p.theme.colors.grey};
-  overflow: hidden;
-  pointer-events: none;
-
-  .gatsby-image-wrapper > div {
-    padding-bottom: 100% !important;
-    overflow: hidden;
-  }
-`;
-
-const CoWorkAvatar = styled.div`
-  position: absolute;
-  height: 25px;
-  width: 25px;
-  border-radius: 50%;
-  z-index: 1;
-  background: ${p => p.theme.colors.grey};
-  box-shadow: 0 0 0 2px ${p => p.theme.colors.background};
-  transition: box-shadow 0.25s ease;
-  overflow: hidden;
-  pointer-events: none;
-
-  .gatsby-image-wrapper > div {
-    padding-bottom: 100% !important;
-    overflow: hidden;
-  }
-
-  ${mediaqueries.phablet`
-    display: none;
-  `}
-`;
-
-const WorkLink = styled.div`
+const MenuLink = styled.a`
   display: flex;
   align-items: center;
   color: inherit;
-  margin-left: 10px;
+  margin-left: 0;
   letter-spacing: 1px;
-
-  strong {
-    transition: ${p => p.theme.colorModeTransition};
-  }
-
-  &:hover strong {
-    color: ${p => p.theme.colors.primary};
-  }
-`;
-
-const WorkNameOpen = styled.strong`
-  position: relative;
-  cursor: pointer;
-  color: ${p => p.theme.colors.secondary};
-  font-weight: 400;
-  font-size: 16px;
-  font-family: ${p => p.theme.fonts.sansSerif};
+  text-align: left;
   color: ${p => p.theme.colors.primary};
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  padding-bottom: 3px;
+  margin-bottom: 10px;
+  font-size: 24px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid;
+  width: 100%;
+  max-width: 300px;
 
-  &:hover{
-    padding-bottom: 1px;
-    border-bottom: 1px solid ${p => p.theme.colors.primary};
-  }
+  ${mediaqueries.phablet`
+    width: 100%;
+    max-width: unset;
+  `}
 `;
 

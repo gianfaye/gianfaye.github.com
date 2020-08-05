@@ -85,7 +85,7 @@ const ARTICLE_WIDTH = css`
   `};
 
   ${mediaqueries.phablet`
-    padding: 0 20px;
+    //padding: 0 20px;
   `};
 `;
 
@@ -261,7 +261,7 @@ const ImageCSS = css`
     `};
 
     ${mediaqueries.phablet`
-      padding: 0 20px;
+      //padding: 0 20px;
     `};
 
   }

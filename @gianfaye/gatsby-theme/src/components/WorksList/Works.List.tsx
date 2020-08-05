@@ -350,6 +350,7 @@ const CoWorksListOpen = styled.ul`
   ${mediaqueries.phablet`
     width: 280px;
     padding: 30px;
+    top: 45px;
   `}
 `;
 
