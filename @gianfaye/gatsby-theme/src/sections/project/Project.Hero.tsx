@@ -25,6 +25,30 @@ const ProjectHero = ({ project, works, categories }: ProjectHeroProps) => {
 
   return (
     <Hero>
+      <Header>
+        {/*<HeroCrumbs id="ProjectBreadcrumb">*/}
+        {/*  <HeroCrumb as={Link} to={'/'}>*/}
+        {/*    HOME*/}
+        {/*  </HeroCrumb>*/}
+        {/*  <HeroCrumbSeparator>&gt;</HeroCrumbSeparator>*/}
+        {/*  <HeroCrumb as={Link} to={'/projects'}>*/}
+        {/*    PROJECTS*/}
+        {/*  </HeroCrumb>*/}
+        {/*  <HeroCrumbSeparator>&gt;</HeroCrumbSeparator>*/}
+        {/*  <HeroCrumb className="active">*/}
+        {/*    {project.title}*/}
+        {/*  </HeroCrumb>*/}
+        {/*</HeroCrumbs>*/}
+        <HeroHeading id="ProjectTitle">{project.title}</HeroHeading>
+        <HeroExcerpt>{project.excerpt}</HeroExcerpt>
+        <HeroSubtitle hasMultipleWorks={hasMultipleWorks}>
+          <ProjectWorks works={works} />
+          <ProjectCategories categories={categories} />
+          <ProjectMeta hasMultipleWorks={hasMultipleWorks}>
+            {project.date}
+          </ProjectMeta>
+        </HeroSubtitle>
+      </Header>
       <HeroImage id="ProjectImage__Hero">
         {hasHeroImage ? (
           <Image src={project.hero.full} />
@@ -39,30 +63,6 @@ const ProjectHero = ({ project, works, categories }: ProjectHeroProps) => {
           </HeroTagline>
         </HeroTaglineContainer>
       </HeroImage>
-      <Header>
-        <HeroCrumbs id="ProjectBreadcrumb">
-          <HeroCrumb as={Link} to={'/'}>
-            HOME
-          </HeroCrumb>
-          <HeroCrumbSeparator>&gt;</HeroCrumbSeparator>
-          <HeroCrumb as={Link} to={'/projects'}>
-            PROJECTS
-          </HeroCrumb>
-          <HeroCrumbSeparator>&gt;</HeroCrumbSeparator>
-          <HeroCrumb className="active">
-            {project.title}
-          </HeroCrumb>
-        </HeroCrumbs>
-        <HeroHeading id="ProjectTitle">{project.title}</HeroHeading>
-        <HeroExcerpt>{project.excerpt}</HeroExcerpt>
-        <HeroSubtitle hasMultipleWorks={hasMultipleWorks}>
-          <ProjectWorks works={works} />
-          <ProjectCategories categories={categories} />
-          <ProjectMeta hasMultipleWorks={hasMultipleWorks}>
-            {project.date}
-          </ProjectMeta>
-        </HeroSubtitle>
-      </Header>
     </Hero>
   );
 };
@@ -128,6 +128,10 @@ const HeroTagline = styled.div`
   &.show{
     opacity: 1;
   }
+
+  ${mediaqueries.tablet`
+    width: 40vw;
+  `};
 `;
 
 const HeroTaglineText = styled.span`
@@ -179,9 +183,7 @@ const ProjectMeta = styled.div<{ hasMultipleWorks: boolean }>`
 const Header = styled.header`
   position: relative;
   z-index: 10;
-  // margin: 40px auto 120px;
-  //margin: 40px auto;
-  margin: 80px auto 10px auto;
+  margin: 60px auto 40px auto;
   padding-left: 28px;
   max-width: 1000px;
 
@@ -361,7 +363,7 @@ const HeroImage = styled.div`
 
   ${mediaqueries.phablet`
     margin: 0 auto;
-    width: calc(100vw - 40px);
+    //width: calc(100vw - 40px);
     height: 220px;
     display: none;
 

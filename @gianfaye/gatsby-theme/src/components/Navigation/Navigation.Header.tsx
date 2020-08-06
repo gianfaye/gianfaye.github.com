@@ -51,31 +51,31 @@ const DarkModeToggle: React.FC<{}> = () => {
       aria-label={isDark ? "Activate light mode" : "Activate dark mode"}
       title={isDark ? "Activate light mode" : "Activate dark mode"}
     >
-      {/*<MoonOrSun isDark={isDark} />*/}
-      {/*<MoonMask isDark={isDark} />*/}
-      {isDark ?
-        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 64 64" enableBackground="new 0 0 64 64">
-          <g>
-            <circle fill="none" stroke={fill} strokeWidth="4" strokeMiterlimit="10" cx="32" cy="32" r="16"/>
-            <line fill="none" stroke={fill} strokeWidth="4" strokeMiterlimit="10" x1="32" y1="10" x2="32" y2="0"/>
-            <line fill="none" stroke={fill} strokeWidth="4" strokeMiterlimit="10" x1="32" y1="64" x2="32" y2="54"/>
-            <line fill="none" stroke={fill} strokeWidth="4" strokeMiterlimit="10" x1="54" y1="32" x2="64" y2="32"/>
-            <line fill="none" stroke={fill} strokeWidth="4" strokeMiterlimit="10" x1="0" y1="32" x2="10" y2="32"/>
-            <line fill="none" stroke={fill} strokeWidth="4" strokeMiterlimit="10" x1="48" y1="16" x2="53" y2="11"/>
-            <line fill="none" stroke={fill} strokeWidth="4" strokeMiterlimit="10" x1="11" y1="53" x2="16" y2="48"/>
-            <line fill="none" stroke={fill} strokeWidth="4" strokeMiterlimit="10" x1="48" y1="48" x2="53" y2="53"/>
-            <line fill="none" stroke={fill} strokeWidth="4" strokeMiterlimit="10" x1="11" y1="11" x2="16" y2="16"/>
-          </g>
-        </svg>
-        :
-        <svg width="25px" height="25px" viewBox="0 0 75 75" version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
-          <g id="Page-1" stroke="none" strokeWidth="3" fill="none" fillRule="evenodd">
-            <g id="icon-moon" transform="translate(29.500000, 35.000000) rotate(136.000000) translate(-29.500000, -35.000000) translate(2.000000, 4.000000)" stroke={fill} strokeWidth="4">
-              <path d="M1,51 C15.359,51 27,39.359 27,25 C27,15.006 20.271,6.352 12,2 C15.396,0.723 20.158,0 24,0 C41.121,0 55,13.879 55,31 C55,48.121 41.121,62 24,62 C14.495,62 5.687,57.735 0,51 C0.23,51.006 0.768,51 1,51 Z" id="Path"/>
-            </g>
-          </g>
-        </svg>
-      }
+      <MoonOrSun isDark={isDark} />
+      <MoonMask isDark={isDark} />
+      {/*{isDark ?*/}
+      {/*  <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 64 64" enableBackground="new 0 0 64 64">*/}
+      {/*    <g>*/}
+      {/*      <circle fill="none" stroke={fill} strokeWidth="4" strokeMiterlimit="10" cx="32" cy="32" r="16"/>*/}
+      {/*      <line fill="none" stroke={fill} strokeWidth="4" strokeMiterlimit="10" x1="32" y1="10" x2="32" y2="0"/>*/}
+      {/*      <line fill="none" stroke={fill} strokeWidth="4" strokeMiterlimit="10" x1="32" y1="64" x2="32" y2="54"/>*/}
+      {/*      <line fill="none" stroke={fill} strokeWidth="4" strokeMiterlimit="10" x1="54" y1="32" x2="64" y2="32"/>*/}
+      {/*      <line fill="none" stroke={fill} strokeWidth="4" strokeMiterlimit="10" x1="0" y1="32" x2="10" y2="32"/>*/}
+      {/*      <line fill="none" stroke={fill} strokeWidth="4" strokeMiterlimit="10" x1="48" y1="16" x2="53" y2="11"/>*/}
+      {/*      <line fill="none" stroke={fill} strokeWidth="4" strokeMiterlimit="10" x1="11" y1="53" x2="16" y2="48"/>*/}
+      {/*      <line fill="none" stroke={fill} strokeWidth="4" strokeMiterlimit="10" x1="48" y1="48" x2="53" y2="53"/>*/}
+      {/*      <line fill="none" stroke={fill} strokeWidth="4" strokeMiterlimit="10" x1="11" y1="11" x2="16" y2="16"/>*/}
+      {/*    </g>*/}
+      {/*  </svg>*/}
+      {/*  :*/}
+      {/*  <svg width="25px" height="25px" viewBox="0 0 75 75" version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">*/}
+      {/*    <g id="Page-1" stroke="none" strokeWidth="3" fill="none" fillRule="evenodd">*/}
+      {/*      <g id="icon-moon" transform="translate(29.500000, 35.000000) rotate(136.000000) translate(-29.500000, -35.000000) translate(2.000000, 4.000000)" stroke={fill} strokeWidth="4">*/}
+      {/*        <path d="M1,51 C15.359,51 27,39.359 27,25 C27,15.006 20.271,6.352 12,2 C15.396,0.723 20.158,0 24,0 C41.121,0 55,13.879 55,31 C55,48.121 41.121,62 24,62 C14.495,62 5.687,57.735 0,51 C0.23,51.006 0.768,51 1,51 Z" id="Path"/>*/}
+      {/*      </g>*/}
+      {/*    </g>*/}
+      {/*  </svg>*/}
+      {/*}*/}
     </IconWrapper>
   );
 };
@@ -108,7 +108,7 @@ const SharePageButton: React.FC<{}> = () => {
     >
       <Icons.MailtoMd fill={fill} />
       <ToolTip isDark={isDark} hasCopied={hasCopied}>
-        Copied email
+        Email copied
       </ToolTip>
     </IconWrapper>
   );
@@ -319,8 +319,6 @@ const NavToolbar = styled.div`
 
     & > div > a > div > svg{
       height: 80px;
-      margin-left: -47px;
-      margin-right: 47px;
       padding: 10px 0;
     }
 
@@ -405,18 +403,46 @@ const MenuLink = styled.li`
   font-weight: 600;
   line-height: 1.32;
   letter-spacing: 2px;
-  display: inline;
+  display: inline-block;
+  position: relative;
   text-decoration: none;
   //border-bottom: 2px solid;
   color: ${p => p.theme.colors.primary};
   //padding-bottom: 5px;
   -webkit-transition: all .4s ease;
   transition: all .4s ease;
+  padding: 20px;
 
   &.active{
-    border-bottom: 1px solid;
-    padding-left: 4px;
-    margin-top: 1px;
+    // border-bottom: 1px solid;
+    // padding-left: 4px;
+    // margin-top: 1px;
+
+    // &::before{
+    //   content: "";
+    //   position: absolute;
+    //   left: 5px;
+    //   right: 0px;
+    //   top: 25px;
+    //   height: 1px;
+    //   width: 5px;
+    //   margin: 0px;
+    //   background: ${p => p.theme.colors.primary};
+    //   transform: rotate(35deg);
+    // }
+    //
+    // &::after{
+    //   content: "";
+    //   position: absolute;
+    //   left: 5px;
+    //   right: 0px;
+    //   bottom: 26px;
+    //   height: 1px;
+    //   width: 5px;
+    //   margin: 0px;
+    //   background: ${p => p.theme.colors.primary};
+    //   transform: rotate(-35deg);
+    // }
   }
 
   &:hover {
@@ -499,6 +525,7 @@ const NavControls = styled.div`
   align-items: center;
   width: 100%;
   justify-content: flex-end;
+  max-width: 700px;
 
   ${mediaqueries.tablet`
      justify-content: flex-end;
@@ -511,12 +538,13 @@ const NavControls = styled.div`
 
 const ToolTip = styled.div<{ isDark: boolean; hasCopied: boolean }>`
   position: absolute;
-  padding: 4px 13px;
+  padding: 5px 13px;
   background: ${p => (p.isDark ? "#000" : "rgba(0,0,0,0.1)")};
   color: ${p => (p.isDark ? "#fff" : "#000")};
   border-radius: 5px;
-  font-size: 14px;
-  top: -35px;
+  font-size: 12px;
+  bottom: -55px;
+  right: -18px;
   opacity: ${p => (p.hasCopied ? 1 : 0)};
   transform: ${p => (p.hasCopied ? "translateY(-3px)" : "none")};
   transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
@@ -524,20 +552,20 @@ const ToolTip = styled.div<{ isDark: boolean; hasCopied: boolean }>`
   &::after {
     content: "";
     position: absolute;
-    left: 0;
-    right: 0;
-    bottom: -6px;
+    left: 10px;
+    right: 10px;
+    top: -6px;
     margin: 0 auto;
     width: 0;
     height: 0;
     border-left: 6px solid transparent;
     border-right: 6px solid transparent;
-    border-top: 6px solid ${p => (p.isDark ? "#000" : "rgba(0,0,0,0.1)")};
+    border-bottom: 6px solid ${p => (p.isDark ? "#000" : "rgba(0,0,0,0.1)")};
   }
 `;
 
 const IconWrapper = styled.button<{ isDark: boolean }>`
-  //opacity: 0.5;
+  opacity: 1;
   position: relative;
   border-radius: 5px;
   width: 40px;
@@ -546,7 +574,7 @@ const IconWrapper = styled.button<{ isDark: boolean }>`
   align-items: center;
   justify-content: center;
   transition: opacity 0.3s ease;
-  margin-left: 5px;
+  margin-left: 15px;
 
   svg{
     padding-left: 8px;
@@ -558,7 +586,7 @@ const IconWrapper = styled.button<{ isDark: boolean }>`
   }
 
   &:hover {
-    opacity: 1;
+    opacity: 0.5;
   }
 
   &[data-a11y="true"]:focus::after {
@@ -583,8 +611,8 @@ const IconWrapper = styled.button<{ isDark: boolean }>`
 // This is based off a codepen! Much appreciated to: https://codepen.io/aaroniker/pen/KGpXZo
 const MoonOrSun = styled.div<{ isDark: boolean }>`
   position: relative;
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
   border: ${p => (p.isDark ? "4px" : "2px")} solid
     ${p => p.theme.colors.primary};
@@ -592,6 +620,7 @@ const MoonOrSun = styled.div<{ isDark: boolean }>`
   transform: scale(${p => (p.isDark ? 0.55 : 1)});
   transition: all 0.45s ease;
   overflow: ${p => (p.isDark ? "visible" : "hidden")};
+  top: -1px;
 
   &::before {
     content: "";

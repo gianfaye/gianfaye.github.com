@@ -276,7 +276,6 @@ const ProjectTaxonomy = styled.div<{
   white-space: normal;
   overflow: hidden;
 
-
   .Project__Categories{
     margin-right: 5px;
     color: ${p => p.theme.colors.lightGrey};
@@ -329,7 +328,14 @@ const ProjectLink = styled(Link)`
     //border-radius: 5px;
   }
 
+  ${mediaqueries.tablet`
+    &:first-child{
+      margin-bottom: 40px;
+    }
+  `}
+
   ${mediaqueries.phablet`
+
     &:hover ${ImageContainer} {
       transform: none;
       //box-shadow: initial;

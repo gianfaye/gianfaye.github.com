@@ -77,7 +77,7 @@ const ARTICLE_WIDTH = css`
   max-width: 700px;
 
   ${mediaqueries.desktop`
-    max-width: 607px;
+    max-width: 507px;
   `}
 
   ${mediaqueries.tablet`

@@ -187,7 +187,7 @@ export const globalStyles = css`
   }
 
   #navToolbar.sticky + div{
-     margin-top: 160px;
+     margin-top: 190px;
   }
 
   @media (min-width: 1280px){

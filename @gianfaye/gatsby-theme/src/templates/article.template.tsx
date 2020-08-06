@@ -126,7 +126,7 @@ export default Article;
 
 const MobileControls = styled.div`
   position: relative;
-  padding-top: 60px;
+  padding-top: 40px;
   transition: background 0.2s linear;
   text-align: center;
 
@@ -140,6 +140,11 @@ const CommentsContainer = styled.div`
   margin: 0 auto;
   max-width: 700px;
   margin-bottom: 100px;
+
+  ${mediaqueries.desktop_medium`
+    max-width: 507px;
+    padding: 0 40px;
+  `}
 `;
 
 const ArticleBody = styled.article`
@@ -158,7 +163,7 @@ const ArticleBody = styled.article`
   `}
 
   ${mediaqueries.phablet`
-    padding: 60px 0;
+    padding: 40px 0;
     margin: 0 40px;
   `}
 `;
@@ -175,7 +180,7 @@ const FooterNext = styled.h3`
   color: ${p => p.theme.colors.primary};
 
   ${mediaqueries.tablet`
-    margin-bottom: 60px;
+    margin-bottom: 40px;
   `}
 
   &::after {
@@ -189,14 +194,6 @@ const FooterNext = styled.h3`
 
     ${mediaqueries.tablet`
       width: ${(600 / 1140) * 100}%;
-    `}
-
-    ${mediaqueries.phablet`
-      width: ${(400 / 1140) * 100}%;
-    `}
-
-    ${mediaqueries.phone`
-      width: 90px
     `}
   }
 `;

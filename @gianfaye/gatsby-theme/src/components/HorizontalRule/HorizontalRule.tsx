@@ -30,7 +30,7 @@ const HorizontalRule = styled.hr`
   `};
 
   ${mediaqueries.tablet`
-    width: calc(100vw - 40px);
+    width: calc(100vw - 90px);
     margin: 0px auto 50px;
   `};
 `;

@@ -128,6 +128,10 @@ const HeroTagline = styled.div`
   &.show{
     opacity: 1;
   }
+
+  ${mediaqueries.tablet`
+    width: 40vw;
+  `};
 `;
 
 const HeroTaglineText = styled.span`
@@ -174,7 +178,8 @@ const Header = styled.header`
   position: relative;
   z-index: 10;
   // margin: 40px auto 120px;
-  margin: 40px auto;
+  //margin: 40px auto;
+  margin: 60px auto 40px auto;
   padding-left: 28px;
   max-width: 1200px;
 
@@ -301,22 +306,6 @@ const HeroSubtitle = styled.div<{ hasMultipleTopics: boolean }>`
     font-size: 14px;
     flex-direction: column;
 
-    ${p.hasMultipleTopics &&
-      `
-        &::before {
-          content: '';
-          position: absolute;
-          left: -20px;
-          right: -20px;
-          top: -10px;
-          bottom: -10px;
-          border: 1px solid ${p.theme.colors.horizontalRule};
-          opacity: 0.5;
-          border-radius: 5px;
-        }
-    `}
-
-
     strong {
       display: block;
       font-weight: 500;
@@ -345,7 +334,7 @@ const HeroImage = styled.div`
 
   ${mediaqueries.phablet`
     margin: 0 auto;
-    width: calc(100vw - 40px);
+    //width: calc(100vw - 40px);
     height: 220px;
 
     & > div {

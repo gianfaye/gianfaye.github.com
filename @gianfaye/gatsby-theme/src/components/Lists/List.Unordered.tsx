@@ -24,7 +24,7 @@ const UnorderedList = styled.ul`
   `};
 
   ${mediaqueries.phablet`
-    padding-left: 20px;
+    //padding-left: 20px;
   `};
 
   li {

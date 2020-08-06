@@ -238,6 +238,8 @@ const NameContainer = styled.strong`
   text-transform: uppercase;
   font-size: 12px;
   letter-spacing: 2px;
+  min-width: 75px;
+  text-align: right;
 
   ${mediaqueries.desktop`
     max-width: 170px;
@@ -245,6 +247,7 @@ const NameContainer = styled.strong`
 
   ${mediaqueries.phablet`
     max-width: 200px;
+    text-align: center;
   `}
 `;
 

@@ -282,8 +282,6 @@ const ArticleTaxonomy = styled.div<{
     color: ${p => p.theme.colors.lightGrey};
     margin-left: 1px;
   }
-  .Article__Topics{
-  }
 
   ${mediaqueries.phablet`
     max-width: 100%;
@@ -328,6 +326,12 @@ const ArticleLink = styled(Link)`
     background: rgba(255, 255, 255, 0.01);
     //border-radius: 5px;
   }
+
+  ${mediaqueries.tablet`
+    &:first-child{
+      margin-bottom: 40px;
+    }
+  `}
 
   ${mediaqueries.phablet`
     &:hover ${ImageContainer} {

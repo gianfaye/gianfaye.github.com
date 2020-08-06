@@ -28,6 +28,10 @@ const Paragraph = styled.p`
     margin: 0 5px;
   }
 
+  iframe{
+    width: 100%;
+  }
+
   ${mediaqueries.desktop`
     max-width: 507px;
   `}
@@ -35,10 +39,18 @@ const Paragraph = styled.p`
   ${mediaqueries.tablet`
     max-width: 486px;
     margin: 0 auto 25px auto;
+
+    iframe{
+      max-height: 600px;
+    }
   `};
 
   ${mediaqueries.phablet`
     padding: 0 20px auto;
+
+    iframe{
+      max-height: 500px;
+    }
   `};
 `;
 

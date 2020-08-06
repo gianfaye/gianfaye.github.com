@@ -40,7 +40,7 @@ const Aside: React.FC<AsideProps> = ({ contentHeight, children }) => {
 
   useEffect(() => {
     const imageRect = document
-      .getElementById("ProjectBreadcrumb")
+      .getElementById("ProjectImage__Hero")
       .getBoundingClientRect();
 
     const imageOffsetFromTopOfWindow = (imageRect.top - 80) + window.scrollY;

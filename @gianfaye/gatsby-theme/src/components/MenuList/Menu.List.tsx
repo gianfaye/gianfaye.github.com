@@ -286,7 +286,7 @@ const CoMenuListItemOpen = styled.li`
   margin: 20px 0 10px 0;
 `;
 
-const MenuLink = styled.a`
+const MenuLink = styled.div`
   display: flex;
   align-items: center;
   color: inherit;
