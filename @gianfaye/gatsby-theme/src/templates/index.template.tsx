@@ -8,22 +8,24 @@ import Paginator from "@components/Navigation/Navigation.Paginator";
 
 import ArticlesHero from "../sections/home/Home.Hero";
 import ArticlesList from "../sections/Home/Home.List";
+import HomeLatest from "../sections/Home/Home.Latest";
 
 import { Template } from "@types";
 
 const ArticlesPage: Template = ({ location, pageContext }) => {
-  const articles = pageContext.group;
-  const topics = pageContext.additionalContext.topics;
+  const articles = pageContext.additionalContext.articles;
+  const projects = pageContext.additionalContext.projects;
 
   return (
     <Layout>
       <SEO pathname={location.pathname} />
-      <ArticlesHero topics={topics} />
+      <ArticlesHero /*topics={topics}*/ />
       <Section narrow>
-        <ArticlesList articles={articles} />
-        <ArticlesPaginator show={pageContext.pageCount > 1}>
-          <Paginator {...pageContext} />
-        </ArticlesPaginator>
+        {/*<ArticlesList articles={articles} />*/}
+        <HomeLatest articles={articles} projects={projects} />
+        {/*<ArticlesPaginator show={pageContext.pageCount > 1}>*/}
+        {/*  <Paginator {...pageContext} />*/}
+        {/*</ArticlesPaginator>*/}
       </Section>
       {/*<ArticlesGradient />*/}
     </Layout>

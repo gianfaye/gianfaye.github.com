@@ -575,6 +575,7 @@ const IconWrapper = styled.button<{ isDark: boolean }>`
   justify-content: center;
   transition: opacity 0.3s ease;
   margin-left: 15px;
+  margin-top: -5px;
 
   svg{
     padding-left: 8px;

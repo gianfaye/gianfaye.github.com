@@ -112,6 +112,8 @@ export type Template = React.FC<{
   pageContext: {
     article: IArticle;
     project: IProject;
+    articles: IArticle[];
+    projects: IProject[];
     topics: ITopic[];
     mailchimp: boolean;
     next: IArticle[];

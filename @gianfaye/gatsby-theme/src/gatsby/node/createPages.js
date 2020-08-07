@@ -64,7 +64,7 @@ module.exports = async ({ actions: { createPage }, graphql }, themeOptions) => {
     projectsPath = '/projects',
     topicsPage = true,
     worksPage = true,
-    pageLength = 6,
+    pageLength = 10,
     sources = {},
     mailchimp = '',
   } = themeOptions;
@@ -234,12 +234,14 @@ module.exports = async ({ actions: { createPage }, graphql }, themeOptions) => {
   log('Creating', 'home page');
   createPaginatedPages({
     edges: articlesThatArentSecret,
-    pathPrefix: basePath,
+    pathPrefix: rootPath,
     createPage,
     pageLength,
     pageTemplate: templates.home,
     buildPath: buildPaginatedPath,
     context: {
+      articles: articlesThatArentSecret,
+      projects: projectsThatArentSecret,
       topics,
       works,
       basePath,

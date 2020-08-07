@@ -7,156 +7,128 @@ import Headings from '@components/Headings';
 import Image, { ImagePlaceholder } from '@components/Image';
 
 import mediaqueries from '@styles/media';
-import { IProject } from '@types';
+import { IArticle, IProject } from '@types';
 
 import { GridLayoutContext } from '../articles/Articles.List.Context';
-import ProjectCategories from "../project/Project.Categories";
-import ProjectWorks from "../project/Project.Works";
 
-/**
- * Tiles
- * [FEATURED]
- * [SHORT], [LONG]
- * [SHORT], [SHORT], [SHORT]
- * [SHORT], [SHORT], [SHORT]
- *
- * or ------------
- *
- * Rows
- * [LONG]
- * [LONG]
- * [LONG]
- */
-
-interface ProjectsListProps {
+interface HomeLatestProps {
+  articles: IArticle[];
   projects: IProject[];
   alwaysShowAllDetails?: boolean;
 }
 
-interface ProjectsListItemProps {
+interface HomeLatestItemProps {
+  article: IArticle;
   project: IProject;
   narrow?: boolean;
 }
 
-const ProjectsList: React.FC<ProjectsListProps> = ({
-                                                     projects,
-                                                     alwaysShowAllDetails,
-                                                   }) => {
+const HomeLatest: React.FC<HomeLatestProps> = ({ projects, articles, alwaysShowAllDetails }) => {
+  if (!articles) return null;
   if (!projects) return null;
 
+  const hasOnlyOneArticle = articles.length === 1;
   const hasOnlyOneProject = projects.length === 1;
   const { gridLayout = 'tiles', hasSetGridLayout, getGridLayout } = useContext(
     GridLayoutContext,
   );
 
-  /**
-   * We're taking the flat array of projects [{}, {}, {}...]
-   * and turning it into an array of pairs of projects [[{}, {}], [{}, {}], [{}, {}]...]
-   * This makes it simpler to create the grid we want
-   */
-  //const latestProject = projects[0];
-  //console.log('Projects List latestProject', latestProject);
-
-  const projectPairs = projects.reduce((result, value, index, array) => {
-    //console.log('Projects List projectPairs result', result);
-    // console.log('Projects List projectPairs value', value);
-    // console.log('Projects List projectPairs index', index);
-    // console.log('Projects List projectPairs array', array);
-
-    if (index % 2 === 0) {
-      result.push(array.slice(index, index + 2));
-    }
-    return result;
-  }, []);
-  //console.log('Projects List projectPairs', projectPairs);
-
   useEffect(() => getGridLayout(), []);
 
   return (
-    <ProjectsListContainer
+    <HomeLatestContainer
       style={{ opacity: hasSetGridLayout ? 1 : 0 }}
       alwaysShowAllDetails={alwaysShowAllDetails}
     >
-      {projectPairs.map((ap, index) => {
-        const isEven = index % 2 !== 0;
-        const isOdd = index % 2 !== 1;
 
-        //console.log('Projects List ap', ap);
-
-        return (
-          <List
-            key={index}
-            gridLayout={gridLayout}
-            hasOnlyOneProject={hasOnlyOneProject}
-            reverse={isOdd}
-          >
-            <ListItem project={ap[0]} narrow={isOdd} />
-            <ListItem project={ap[1]} narrow={isEven} />
-          </List>
-        );
-      })}
-    </ProjectsListContainer>
+      <List
+        gridLayout={gridLayout}
+        hasOnlyOneArticle={hasOnlyOneArticle}
+        hasOnlyOneProject={hasOnlyOneProject}
+      >
+        <ListItem itemType={"project"} item={projects[0]} narrow={true} />
+        <ListItem itemType={"article"} item={articles[0]} narrow={false} />
+      </List>
+    </HomeLatestContainer>
   );
 };
 
-export default ProjectsList;
+export default HomeLatest;
 
-const ListItem: React.FC<ProjectsListItemProps> = ({ project, narrow }) => {
-  if (!project) return null;
+const ListItem: React.FC<HomeLatestItemProps> = ({ item, itemType, narrow }) => {
+  if (!item) return null;
 
-  //const { gridLayout } = useContext(GridLayoutContext);
-  let gridLayout = 'rows';
-  const hasOverflow = narrow && project.title.length > 35;
-  const imageSource = narrow ? project.hero.narrow : project.hero.regular;
+  const { gridLayout } = useContext(GridLayoutContext);
+  const hasOverflow = narrow && item.title.length > 35;
+  const imageSource = narrow ? item.hero.narrow : item.hero.regular;
   const hasHeroImage =
     imageSource &&
     Object.keys(imageSource).length !== 0 &&
     imageSource.constructor === Object;
 
   return (
-    <ProjectLink to={project.slug} data-a11y="false">
+    <ArticleLink to={item.slug} data-a11y="false">
       <Item gridLayout={gridLayout}>
         <ImageContainer narrow={narrow} gridLayout={gridLayout}>
           {hasHeroImage ? <Image src={imageSource} /> : <ImagePlaceholder />}
+          <ItemPill>
+            {itemType == 'project' ? 'Recent Project' : 'Latest Post'}
+          </ItemPill>
         </ImageContainer>
-        <ProjectContent
+        <ArticleContent
           gridLayout={gridLayout}>
-          <ProjectTaxonomy
-            gridLayout={gridLayout}>
-            <span className="Project__Works">{project.work}</span>
-            <span className="Project__Date">{project.date}</span>
-          </ProjectTaxonomy>
+          { item.topic ?
+            <ArticleTaxonomy
+              gridLayout={gridLayout}>
+              <span className="Article__Categories">{item.categories}</span>
+              <span className="Article__Topics">{item.topic}</span>
+            </ArticleTaxonomy>
+          :
+            <ArticleTaxonomy
+              gridLayout={gridLayout}>
+              <span className="Project__Work">{item.work}</span>
+              <span className="Project__Date">{item.date}</span>
+            </ArticleTaxonomy>
+          }
           <Title dark hasOverflow={hasOverflow} gridLayout={gridLayout}>
-            {project.title}
+            {item.title}
           </Title>
           <Excerpt
-            gridLayout={gridLayout}
+            hasOverflow={hasOverflow}
           >
-            {project.excerpt}
+            {item.excerpt}
           </Excerpt>
+          { item.topic ?
           <MetaData
+            narrow={narrow}
             gridLayout={gridLayout}>
-            Client: <span className="Project__Categories">{project.categories}</span>
-          </MetaData>
-        </ProjectContent>
+            <span className="Article__Date">{item.date}</span> &bull; &nbsp;
+            <span className="Article__TimeToRead">{item.timeToRead} min read</span>
+          </MetaData> :
+            <MetaData
+              className="Project"
+              narrow={narrow}
+              gridLayout={gridLayout}>
+              <span className="Project__Categories">{item.categories}</span>
+            </MetaData>
+          }
+        </ArticleContent>
       </Item>
-    </ProjectLink>
+    </ArticleLink>
   );
 };
 
-const wide = '3fr';
-const narrow = '2fr';
+const wide = '1fr';
+const narrow = '457px';
 
 const limitToTwoLines = css`
   text-overflow: ellipsis;
   overflow-wrap: normal;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
-  //display: -webkit-box;
   display: inline;
   white-space: normal;
   overflow: hidden;
-  //min-height: 84px;
   margin-bottom: 25px;
 
   ${mediaqueries.phablet`
@@ -174,45 +146,42 @@ const showDetails = css`
   }
 `;
 
-const ProjectsListContainer = styled.div<{ alwaysShowAllDetails?: boolean }>`
+const HomeLatestContainer = styled.div<{ alwaysShowAllDetails?: boolean }>`
   transition: opacity 0.25s;
   ${p => p.alwaysShowAllDetails && showDetails}
 `;
 
-// const listTile = p => css`
-//   position: relative;
-//   display: grid;
-//   grid-template-columns: ${p.reverse
-//   ? `${narrow} ${wide}`
-//   : `${wide} ${narrow}`};
-//   grid-template-rows: 2;
-//   column-gap: 30px;
-//
-//   &:not(:last-child) {
-//     margin-bottom: 35px;
-//   }
-//
-//   ${mediaqueries.desktop_medium`
-//     grid-template-columns: 1fr 1fr;
-//   `}
-//
-//   ${mediaqueries.tablet`
-//     grid-template-columns: 1fr;
-//
-//     &:not(:last-child) {
-//       margin-bottom: 0;
-//     }
-//   `}
-// `;
+const listTile = p => css`
+  position: relative;
+  display: grid;
+  grid-template-columns: ${p.reverse
+  ? `${narrow} ${wide}`
+  : `${wide} ${narrow}`};
+  grid-template-rows: 2;
+  column-gap: 30px;
+
+  &:not(:last-child) {
+    margin-bottom: 75px;
+  }
+
+  ${mediaqueries.desktop_medium`
+    grid-template-columns: 1fr 1fr;
+  `}
+
+  ${mediaqueries.tablet`
+    grid-template-columns: 1fr;
+
+    &:not(:last-child) {
+      margin-bottom: 0;
+    }
+  `}
+`;
 
 const listItemRow = p => css`
   display: grid;
   grid-template-rows: 1fr;
-  //grid-template-columns: 1fr 488px;
-  //grid-column-gap: 96px;
-  //grid-template-columns: 1fr 570px;
-  grid-template-columns: 1fr 460px;
-  grid-column-gap: 0;
+  grid-template-columns: 1fr 488px;
+  grid-column-gap: 96px;
   grid-template-rows: 1;
   align-items: center;
   position: relative;
@@ -232,55 +201,54 @@ const listItemRow = p => css`
   }
 
   ${mediaqueries.phablet`
-    //box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.2);
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
-    margin-bottom: 30px;
   `}
 `;
 
-// const listItemTile = p => css`
-//   position: relative;
-//
-//   ${mediaqueries.tablet`
-//     margin-bottom: 60px;
-//   `}
-//
-//   @media (max-width: 540px) {
-//     background: ${p.theme.colors.card};
-//   }
-//
-//   ${mediaqueries.phablet`
-//     margin-bottom: 40px;
-//     //box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.2);
-//     border-bottom-right-radius: 5px;
-//     border-bottom-left-radius: 5px;
-//   `}
-// `;
+const listItemTile = p => css`
+  position: relative;
 
-// If only 1 project, dont create 2 rows.
+  ${mediaqueries.tablet`
+    margin-bottom: 60px;
+  `}
+
+  @media (max-width: 540px) {
+    background: ${p.theme.colors.card};
+  }
+
+  ${mediaqueries.phablet`
+    margin-bottom: 40px;
+    box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.2);
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+  `}
+`;
+
+// If only 1 article, dont create 2 rows.
 const listRow = p => css`
   display: grid;
-  grid-template-rows: ${p.hasOnlyOneProject ? '1fr' : '1fr 1fr'};
+  grid-template-rows: ${p.hasOnlyOneArticle ? '1fr' : '1fr 1fr'};
 `;
 
 const List = styled.div<{
   reverse: boolean;
   gridLayout: string;
-  hasOnlyOneProject: boolean;
+  hasOnlyOneArticle: boolean;
 }>`
-  ${listRow}
+  ${p => (p.gridLayout === 'tiles' ? listTile : listRow)}
 `;
 
 const Item = styled.div<{ gridLayout: string }>`
-  ${listItemRow}
+  ${p => (p.gridLayout === 'rows' ? listItemRow : listItemTile)}
 `;
 
 const ImageContainer = styled.div<{ narrow: boolean; gridLayout: string }>`
   position: relative;
-  height: ${p => (p.gridLayout === 'tiles' ? '370px' : '380px')};
-  // box-shadow: 0 30px 60px -10px rgba(0, 0, 0, ${p => (p.narrow ? 0.22 : 0.3)}),
-  //   0 18px 36px -18px rgba(0, 0, 0, ${p => (p.narrow ? 0.25 : 0.33)});
+  height: ${p => (p.gridLayout === 'tiles' ? '280px' : '220px')};
+  //box-shadow: 0 30px 60px -10px rgba(0, 0, 0, ${p => (p.narrow ? 0.22 : 0.3)}),
+    0 18px 36px -18px rgba(0, 0, 0, ${p => (p.narrow ? 0.25 : 0.33)});
   //margin-bottom: ${p => (p.gridLayout === 'tiles' ? '30px' : 0)};
   overflow: hidden;
   z-index: 300;
@@ -306,11 +274,27 @@ const ImageContainer = styled.div<{ narrow: boolean; gridLayout: string }>`
   `}
 `;
 
+const ItemPill = styled.span`
+    color: ${p => p.theme.colors.card};
+    background: ${p => p.theme.colors.primary};
+    display: inline;
+    padding: 8px 10px 5px 12px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    text-transform: uppercase;
+    font-family: ${p => p.theme.fonts.sansSerif};
+    line-height: 1;
+    font-size: 10px;
+    letter-spacing: 2px;
+    border-radius: 3px;
+    font-weight: 600;
+`;
+
 const Title = styled(Headings.h2)`
-  font-size: 28px;
+  font-size: 32px;
   font-weight: 400;
-  font-family: ${p => p.theme.fonts.sansSerif};
-  text-transform: uppercase;
+  font-family: ${p => p.theme.fonts.serif};
   margin-bottom: ${p =>
   p.hasOverflow && p.gridLayout === 'tiles' ? '25px' : '10px'};
   //transition: color 0.3s ease-in-out;
@@ -340,18 +324,18 @@ const Title = styled(Headings.h2)`
 `;
 
 const Excerpt = styled.p<{
-  gridLayout: string;
+  hasOverflow: boolean;
+  narrow: boolean;
 }>`
   ${limitToTwoLines};
-  display: block;
-  //font-style: italic;
-  margin-top: 5px;
-  font-size: 16px;
-  line-height: 26px;
+  font-size: 18px;
+  line-height: 32px;
   font-family: ${p => p.theme.fonts.serif};
-  margin-bottom: 30px;
+  margin-bottom: 0;
+  margin-top: 10px;
   color: ${p => p.theme.colors.grey};
-  max-width: 500px;
+  display: block;
+  max-width: ${p => (p.narrow ? '415px' : '515px')};
 
   ${mediaqueries.desktop`
     display: -webkit-box;
@@ -363,25 +347,21 @@ const Excerpt = styled.p<{
 
   ${mediaqueries.phablet`
     max-width: 100%;
+    padding:  0 20px;
     margin-bottom: 20px;
     -webkit-line-clamp: 3;
   `}
 `;
 
-const ProjectContent = styled.div<{
+const ArticleContent = styled.div<{
   gridLayout: string;
 }>`
   padding: 30px;
   background: ${p => p.theme.colors.card};
   //margin:  ${p => (p.gridLayout === 'tiles' ? '-150px 30px 20px 30px' : '110px 0 -30px -100px')};
-  //margin:  ${p => (p.gridLayout === 'tiles' ? '-100px 30px 20px 30px' : '110px -100px -30px 0')};
-  //min-height: ${p => (p.gridLayout === 'tiles' ? 'unset' : '330px')};
-  //margin: 140px 0 0px -100px;
-  margin: 80px 0 0px -100px;
   z-index: 600;
   display: block;
   position: relative;
-  //border: 1px solid ${p => p.theme.colors.primary};
 
   ${mediaqueries.tablet`
     margin: 0 auto;
@@ -393,14 +373,18 @@ const MetaData = styled.div<{
   gridLayout: string;
 }>`
   font-weight: 400;
-  font-size: 12px;
-  font-family: ${p => p.theme.fonts.sansSerif};
-  text-transform: uppercase;
-  color: ${p => p.theme.colors.primary};
-  letter-spacing: 2px;
+  font-size: 16px;
+  color: ${p => p.theme.colors.lightGrey};
   margin-top: ${p => (p.gridLayout === 'tiles' ? '20px' : '10px')};
-  //opacity: 0.5;
-  //font-style: italic;
+
+  &.Project{
+    font-size: 12px;
+    font-family: ${p => p.theme.fonts.sansSerif};
+    text-transform: uppercase;
+    color: ${p => p.theme.colors.primary};
+    letter-spacing: 2px;
+    margin-top: ${p => (p.gridLayout === 'tiles' ? '20px' : '10px')};
+  }
 
   .Project__Categories{
     color: ${p => p.theme.colors.card};
@@ -415,7 +399,7 @@ const MetaData = styled.div<{
   `}
 `;
 
-const ProjectTaxonomy = styled.div<{
+const ArticleTaxonomy = styled.div<{
   gridLayout: string;
 }>`
   font-weight: 600;
@@ -425,7 +409,7 @@ const ProjectTaxonomy = styled.div<{
   text-transform: uppercase;
   opacity: 0.8;
   letter-spacing: 2px;
-  margin-bottom: ${p => (p.gridLayout === 'tiles' ? '20px' : '20px')};
+  margin-bottom: 10px;
   text-overflow: ellipsis;
   overflow-wrap: normal;
   -webkit-line-clamp: 1;
@@ -435,10 +419,21 @@ const ProjectTaxonomy = styled.div<{
   overflow: hidden;
 
 
-  .Project__Works{
-    margin-right: 5px;
+  .Article__Categories,
+  .Project__Work{
     color: ${p => p.theme.colors.lightGrey};
+  }
+  .Article__Categories{
+    margin-right: 5px;
     margin-left: 1px;
+  }
+
+  .Project__Date{
+    margin-left: 5px;
+  }
+
+  .Project__Date{
+    margin-left: 3px;
   }
 
   ${mediaqueries.phablet`
@@ -447,7 +442,7 @@ const ProjectTaxonomy = styled.div<{
   `}
 `;
 
-const ProjectLink = styled(Link)`
+const ArticleLink = styled(Link)`
   position: relative;
   display: block;
   width: 100%;

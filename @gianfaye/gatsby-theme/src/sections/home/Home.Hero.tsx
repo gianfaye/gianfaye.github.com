@@ -31,7 +31,7 @@ const topicQuery = graphql`
   }
 `;
 
-const ArticlesHero: React.FC<ITopic> = ({ topics }) => {
+const ArticlesHero: React.FC<ITopic> = ({ /*topics*/ }) => {
   const { gridLayout = 'tiles', hasSetGridLayout, setGridLayout } = useContext(
     GridLayoutContext,
   );
@@ -39,14 +39,14 @@ const ArticlesHero: React.FC<ITopic> = ({ topics }) => {
   const results = useStaticQuery(topicQuery);
   const hero = results.site.edges[0].node.siteMetadata.hero;
   const tilesIsActive = hasSetGridLayout && gridLayout === 'tiles';
-  const featuredTopic = topics.find(topic => topic.featured);
-
-  if (!featuredTopic) {
-    throw new Error(`
-      No featured Topic found.
-      Please ensure you have at least featured Topic.
-  `);
-  }
+  // const featuredTopic = topics.find(topic => topic.featured);
+  //
+  // if (!featuredTopic) {
+  //   throw new Error(`
+  //     No featured Topic found.
+  //     Please ensure you have at least featured Topic.
+  // `);
+  // }
 
   return (
     <Section relative id="Articles__Hero">
