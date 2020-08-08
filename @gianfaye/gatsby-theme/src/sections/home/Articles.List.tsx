@@ -57,8 +57,6 @@ const ArticlesList: React.FC<ArticlesListProps> = ({
   const recentArticles = articles.slice(1, 7); // get articles except latest, max 6
   const articleByThrees = chunk(recentArticles, 3); // group articles by 3s
 
-  console.log('articleByThrees', articleByThrees);
-
   useEffect(() => getGridLayout(), []);
 
   return (
