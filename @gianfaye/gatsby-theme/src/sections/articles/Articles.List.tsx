@@ -382,7 +382,7 @@ const MetaData = styled.div<{
   font-weight: 400;
   font-size: 16px;
   color: ${p => p.theme.colors.lightGrey};
-  margin-top: ${p => (p.gridLayout === 'tiles' ? '20px' : '10px')};;
+  margin-top: ${p => (p.gridLayout === 'tiles' ? '20px' : '10px')};
   //opacity: 0.5;
   //font-style: italic;
 

@@ -21,6 +21,9 @@ export default {
   errorBackground: "rgba(238, 86, 91, 0.1)",
   horizontalRule: "rgba(8, 8, 11, 0.15)",
   inputBackground: "rgba(0, 0, 0, 0.05)",
+  aboutColor: "#FF7148",
+  projectColor: "#FFF72C",
+  blogColor: "#37FE13",
   modes: {
     dark: {
       grey: "#73737D",
