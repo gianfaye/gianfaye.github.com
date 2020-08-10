@@ -59,11 +59,13 @@ module.exports = async ({ actions: { createPage }, graphql }, themeOptions) => {
     basePath = '/',
     topicsPath = '/topics',
     worksPath = '/works',
+    clientsPath = '/clients',
     categoryPath = '/category',
     articlesPath = '/blog',
     projectsPath = '/projects',
     topicsPage = true,
     worksPage = true,
+    clientsPage = true,
     pageLength = 10,
     sources = {},
     mailchimp = '',
@@ -85,13 +87,14 @@ module.exports = async ({ actions: { createPage }, graphql }, themeOptions) => {
 
   let topics;
   let works;
+  let clients;
   let articles;
   let projects;
 
   const dataSources = {
-    local: { topics: [], works: [], articles: [], projects: [] },
-    contentful: { topics: [], works: [], articles: [], projects: [] },
-    netlify: { topics: [], works: [], articles: [], projects: [] },
+    local: { topics: [], works: [], clients: [], articles: [], projects: [] },
+    contentful: { topics: [], works: [], clients: [], articles: [], projects: [] },
+    netlify: { topics: [], works: [], clients: [], articles: [], projects: [] },
   };
 
   if (rootPath) {
@@ -103,12 +106,17 @@ module.exports = async ({ actions: { createPage }, graphql }, themeOptions) => {
   log('Config basePath', basePath);
   if (topicsPage) log('Config topicsPath', topicsPath);
   if (worksPage) log('Config worksPath', worksPath);
+  if (clientsPage) log('Config clientsPath', clientsPath);
 
   if (local) {
     try {
-      log('Querying Topics, Works, Articles, & Projects source:', 'Local');
+      log(
+        'Querying Topics, Works, Articles, Clients & Projects source:',
+        'Local',
+      );
       const localTopics = await graphql(query.local.topics);
       const localWorks = await graphql(query.local.works);
+      const localClients = await graphql(query.local.clients);
       const localArticles = await graphql(query.local.articles);
       const localProjects = await graphql(query.local.projects);
 
@@ -118,6 +126,10 @@ module.exports = async ({ actions: { createPage }, graphql }, themeOptions) => {
 
       dataSources.local.works = localWorks.data.works.edges.map(
         normalize.local.works,
+      );
+
+      dataSources.local.clients = localClients.data.clients.edges.map(
+        normalize.local.clients,
       );
 
       dataSources.local.articles = localArticles.data.articles.edges.map(
@@ -137,6 +149,7 @@ module.exports = async ({ actions: { createPage }, graphql }, themeOptions) => {
       log('Querying Topics, Articles, & Projects source:', 'Contentful');
       const contentfulTopics = await graphql(query.contentful.topics);
       const contentfulWorks = await graphql(query.contentful.works);
+      const contentfulClients = await graphql(query.contentful.clients);
       const contentfulArticles = await graphql(query.contentful.articles);
       const contentfulProjects = await graphql(query.contentful.projects);
 
@@ -146,6 +159,10 @@ module.exports = async ({ actions: { createPage }, graphql }, themeOptions) => {
 
       dataSources.contentful.works = contentfulWorks.data.works.edges.map(
         normalize.contentful.works,
+      );
+
+      dataSources.contentful.clients = contentfulClients.data.clients.edges.map(
+        normalize.contentful.clients,
       );
 
       dataSources.contentful.articles = contentfulArticles.data.articles.edges.map(
@@ -198,6 +215,16 @@ module.exports = async ({ actions: { createPage }, graphql }, themeOptions) => {
     'name',
   );
 
+  // Combining together all the clients from different sources
+  clients = getUniqueListBy(
+    [
+      ...dataSources.local.clients,
+      ...dataSources.contentful.clients,
+      ...dataSources.netlify.clients,
+    ],
+    'name',
+  );
+
   if (
     articles.length === 0 ||
     topics.length === 0 ||
@@ -217,7 +244,7 @@ module.exports = async ({ actions: { createPage }, graphql }, themeOptions) => {
 
   const uniqueCategories = [...new Set(categories)];
 
-  if (uniqueCategories.length === 0 || uniqueCategories.length === 0) {
+  if (uniqueCategories.length === 0) {
     throw new Error(`
     You must have at least one Category to create category page.
   `);
@@ -243,6 +270,7 @@ module.exports = async ({ actions: { createPage }, graphql }, themeOptions) => {
       articles: articlesThatArentSecret,
       projects: projectsThatArentSecret,
       topics,
+      clients,
       works,
       basePath,
       skip: pageLength,
@@ -520,6 +548,7 @@ module.exports = async ({ actions: { createPage }, graphql }, themeOptions) => {
       limit: pageLength,
     },
   });
+
   /**
    * Creating main category pages example
    *  /category/gatsby

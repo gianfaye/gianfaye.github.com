@@ -49,6 +49,18 @@ export interface IWork {
     full: IGatsbyImageFluid;
   };
 }
+export interface IClient {
+  clientsPage?: boolean;
+  featured?: boolean;
+  name: string;
+  slug: string;
+  bio: string;
+  color: string;
+  avatar: {
+    image: IGatsbyImageFluid;
+    full: IGatsbyImageFluid;
+  };
+}
 
 export interface IArticle {
   slug: string;
@@ -115,18 +127,19 @@ export type Template = React.FC<{
     articles: IArticle[];
     projects: IProject[];
     topics: ITopic[];
+    clients: IClient[];
     mailchimp: boolean;
     next: IArticle[];
   };
   location: Location;
 }>
 
-
 export type TemplateProject = React.FC<{
   pageContext: {
     article: IArticle;
     project: IProject;
     works: IWork[];
+    clients: IClient[];
     mailchimp: boolean;
     next: IProject[];
   };

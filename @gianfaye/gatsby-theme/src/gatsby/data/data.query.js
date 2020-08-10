@@ -175,6 +175,41 @@ module.exports.local = {
       }
     }
   }`,
+  clients: `{
+    clients: allClient {
+      edges {
+        node {
+          clientsPage
+          bio
+          id
+          name
+          featured
+          color
+          social {
+            url
+          }
+          slug
+          avatar {
+            small: childImageSharp {
+              fluid(maxWidth: 50, quality: 100) {
+                ${GatsbyFluid_withWebp}
+              }
+            }
+            medium: childImageSharp {
+              fluid(maxWidth: 100, quality: 100) {
+                ${GatsbyFluid_withWebp}
+              }
+            }
+            large: childImageSharp {
+              fluid(maxWidth: 328, quality: 100) {
+                ${GatsbyFluid_withWebp}
+              }
+            }
+          }
+        }
+      }
+    }
+  }`,
 };
 
 module.exports.contentful = {
@@ -302,6 +337,35 @@ module.exports.contentful = {
           }
           fields {
             worksPage
+            slug
+          }
+          color
+          bio
+          id
+          name
+          social
+          featured
+        }
+      }
+    }
+  }`,
+  clients: `{
+    clients: allContentfuClient {
+      edges {
+        node {
+          avatar {
+            small: fluid(maxWidth: 50, quality: 100) {
+              ${GatsbyFluid_withWebp}
+            }
+            medium: fluid(maxWidth: 100, quality: 100) {
+              ${GatsbyFluid_withWebp}
+            }
+            large: fluid(maxWidth: 328, quality: 100) {
+              ${GatsbyFluid_withWebp}
+            }
+          }
+          fields {
+            clientsPage
             slug
           }
           color

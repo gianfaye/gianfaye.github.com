@@ -11,6 +11,7 @@ import Icons from "@icons";
 import { useColorMode } from "theme-ui";
 
 import ArticlesHero from "../sections/home/Home.Hero";
+import ClientsList from "../sections/home/Clients.List";
 import ArticlesList from "../sections/home/Articles.List";
 import ProjectsList from "../sections/home/Projects.List";
 import HomeLatest from "../sections/Home/Home.Latest";
@@ -21,6 +22,9 @@ import { Template } from "@types";
 const ArticlesPage: Template = ({ location, pageContext }) => {
   const articles = pageContext.additionalContext.articles;
   const projects = pageContext.additionalContext.projects;
+  const clients = pageContext.additionalContext.clients;
+
+  //console.log('pageContext', pageContext);
 
   const [colorMode] = useColorMode();
   const isDark = colorMode === `dark`;
@@ -32,6 +36,11 @@ const ArticlesPage: Template = ({ location, pageContext }) => {
       <ArticlesHero /*topics={topics}*/ />
       <Section narrow>
         <HomeLatest articles={articles} projects={projects} />
+      </Section>
+      <Section>
+        <ClientsList clients={clients} />
+      </Section>
+      <Section narrow>
         <ProjectsList projects={projects} />
         <ExploreButtonContainer>
           <ExploreButton as={Link} to={'/projects'}>
@@ -82,11 +91,7 @@ const ArticlesPage: Template = ({ location, pageContext }) => {
             </WantToButton>
           </WantToItem>
         </WantToContainer>
-        {/*<ArticlesPaginator show={pageContext.pageCount > 1}>*/}
-        {/*  <Paginator {...pageContext} />*/}
-        {/*</ArticlesPaginator>*/}
       </Section>
-      {/*<ArticlesGradient />*/}
     </Layout>
   );
 };

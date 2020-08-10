@@ -149,6 +149,41 @@ module.exports = ({ node, actions, getNode, createNodeId }, themeOptions) => {
     return;
   }
 
+  if (node.internal.type === `ClientsYaml`) {
+    const slug = node.slug
+      ? `/${node.slug}`
+      : slugify(node.name, {
+          lower: true,
+        });
+
+    const fieldData = {
+      ...node,
+      clientsPage: themeOptions.clientsPage || false,
+      slug: generateSlug(basePath, 'clients', slug),
+    };
+
+    createNode({
+      ...fieldData,
+      // Required fields.
+      id: createNodeId(`${node.id} >>> Client`),
+      parent: node.id,
+      children: [],
+      internal: {
+        type: `Client`,
+        contentDigest: crypto
+          .createHash(`md5`)
+          .update(JSON.stringify(fieldData))
+          .digest(`hex`),
+        content: JSON.stringify(fieldData),
+        description: `Client`,
+      },
+    });
+
+    createParentChildLink({ parent: fileNode, child: node });
+
+    return;
+  }
+
   if (node.internal.type === `Mdx` && source === contentPath) {
     const fieldData = {
       topic: node.frontmatter.topic,
@@ -268,6 +303,26 @@ module.exports = ({ node, actions, getNode, createNodeId }, themeOptions) => {
       node,
       name: `worksPage`,
       value: themeOptions.worksPage || false,
+    });
+  }
+
+  if (node.internal.type === `ContentfulClient`) {
+    createNodeField({
+      node,
+      name: `slug`,
+      value: generateSlug(
+        basePath,
+        'clients',
+        slugify(node.name, {
+          lower: true,
+        }),
+      ),
+    });
+
+    createNodeField({
+      node,
+      name: `clientsPage`,
+      value: themeOptions.clientsPage || false,
     });
   }
 };

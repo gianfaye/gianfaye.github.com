@@ -74,6 +74,12 @@ module.exports.local = {
       avatar: normalizeAvatar(work),
     };
   },
+  clients: ({ node: client }) => {
+    return {
+      ...client,
+      avatar: normalizeAvatar(client),
+    };
+  },
 };
 
 module.exports.contentful = {
@@ -123,6 +129,14 @@ module.exports.contentful = {
       social: work.social.map(s => ({ url: s })),
       slug: work.fields.slug,
       worksPage: work.fields.worksPage,
+    };
+  },
+  clients: ({ node: client }) => {
+    return {
+      ...client,
+      social: client.social.map(s => ({ url: s })),
+      slug: client.fields.slug,
+      clientsPage: client.fields.clientsPage,
     };
   },
 };

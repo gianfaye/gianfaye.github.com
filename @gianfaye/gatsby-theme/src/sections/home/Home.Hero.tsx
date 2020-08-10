@@ -49,7 +49,7 @@ const ArticlesHero: React.FC<ITopic> = ({ /*topics*/ }) => {
   // }
 
   return (
-    <Section relative id="Articles__Hero">
+    <Section narrow relative id="Articles__Hero">
       <HomeHeroContainer>
         <HeadingContainer style={{ maxWidth: `${hero.maxWidth}px` }}>
           <HeroHeading>

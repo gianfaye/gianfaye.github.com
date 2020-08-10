@@ -3,6 +3,7 @@
 module.exports = ({
   contentTopics = 'content/topics',
   contentWorks = 'content/works',
+  contentClients = 'content/clients',
   contentPosts = 'content/posts',
   contentProjects = 'content/projects',
   pathPrefix = '',
@@ -12,6 +13,7 @@ module.exports = ({
   mapping: {
     'Mdx.frontmatter.topic': `TopicsYaml`,
     'Mdx.frontmatter.work': `WorksYaml`,
+    'Mdx.frontmatter.client': `ClientsYaml`,
   },
   plugins: [
     `gatsby-plugin-typescript`,
@@ -135,6 +137,7 @@ module.exports = ({
                       slug
                       title
                       work
+                      client
                       secret
                     }
                   }
@@ -178,6 +181,9 @@ module.exports = ({
                       work {
                         name
                       }
+                      client {
+                        name
+                      }
                       secret
                     }
                   }
@@ -208,6 +214,7 @@ module.exports = ({
                       slug
                       title
                       work
+                      client
                       secret
                     }
                   }
@@ -246,6 +253,9 @@ module.exports = ({
                       work {
                         name
                       }
+                      client {
+                        name
+                      }
                       secret
                     }
                   }
@@ -276,6 +286,13 @@ module.exports = ({
       options: {
         path: contentWorks,
         name: contentWorks,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: contentClients,
+        name: contentClients,
       },
     },
     {

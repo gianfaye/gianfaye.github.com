@@ -1,0 +1,215 @@
+- name: CNN Philippines
+  bio: |
+    Lorem
+  color: e0719e
+  avatar: ./logo/clients-logo-cnn-philippines.jpg
+  featured: true
+  social:
+    - url: https://unsplash.com
+
+- name: RCBC
+  bio: |
+    Lorem
+  color: e0719e
+  avatar: ./logo/clients-logo-rcbc.jpg
+  featured: true
+  social:
+    - url: https://unsplash.com
+
+- name: Turner
+  bio: |
+    Lorem
+  color: e0719e
+  avatar: ./logo/clients-logo-turner.jpg
+  featured: true
+  social:
+    - url: https://unsplash.com
+
+- name: Go Asia Entertainment
+  bio: |
+    Lorem
+  color: e0719e
+  avatar: ./logo/clients-logo-go-asia-entertainment.jpg
+  featured: true
+  social:
+    - url: https://unsplash.com
+
+- name: Department of Tourism
+  bio: |
+    Lorem
+  color: e0719e
+  avatar: ./logo/clients-logo-department-of-tourism.jpg
+  featured: true
+  social:
+    - url: https://unsplash.com
+
+- name: Traveloka
+  bio: |
+    Lorem
+  color: e0719e
+  avatar: ./logo/clients-logo-traveloka.jpg
+  featured: true
+  social:
+    - url: https://unsplash.com
+
+- name: Bevi
+  bio: |
+    Lorem
+  color: e0719e
+  avatar: ./logo/clients-logo-bevi.jpg
+  featured: true
+  social:
+    - url: https://unsplash.com
+
+- name: Prudence Foundation
+  bio: |
+    Lorem
+  color: e0719e
+  avatar: ./logo/clients-logo-bevi.jpg
+  featured: true
+  social:
+    - url: https://unsplash.com
+
+- name: Sanicare
+  bio: |
+    Lorem
+  color: e0719e
+  avatar: ./logo/clients-logo-sanicare.jpg
+  featured: true
+  social:
+    - url: https://unsplash.com
+
+- name: Uratex
+  bio: |
+    Lorem
+  color: e0719e
+  avatar: ./logo/clients-logo-uratex.jpg
+  featured: true
+  social:
+    - url: https://unsplash.com
+
+- name: Uratex
+  bio: |
+    Lorem
+  color: e0719e
+  avatar: ./logo/clients-logo-uratex.jpg
+  featured: true
+  social:
+    - url: https://unsplash.com
+
+- name: Orkide Villa
+  bio: |
+    Lorem
+  color: e0719e
+  avatar: ./logo/clients-logo-orkide.jpg
+  featured: true
+  social:
+    - url: https://unsplash.com
+
+- name: Knight Frank
+  bio: |
+    Lorem
+  color: e0719e
+  avatar: ./logo/clients-logo-knight-frank.jpg
+  featured: true
+  social:
+    - url: https://unsplash.com
+
+- name: Far East SOHO Pte Ltd
+  bio: |
+    Lorem
+  color: e0719e
+  avatar: ./logo/clients-logo-far-east-soho-pte-ltd.jpg
+  featured: true
+  social:
+    - url: https://unsplash.com
+
+- name: UOL Group Ltd
+  bio: |
+    Lorem
+  color: e0719e
+  avatar: ./logo/clients-logo-uol-group-limited.jpg
+  featured: true
+  social:
+    - url: https://unsplash.com
+
+- name: 70 St Patricks
+  bio: |
+    Lorem
+  color: e0719e
+  avatar: ./logo/clients-logo-70-st-patricks.jpg
+  featured: true
+  social:
+    - url: https://unsplash.com
+
+- name: The Siena
+  bio: |
+    Lorem
+  color: e0719e
+  avatar: ./logo/clients-logo-the-siena.jpg
+  featured: true
+  social:
+    - url: https://unsplash.com
+
+- name: Ripple Bay
+  bio: |
+    Lorem
+  color: e0719e
+  avatar: ./logo/clients-logo-ripple-bay.jpg
+  featured: true
+  social:
+    - url: https://unsplash.com
+
+- name: The Tembusu
+  bio: |
+    Lorem
+  color: e0719e
+  avatar: ./logo/clients-logo-the-tembusu.jpg
+  featured: true
+  social:
+    - url: https://unsplash.com
+
+- name: Thomson Three
+  bio: |
+    Lorem
+  color: e0719e
+  avatar: ./logo/clients-logo-thomson-three.jpg
+  featured: true
+  social:
+    - url: https://unsplash.com
+
+- name: Sky@eleven
+  bio: |
+    Lorem
+  color: e0719e
+  avatar: ./logo/clients-logo-sky11.jpg
+  featured: true
+  social:
+    - url: https://unsplash.com
+
+- name: CompareAsiaGroup
+  bio: |
+    Lorem
+  color: e0719e
+  avatar: ./logo/clients-logo-compare-asia-group.jpg
+  featured: true
+  social:
+    - url: https://unsplash.com
+
+- name: PULP Magazine
+  bio: |
+    Lorem
+  color: e0719e
+  avatar: ./logo/clients-logo-pulp-magazine.jpg
+  featured: true
+  social:
+    - url: https://unsplash.com
+
+- name: PULP Live World
+  bio: |
+    Lorem
+  color: e0719e
+  avatar: ./logo/clients-logo-pulp-live-world.jpg
+  featured: true
+  social:
+    - url: https://unsplash.com
