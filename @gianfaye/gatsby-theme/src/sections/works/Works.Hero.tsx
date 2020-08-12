@@ -48,7 +48,7 @@ const WorkHero: React.FC<IWork> = ({ works, work }) => {
   // }
 
   return (
-    <Section relative id="Projects__Hero">
+    <Section narrow id="Projects__Hero">
       <HeadingContainer>
         {/*<HeroHeading dangerouslySetInnerHTML={{ __html: 'Explore works I post about' }} />*/}
         <HeroHeading>

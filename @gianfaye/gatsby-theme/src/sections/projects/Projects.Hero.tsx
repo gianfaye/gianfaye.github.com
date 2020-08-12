@@ -47,7 +47,7 @@ const ProjectsHero: React.FC<IWork> = ({ works }) => {
   // }
 
   return (
-    <Section relative id="Projects__Hero">
+    <Section narrow id="Projects__Hero">
       <HeadingContainer style={{ maxWidth: `${hero.maxWidth}px` }}>
         <HeroHeading dangerouslySetInnerHTML={{ __html: "Projects" }} />
       </HeadingContainer>

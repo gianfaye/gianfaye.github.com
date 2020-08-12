@@ -48,7 +48,7 @@ const TopicsHero: React.FC<ITopic> = ({ topics, topic }) => {
   // }
 
   return (
-    <Section relative id="Articles__Hero">
+    <Section narrow id="Articles__Hero">
       <HeadingContainer>
         {/*<HeroHeading dangerouslySetInnerHTML={{ __html: 'Explore topics I post about' }} />*/}
         <HeroHeading>
