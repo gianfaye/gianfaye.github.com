@@ -93,7 +93,13 @@ module.exports = async ({ actions: { createPage }, graphql }, themeOptions) => {
 
   const dataSources = {
     local: { topics: [], works: [], clients: [], articles: [], projects: [] },
-    contentful: { topics: [], works: [], clients: [], articles: [], projects: [] },
+    contentful: {
+      topics: [],
+      works: [],
+      clients: [],
+      articles: [],
+      projects: [],
+    },
     netlify: { topics: [], works: [], clients: [], articles: [], projects: [] },
   };
 
