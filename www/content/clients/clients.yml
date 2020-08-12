@@ -65,7 +65,7 @@
   bio: |
     Lorem
   color: e0719e
-  avatar: ./logo/clients-logo-bevi.jpg
+  avatar: ./logo/clients-logo-prudence-foundation.jpg
   featured: true
   social:
     - url: https://unsplash.com
@@ -129,60 +129,6 @@
     Lorem
   color: e0719e
   avatar: ./logo/clients-logo-uol-group-limited.jpg
-  featured: true
-  social:
-    - url: https://unsplash.com
-
-- name: 70 St Patricks
-  bio: |
-    Lorem
-  color: e0719e
-  avatar: ./logo/clients-logo-70-st-patricks.jpg
-  featured: true
-  social:
-    - url: https://unsplash.com
-
-- name: The Siena
-  bio: |
-    Lorem
-  color: e0719e
-  avatar: ./logo/clients-logo-the-siena.jpg
-  featured: true
-  social:
-    - url: https://unsplash.com
-
-- name: Ripple Bay
-  bio: |
-    Lorem
-  color: e0719e
-  avatar: ./logo/clients-logo-ripple-bay.jpg
-  featured: true
-  social:
-    - url: https://unsplash.com
-
-- name: The Tembusu
-  bio: |
-    Lorem
-  color: e0719e
-  avatar: ./logo/clients-logo-the-tembusu.jpg
-  featured: true
-  social:
-    - url: https://unsplash.com
-
-- name: Thomson Three
-  bio: |
-    Lorem
-  color: e0719e
-  avatar: ./logo/clients-logo-thomson-three.jpg
-  featured: true
-  social:
-    - url: https://unsplash.com
-
-- name: Sky@eleven
-  bio: |
-    Lorem
-  color: e0719e
-  avatar: ./logo/clients-logo-sky11.jpg
   featured: true
   social:
     - url: https://unsplash.com

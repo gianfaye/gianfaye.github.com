@@ -15,6 +15,7 @@ const breakpoints = [
 
 const fonts = {
   serif: "'Sentinel Book', Georgia, Serif",
+  italic: "'Sentinel Italic', Georgia, Serif",
   sansSerif:
     "'Voyager Grotesque', '-apple-system', 'BlinkMacSystemFont', 'San Francisco', 'Helvetica Neue', 'Helvetica', 'Ubuntu', 'Roboto', 'Noto', 'Segoe UI', 'Arial', sans-serif",
   monospace: `"Operator Mono", Consolas, Menlo, Monaco, source-code-pro, Courier New, monospace`,

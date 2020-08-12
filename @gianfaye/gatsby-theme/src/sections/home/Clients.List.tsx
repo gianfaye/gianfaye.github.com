@@ -9,6 +9,14 @@ import Image, { ImagePlaceholder } from '@components/Image';
 import mediaqueries from '@styles/media';
 import { IClient } from '@types';
 
+import SwiperCore, { Autoplay } from 'swiper';
+// Import Swiper React components
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+// Import Swiper styles
+// import 'swiper/swiper.scss';
+SwiperCore.use([Autoplay]);
+
 interface ClientsListProps {
   clients: IClient[];
   alwaysShowAllDetails?: boolean;
@@ -25,12 +33,54 @@ const ClientsList: React.FC<ClientsListProps> = ({ clients }) => {
 
   return (
     <ClientsListContainer>
+      <ClientsListContent>
+        <ClientListHeader>
+          Worked on projects for:
+        </ClientListHeader>
+        <ClientListText>
+          I've worked on and handled several projects for local and international brands and companies.
+        </ClientListText>
+        <ClientListButton>
+          Explore Projects
+        </ClientListButton>
+      </ClientsListContent>
       <List>
-      {clients.map((ap, index) => {
-        return (
-          <ListItem key={index}  client={ap}/>
-        );
-      })}
+        <Swiper
+          spaceBetween={40}
+          slidesPerView={3}
+          loop={true}
+          grabCursor={true}
+          autoplay={{
+            delay: 3000,
+            disableOnInteraction: false
+          }}
+          breakpoints={{
+            1400: {
+              slidesPerView: 3,
+              spaceBetween: 20,
+            },
+            1200: {
+              slidesPerView: 2,
+              spaceBetween: 40,
+            },
+            1024: {
+              slidesPerView: 2,
+              spaceBetween: 20,
+            },
+            768: {
+              slidesPerView: 1,
+              spaceBetween: 20,
+            },
+          }}
+          onSlideChange={() => console.log('slide change')}
+          onSwiper={(swiper) => console.log(swiper)}
+        >
+          {clients.map((ap, index) => {
+            return (
+              <SwiperSlide><ListItem key={index}  client={ap}/></SwiperSlide>
+            );
+          })}
+        </Swiper>
       </List>
     </ClientsListContainer>
   );
@@ -51,34 +101,98 @@ const ListItem: React.FC<ClientsListItemProps> = ({ client }) => {
     <Item>
       <ClientContent>
         <ImageContainer>
-          {hasHeroImage ? <Image src={imageSource} /> : <ImagePlaceholder />}
+          {hasHeroImage ? <Image src={imageSource} alt={client.name} /> : <ImagePlaceholder />}
         </ImageContainer>
-        <Title dark>
-          {client.name}
-        </Title>
       </ClientContent>
     </Item>
   );
 };
 
 const ClientsListContainer = styled.div`
-  margin-top: 30px;
+  margin: 0 -40px;
+  padding: 60px 0;
   transition: opacity 0.25s;
+  display: grid;
+  grid-template-columns: 500px 1fr;
+  background: #f0f4f6;
+
+  ${mediaqueries.tablet`
+    grid-template-columns: 1fr;
+    padding: 60px;
+  `}
 `;
 
-const List = styled.ul`
+const ClientsListContent = styled.div`
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: calc((100vw - 1220px) / 2 + 40px);
+
+  ${mediaqueries.tablet`
+    padding-left: 0;
+  `}
 `;
 
-const Item = styled.li`
+const ClientListHeader = styled.h3`
+  font-size: 32px;
+  line-height: 0.9;
+  margin-bottom: 20px;
+`;
+
+const ClientListText = styled.p`
+  font-size: 20px;
+  font-family: ${p => p.theme.fonts.italic};
+  padding-right: 20px;
+  margin-bottom: 20px;
+  font-style: italic;
+  opacity: 0.8;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: 0.6px;
+`;
+
+const ClientListButton = styled.a`
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 20px;
+  letter-spacing: 3px;
+  font-family: ${p => p.theme.fonts.sansSerif};
+  background: ${p => p.theme.colors.projectColor};
+  color: ${p => p.theme.colors.primary};
+  text-transform: uppercase;
+  box-sizing: border-box;
+  transition: background-color .15s ease,color .15s ease,border .15s ease;
+  padding: 12px 15px;
+  width: 200px;
+  text-align: center;
+
+  &:hover{
+    background: ${p => p.theme.colors.primary};
+    color: ${p => p.theme.colors.background};
+  }
+`;
+
+const List = styled.div`
+  display: flex;
+  width: calc(100vw - 630px);
+
+  ${mediaqueries.tablet`
+    width: 100%;
+  `}
+`;
+
+const Item = styled.div`
   min-width: 100px;
 `;
 
 const ImageContainer = styled.div`
   position: relative;
-  height: 220px;
+  height: 230px;
+  width: 230px;
+  border-radius: 100%;
+  overflow: hidden;
   transition: transform 0.3s var(--ease-out-quad),
-    box-shadow 0.3s var(--ease-out-quad);
+  box-shadow 0.3s var(--ease-out-quad);
 
   & > div {
     height: 100%;
