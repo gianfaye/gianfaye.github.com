@@ -6,11 +6,6 @@
   featured: true
   social:
     - url: https://unsplash.com
-    - url: https://stackoverflow.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: mailto:myem@il.com
 
 - name: Landing Page
   bio: |
@@ -20,39 +15,34 @@
   featured: true
   social:
     - url: https://unsplash.com
-    - url: https://stackoverflow.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: mailto:myem@il.com
 
-- name: Ecommerce
-  bio: |
-    Lorem
-  color: e0719e
-  avatar: ./logo/clients-logo-turner.jpg
-  featured: true
-  social:
-    - url: https://unsplash.com
-    - url: https://stackoverflow.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: mailto:myem@il.com
+#- name: Ecommerce
+#  bio: |
+#    Lorem
+#  color: e0719e
+#  avatar: ./logo/clients-logo-turner.jpg
+#  featured: true
+#  social:
+#    - url: https://unsplash.com
+#    - url: https://stackoverflow.com
+#    - url: https://github.com
+#    - url: https://github.com
+#    - url: https://github.com
+#    - url: mailto:myem@il.com
 
-- name: Single Page Application
-  bio: |
-    Lorem
-  color: e0719e
-  avatar: ./logo/clients-logo-go-asia-entertainment.jpg
-  featured: true
-  social:
-    - url: https://unsplash.com
-    - url: https://stackoverflow.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: mailto:myem@il.com
+#- name: Single Page Application
+#  bio: |
+#    Lorem
+#  color: e0719e
+#  avatar: ./logo/clients-logo-go-asia-entertainment.jpg
+#  featured: true
+#  social:
+#    - url: https://unsplash.com
+#    - url: https://stackoverflow.com
+#    - url: https://github.com
+#    - url: https://github.com
+#    - url: https://github.com
+#    - url: mailto:myem@il.com
 
 - name: Print
   bio: |
@@ -62,11 +52,6 @@
   featured: true
   social:
     - url: https://unsplash.com
-    - url: https://stackoverflow.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: mailto:myem@il.com
 
 - name: Software
   bio: |
@@ -76,22 +61,4 @@
   featured: true
   social:
     - url: https://unsplash.com
-    - url: https://stackoverflow.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: mailto:myem@il.com
 
-- name: Illustration
-  bio: |
-    Lorem
-  color: e0719e
-  avatar: ./logo/clients-logo-bevi.jpg
-  featured: true
-  social:
-    - url: https://unsplash.com
-    - url: https://stackoverflow.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: mailto:myem@il.com
