@@ -29,7 +29,6 @@ interface ClientsListItemProps {
 
 const ClientsList: React.FC<ClientsListProps> = ({ clients }) => {
   if (!clients) return null;
-  console.log('ClientsList clients', clients);
 
   return (
     <ClientsListContainer>
