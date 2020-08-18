@@ -432,19 +432,19 @@
 #    - url: https://github.com
 #    - url: mailto:myem@il.com
 
-#- name: Career Advice
-#  bio: |
-#    Written by You. This is where your topic bio lives. Share your work, your
-#    joys and of course, your Twitter handle.
-#  color: e0719e
-#  avatar: ./avatars/career-advice.png
-#  social:
-#    - url: https://github.com
-#    - url: https://github.com
-#    - url: https://github.com
-#    - url: https://github.com
-#    - url: https://github.com
-#    - url: mailto:myem@il.com
+- name: Career Advice
+  bio: |
+    Written by You. This is where your topic bio lives. Share your work, your
+    joys and of course, your Twitter handle.
+  color: e0719e
+  avatar: ./avatars/career-advice.png
+  social:
+    - url: https://github.com
+    - url: https://github.com
+    - url: https://github.com
+    - url: https://github.com
+    - url: https://github.com
+    - url: mailto:myem@il.com
 
 - name: Science
   bio: |
