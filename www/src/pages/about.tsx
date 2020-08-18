@@ -13,41 +13,50 @@ function AboutPage() {
   return (
     <Layout>
       <SEO />
-      <Section>
+      <Section narrow>
+        <AboutHeader>
+          <AboutHeading>
+            Geek <span>of all</span> Trades
+          </AboutHeading>
+          <AboutAvatar>
+            <img src="/photo.png" alt="Gian Faye Paguirigan"/>
+          </AboutAvatar>
+        </AboutHeader>
         <AboutContainer>
+          <AboutIntro>
+            <p>
+              I'm currently working as a Senior Frontend Developer at a digital marketing agency in Makati where I handle web projects and directly communicate with clients.
+            </p>
+            <p>
+              I have 10 years of working experience as a web developer mainly focusing in frontend development but have worn several hats over the years when I have to do automated QA testing, content management, copywriting, project management, solutions architecture, graphic design, and user experience design.
+            </p>
+          </AboutIntro>
           <AboutContent>
-            <Headings.h1>About</Headings.h1>
-            <AboutText>
-              I'm <strong>Gian Faye Paguirigan</strong><small> <small> [ Pronounced as *jee&bull;yan fey pa&bull;gi&bull;ri&bull;gan* ]</small></small>, a web geek from the Philippines.
-            </AboutText>
-            <Headings.h2>Summary</Headings.h2>
-            <AboutText>
-              I have been working on <strong>user interfaces</strong> for the web since 2010. I started with customizing blog templates during the blogging era <small>[ remember blogspot? <small>but seriously, I started during the Friendster and Multiply era but let's not dwell on that OKAY</small> ]</small>, then creating and setting up a website and <strong>CMS</strong> from the ground up <small><small>[ without WordPress</small> &#x1F62E; <small>]</small></small>, setting up <strong>web hosting</strong> <small><small>[ ugh, cPanel</small> &#x1F644; <small>]</small></small>, setting up <strong>DNS</strong> <small><small>[ A records and stuff ~ .tk, Namecheap, GoDaddy, Name.com, you name it ]</small></small>, uploading via <strong>FTP</strong> <small> &#x1F62C;</small>, editing code in <strong>VIM</strong> and updating web pages via <strong>SSH</strong> <small>&#x1F616;</small> &mdash; <em>aaaand</em> fast forward to using <strong>version control / SCM</strong> (<strong>Git</strong> and <strong>Subversion</strong>), creating my own <strong>design system</strong> and <strong>brand bible</strong> for companies, customizing <strong>Shopify Liquid</strong> templates, drafting <strong>wireframes</strong> and <strong>mockups</strong>, creating <strong>SVGs</strong> and <strong>Symbols</strong> in <strong>Sketch</strong>, integrating with <strong>APIs</strong> and creating <strong>single-page applications (SPA)</strong> in <strong>React</strong> and <strong>Angular</strong>. From <strong>Notepad ++</strong> to <strong>Sublime Text</strong> to <strong>Webstorm</strong> <em>not</em> real quick.
-            </AboutText>
-            <Headings.h2>Skillset</Headings.h2>
-            <img src="/assets/images/bio/gfp-skillset-2020-04.jpg" alt="2020 Featured Skillset"/>
-            <AboutText>
-              Verified by: <a href="https://app.pluralsight.com/profile/gianfaye">Pluralsight Role IQ Skill Assessment</a> (as of April 2, 2020)
-            </AboutText>
-            <AboutText>
-              If you are interested to know more about my skills and the tools I use, [contact me](mailto:contact@gianfaye.com) and I will send you my CV. My current expertise is on **front-end development** and **user experience design**.
-            </AboutText>
-            <AboutText>
-              If you would read this article: [The Front End Engineering Spectrum- The Three Generic Types of Front End Engineers](http://htmlcssjavascript.com/web/the-front-end-engineering-spectrum-the-three-generic-types-of-front-end-engineers/) I'd be <strong>The Core</strong> -- heading towards being full-stack.
-            </AboutText>
-            <AboutText>
-              My approach to design is mainly intuitive but I'm familiar with most of the textbook concepts such as the Gestalt principles and common design patterns.
-            </AboutText>
-            <AboutText>
-              My current snack is <strong>ReactJS</strong> spiced with <strong>Redux</strong> messing up with components and states.
-            </AboutText>
-            <AboutText>
-              Connect with me on <a href="https://ph.linkedin.com/in/gianfaye" target="_blank">LinkedIn &rarr;</a>
-            </AboutText>
-            <Headings.h2>Interests</Headings.h2>
-            <AboutText>
-              Aside from web technologies, I am very interested in **forensic science** specializing in **computer forensics**, anything about **InfoSec**, the **maker culture**, and the **Internet of Things**. If I'm not tinkering stuff on <a href="https://www.youtube.com/watch?v=iDbyYGrswtg">the internet</a>, I'll probably be tinkering things IRL.
-            </AboutText>
+            <AboutSection>
+              <AboutText>
+                You might be wondering if my tagline comes from the figure of speech, "Jack of All Trades, Master of None." That can be half true. There is an open discussion as to whether a generalist is better than a specialist, or the other way around. You can weigh in the pros and cons but it always falls back to the situation when one can be more efficient than the other. My end goal has always been <a href="/blog/everyday-is-a-starting-point">being both</a>. Rolling eyes aside, it can be done. How? Being able to switch between seeing things in micro versus macro. One can focus on the finer details while still being able to visualize the bigger picture &mdash; directing motion and all its tiny moving parts.
+              </AboutText>
+            </AboutSection>
+            <AboutSection>
+              <Headings.h2>Skillset</Headings.h2>
+              <AboutText>
+                My current expertise is on <strong>front-end development</strong> and <strong>user experience design</strong>. If you would read this article: <a
+                href="http://htmlcssjavascript.com/web/the-front-end-engineering-spectrum-the-three-generic-types-of-front-end-engineers/" target="_blank">The Front End Engineering Spectrum - The Three Generic Types of Front End Engineers  &rarr;</a> I'd be <strong>The Core</strong> &ndash; heading towards being full-stack.
+              </AboutText>
+              <AboutText>
+                My approach to design is mainly intuitive but I'm familiar with most of the textbook concepts such as the Gestalt principles and common design patterns. My current snack is <strong>JAM (Javascript, APIs, Markups)</strong> mainly using <strong>React.js</strong> and messing up with components and states. This site is built with GatsbyJS, a React.js framework, coupled with GraphQL.
+              </AboutText>
+              <AboutText>
+                Check out my <a href="https://app.pluralsight.com/profile/gianfaye">Pluralsight Role IQ Skill Assessment  &rarr;</a> (as of April 2, 2020)
+              </AboutText>
+            </AboutSection>
+            <AboutSection>
+              <Headings.h2>Interests</Headings.h2>
+              <AboutText>
+                Aside from web technologies, I am very interested in <strong>computer forensics</strong>, anything about <strong>InfoSec</strong>, the <strong>maker culture</strong>, and the <strong>Internet of Things</strong>. If I'm not tinkering stuff on <a href="https://www.youtube.com/watch?v=iDbyYGrswtg" target="_blank">the internet</a>, I'll probably be <a
+                href="/blog/coffee-getting-cold-alarm-device-arduino">tinkering things IRL</a>.
+              </AboutText>
+            </AboutSection>
           </AboutContent>
           {/*<AboutImage src={'./404.png'} />*/}
         </AboutContainer>
@@ -58,27 +67,62 @@ function AboutPage() {
 
 export default AboutPage;
 
-const AboutContainer = styled.div`
-  //margin: 100px 0;
-  margin: 80px 0 100px 0;
-  display: inline-block;
-  //text-align: center;
-  // display: flex;
-  // align-content: center;
-  // justify-content: center;
-  //padding: 50px;
+const AboutHeader = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 50px;
+`;
+const AboutHeading = styled.h1`
+  font-family: ${p => p.theme.fonts.sansSerif};
+  text-transform: uppercase;
+  width: 60%;
+  text-align: right;
+  font-size: 150px;
+  line-height: 1;
+  margin-right: -130px;
+  margin-bottom: 60px;
 
-  ${mediaqueries.desktop`
-    width: 80%;
-  `}
+  span{
+    font-size: 70px;
+    line-height: 0.9;
+    display: inherit;
+    opacity: 0.2;
+    margin-bottom: 16px;
+    margin-right: 150px;
+  }
+`;
+const AboutAvatar = styled.div`
+  width: 50%;
 
-  ${mediaqueries.tablet`
+  img{
+    max-width: 500px;
     width: 100%;
-  `}
+  }
+`;
 
-  ${mediaqueries.phablet`
-    margin: 60px 0 80px 0;
-  `}
+const AboutContainer = styled.div`
+  display: flex;
+`;
+
+const AboutIntro = styled.div`
+  width: 30%;
+  padding: 30px;
+  margin-top: -60px;
+
+  p{
+    font-size: 20px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    position: relative;
+    color: ${p => p.theme.colors.grey};
+
+    span{
+      // position: absolute;
+      // left: -30px;
+      margin-right: 6px;
+    }
+  }
 `;
 
 const AboutImage = styled(Image)`
@@ -87,26 +131,31 @@ const AboutImage = styled(Image)`
 `;
 
 const AboutContent = styled.div`
-  // display: flex;
-  // flex-direction: column;
-  // align-content: center;
-  // justify-content: center;
+  width: 70%;
+  padding: 50px;
 
-  h1 {
-    margin-bottom: 20px;
-    font-style: normal;
+  h2{
+    font-family: ${p => p.theme.fonts.sansSerif};
+    text-transform: uppercase;
+    letter-spacing: 2px;
     font-weight: 400;
-    font-size: 80px;
-    line-height: 1.15;
-    color: ${p => p.theme.colors.primary};
   }
 `;
 
+const AboutSection = styled.div`
+  margin-bottom: 30px;
+`;
+
+
 const AboutText = styled.p`
-  //font-family: ${p => p.theme.fonts.sansSerif};
-  color: ${p => p.theme.colors.grey};
-  line-height: 1.54;
   margin-bottom: 20px;
+  font-size: 20px;
+  line-height: 32px;
+  letter-spacing: -.5px;
+
+  small{
+    font-size: 0.8em;
+  }
 
   span{
     text-decoration: line-through;
