@@ -137,7 +137,6 @@ module.exports = ({
                       slug
                       title
                       work
-                      client
                       secret
                     }
                   }
@@ -214,7 +213,6 @@ module.exports = ({
                       slug
                       title
                       work
-                      client
                       secret
                     }
                   }
