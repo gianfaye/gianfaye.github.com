@@ -91,6 +91,13 @@ const AboutHeading = styled.h1`
     margin-bottom: 16px;
     margin-right: 150px;
   }
+
+  ${mediaqueries.tablet`
+    font-size: 100px;
+  `}
+  ${mediaqueries.phablet`
+    font-size: 60px;
+  `}
 `;
 const AboutAvatar = styled.div`
   width: 50%;
@@ -103,6 +110,10 @@ const AboutAvatar = styled.div`
 
 const AboutContainer = styled.div`
   display: flex;
+
+  ${mediaqueries.tablet`
+    flex-direction: column;
+  `}
 `;
 
 const AboutIntro = styled.div`
@@ -123,11 +134,20 @@ const AboutIntro = styled.div`
       margin-right: 6px;
     }
   }
-`;
 
-const AboutImage = styled(Image)`
-  width: 100%;
-  max-width: 400px;
+  ${mediaqueries.desktop_medium`
+    padding: 0;
+  `}
+
+  ${mediaqueries.tablet`
+    padding: 30px;
+    margin-top: -60px;
+    width: 100%;
+  `}
+
+  ${mediaqueries.phablet`
+    padding: 30px 20px;
+  `}
 `;
 
 const AboutContent = styled.div`
@@ -140,6 +160,15 @@ const AboutContent = styled.div`
     letter-spacing: 2px;
     font-weight: 400;
   }
+
+  ${mediaqueries.tablet`
+     width: 100%;
+    padding: 0 30px;
+  `}
+
+  ${mediaqueries.phablet`
+    padding: 0 20px;
+  `}
 `;
 
 const AboutSection = styled.div`
