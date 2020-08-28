@@ -586,9 +586,9 @@ const IconWrapper = styled.button<{ isDark: boolean }>`
     padding: 0;
   }
 
-  &:hover {
-    opacity: 0.5;
-  }
+  // &:hover {
+  //   opacity: 0.5;
+  // }
 
   &[data-a11y="true"]:focus::after {
     content: "";
