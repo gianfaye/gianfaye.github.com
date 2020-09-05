@@ -1,0 +1,237 @@
+---
+title: "Migrating my website from Jekyll (Ruby) to Gatsby.js (React.js)"
+slug: migrating-form-jekyll-to-gatsby
+topic: Web Development
+date: 2022-07-30
+hero: ./images/migrating-jekyll-to-gatsby.jpg
+excerpt: "How I migrated this website from Jekyll to GatsbyJS"
+categories: ['Updates']
+---
+
+As a front-end developer, when I chanced upon the newly-coined yet-another-tech-jargon that is [JAMstack](https://jamstack.org/), I got intrigued. JAM stands for JavaScript, APIs, Markups. It is when you can build everything in JavaScript, server-side processes are abstracted into microservice APIs, and the Markup is pre-built using a static site generator. It's like being in control of everything for once. On a traditional web development project cycle, the frontend has always been stacked after UI and before backend development. But with the JAMstack, the need to manage and run web servers is entirely eliminated. Gone are the days that the frontend is mainly for the client-side and the backend for the server-side.
+
+I started migrating my website on the last week of June this year. The previous version of my website is generated using [Jekyll](https://jekyllrb.com/) and deployed in Github Pages. It was first deployed in 2013 (7 years sure came by so fast). You can view it by visiting [jekyll.gianfaye.com](http://jekyll.gianfaye.com/).
+
+## The Great Gatsby
+
+I love [GatsbyJS](https://www.gatsbyjs.com/). I love how easy and fast it is to deploy sites that are equally lightning fast. For the first time in a long time I've coded long hours until I literally can't anymore because I needed to sleep. That is how developer-friendly it is. Their [starter library](https://www.gatsbyjs.com/starters/narative/gatsby-starter-novela) didn't fall short of templates you can scaffold with. After browsing for a bit, I already knew which template I would start with.
+
+## The Novela Theme
+
+Meet [Novela](https://www.gatsbyjs.com/starters/narative/gatsby-starter-novela), a Gatsby starter template made by the awesome team that is Narative. This has got to be one of the most elegant themes among the starter templates from the Gatsby library.
+
+<div class="Image__Small">
+  <img src="./images/novela-theme.png" alt="Novela Theme by Narative" />
+</div>
+
+It already has the basic foundation for publishing blogs with posts formatted in Markdown. You can either write posts on the theme repo itself or add them via [Contentful](https://www.contentful.com/) or [Netlify](https://www.netlify.com/). Since I like writing on my IDE, I am publishing via Github Pages with the option to migrate to Contentful when I reached the [Github repo size limit](https://docs.github.com/en/github/managing-large-files/what-is-my-disk-quota). Scalability, it matters.
+
+However, as with all starter templates, it will always be lacking all the features you wanted for your website. While the publishing tools are there, the theme is built with multiple authors in mind &mdash; similar to [Medium.com](http://medium.com/).
+
+<div class="Image__Small">
+  <img src="./images/novela-multiple-authors.jpg" alt="Novela Theme Multiple Author Support" />
+</div>
+
+I originally cloned [gatsby-starter-novela](https://github.com/narative/gatsby-starter-novela) but since I needed to customize it, I cloned the core theme and worked from there: [gatsby-theme-novela](https://github.com/narative/gatsby-theme-novela) &mdash; this is where I can modify the components and templates.
+
+Here's the summarized structure of `gatsby-theme-novela`:
+```
+novela-theme
+|- src
+  |- components
+  |- sections
+    |- article
+    |- articles
+    |- author
+  |- templates
+    |- article.template.tsx // blog post
+    |- articles.template.tsx // index
+    |- author.template.tsx // author page
+```
+
+```
+www
+|- content
+  |- authors
+    |- avatars
+    |- authors.yml
+  |- posts
+    |- 2017-04-27-building-hoppers-media-centre
+      |- images
+      |- index.mdx
+```
+
+I needed to add the following for my website:
+
+<hr />
+
+#### Data:
+* Custom post type for my **projects**
+* Custom taxonomy for blog posts: **topics**
+* Custom taxonomy for blog posts: **category**
+* Custom taxonomy for project: **project type**
+* Custom taxonomy for project: **clients**
+
+#### Pages:
+* Custom Home page
+* Custom articles page - or the Blog listing page
+* Custom article page - or the Blog post page
+* Projects page
+* Project page
+* About page
+
+#### Features:
+* Menu links on desktop
+* Toggled menu for mobile
+* Sticky header
+
+#### Assets:
+* Custom logo and favicon
+* Blog post hero images - not all my previous blog posts have images
+* Project hero images
+
+<hr />
+
+## Adding a Custom Post Type
+
+Since this is my portfolio site, I needed to add a new custom post type: **projects**. I replicated the structure of the original post type: **articles**
+
+```
+gatsby-theme
+|- src
+  |- components
+  |- sections
+    |- article
+    |- articles
+    |- author
+    |- project // based from article
+    |- projects // based from articles
+  |- templates
+    |- article.template.tsx // blog post
+    |- articles.template.tsx // blog listing
+    |- author.template.tsx // author page
+    |- project.template.tsx // project post based from article.template.tsx
+    |- projects.template.tsx // projects listing based from articles.template.tsx
+```
+
+When adding a new post type, the following files should also be modified:
+
+1. `gatsby-config.js`
+2. src > gatsby > data > `data.query.js`
+3. src > gatsby > node > `createPages.js`
+4. src > gatsby > node > `createResolvers.js`
+5. src > gatsby > types > `index.d.ts`
+
+<hr />
+
+## Adding a Custom Taxonomy
+
+Since I only have one author on my website (myself), I renamed all instances of `author` to `topic` as I may have multiple topics in one blog post. I also modified `topics.yml` (previously authors.yml) with the topics I'd want to write about.
+
+```
+gatsby-theme
+|- src
+  |- components
+  |- sections
+    |- article
+    |- articles
+    |- topic
+    |- project // based from article
+    |- projects // based from articles
+  |- templates
+    |- article.template.tsx // blog post
+    |- articles.template.tsx // blog listing
+    |- topic.template.tsx // topic page
+    |- project.template.tsx // project post
+    |- projects.template.tsx // projects listing
+```
+
+```
+www
+|- content
+  |- topics
+    |- avatars
+    |- topics.yml
+  |- posts
+    |- 2017-04-27-building-hoppers-media-centre
+      |- images
+      |- index.mdx
+```
+
+Renaming is easy. But for the new post type **projects** where I needed to add a new taxonomy named **clients**, the following files should be updated as well:
+
+1. `gatsby-config.js`
+2. src > gatsby > data > `data.query.js`
+3. src > gatsby > node > `createPages.js`
+4. src > gatsby > types > `index.d.ts`
+
+And on the post itself, the field (topic or client) should have a value already listed on the `topics.yml` or `clients.yml`.
+
+```
+# Blog post
+---
+title: "Title of the Post"
+slug: slug-of-the-post
+topic: Topic A, Topic B
+date: 2020-07-30
+hero: ./images/hero.jpg
+excerpt: "Excerpt of the post"
+---
+content of the post
+```
+
+```
+# Project
+---
+title: "Title of the Project"
+slug: slug-of-the-project
+client: Client X
+date: 2020-07-30
+hero: ./images/hero.jpg
+excerpt: "Excerpt of the project"
+---
+content of the project
+```
+
+<hr />
+
+## Adding Categories
+
+The Novela theme doesn't have categories built-in on its core theme. However, I found this [PR by saadnoor](https://github.com/narative/gatsby-theme-novela/pull/366) on the `gatsby-theme-novela` repo. It worked well and didn't find any issues when I pulled it.
+
+```
+# Blog post
+---
+title: "Title of the Post"
+slug: slug-of-the-post
+topic: Topic A, Topic B
+date: 2020-07-30
+hero: ./images/hero.jpg
+excerpt: "Excerpt of the post"
+categories: ['Category 1, Category 2']
+---
+content of the post
+```
+
+<hr />
+
+## Sticky Header
+
+For the sticky header, I added a custom hook to detect the user scroll activity and add / remove the `.sticky` class to the header container.
+
+``` js
+useEffect(() => {
+    const header = document.getElementById("navToolbar");
+    const sticky = header.offsetTop;
+    const scrollCallBack = window.addEventListener("scroll", () => {
+        if (window.pageYOffset > sticky + 49) {
+          header.classList.add("sticky");
+        } else {
+          header.classList.remove("sticky");
+        }
+    });
+    return () => {
+      window.removeEventListener("scroll", scrollCallBack);
+    };
+}, []);
+```
