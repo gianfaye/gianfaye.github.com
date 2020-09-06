@@ -1,10 +1,10 @@
 ---
-title: "Migrating my website from Jekyll (Ruby) to Gatsby.js (React.js)"
-slug: migrating-form-jekyll-to-gatsby
+title: "Migrating my website from Jekyll (Ruby) to Gatsby (React.JS) using Novela"
+slug: migrating-from-jekyll-to-gatsby-using-novela
 topic: Web Development
 date: 2022-07-30
 hero: ./images/migrating-jekyll-to-gatsby.jpg
-excerpt: "How I migrated this website from Jekyll to GatsbyJS"
+excerpt: "How I migrated this website from Jekyll to GatsbyJS using the Novela theme"
 categories: ['Updates']
 ---
 
@@ -68,8 +68,8 @@ I needed to add the following for my website:
 #### Data:
 * Custom post type for my **projects**
 * Custom taxonomy for blog posts: **topics**
-* Custom taxonomy for blog posts: **category**
-* Custom taxonomy for project: **project type**
+* Custom taxonomy for blog posts: **categories**
+* Custom taxonomy for project: **project types**
 * Custom taxonomy for project: **clients**
 
 #### Pages:
@@ -242,7 +242,7 @@ useEffect(() => {
     const header = document.getElementById("navToolbar");
     const sticky = header.offsetTop;
     const scrollCallBack = window.addEventListener("scroll", () => {
-        if (window.pageYOffset > sticky + 49) {
+        if (window.pageYOffset > sticky) {
           header.classList.add("sticky");
         } else {
           header.classList.remove("sticky");
