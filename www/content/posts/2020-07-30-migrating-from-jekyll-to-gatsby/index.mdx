@@ -8,9 +8,9 @@ excerpt: "How I migrated this website from Jekyll to GatsbyJS"
 categories: ['Updates']
 ---
 
-As a front-end developer, when I chanced upon the newly-coined yet-another-tech-jargon that is [JAMstack](https://jamstack.org/), I got intrigued. JAM stands for JavaScript, APIs, Markups. It is when you can build everything in JavaScript, server-side processes are abstracted into microservice APIs, and the Markup is pre-built using a static site generator. It's like being in control of everything for once. On a traditional web development project cycle, the frontend has always been stacked after UI and before backend development. But with the JAMstack, the need to manage and run web servers is entirely eliminated. Gone are the days that the frontend is mainly for the client-side and the backend for the server-side.
+As a front-end developer, when I chanced upon the newly-coined yet-another-tech-jargon that is [JAMstack](https://jamstack.org/), I got intrigued. JAM stands for JavaScript, APIs, Markups. It is when you can build everything in JavaScript, server-side processes are abstracted into microservice APIs, and the Markup is pre-built using a static site generator. On a traditional web development project cycle, the frontend has always been stacked after UI prototyping and before backend development. But with the JAMstack, the need to manage and run web servers is entirely eliminated. Gone are the days that the frontend is mainly for the client-side and the backend for the server-side.
 
-I started migrating my website on the last week of June this year. The previous version of my website is generated using [Jekyll](https://jekyllrb.com/) and deployed in Github Pages. It was first deployed in 2013 (7 years sure came by so fast). You can view it by visiting [jekyll.gianfaye.com](http://jekyll.gianfaye.com/).
+I started migrating my website on the last week of June this year. The previous version of my website is generated using [Jekyll](https://jekyllrb.com/), also a static site generator but based in Ruby, and deployed in Github Pages. It was first deployed in 2013 (7 years sure came by so fast). You can view it by visiting [jekyll.gianfaye.com](http://jekyll.gianfaye.com/).
 
 ## The Great Gatsby
 
@@ -24,7 +24,7 @@ Meet [Novela](https://www.gatsbyjs.com/starters/narative/gatsby-starter-novela),
   <img src="./images/novela-theme.png" alt="Novela Theme by Narative" />
 </div>
 
-It already has the basic foundation for publishing blogs with posts formatted in Markdown. You can either write posts on the theme repo itself or add them via [Contentful](https://www.contentful.com/) or [Netlify](https://www.netlify.com/). Since I like writing on my IDE, I am publishing via Github Pages with the option to migrate to Contentful when I reached the [Github repo size limit](https://docs.github.com/en/github/managing-large-files/what-is-my-disk-quota). Scalability, it matters.
+It already has the basic foundation for publishing blogs with posts formatted in [Markdown](https://daringfireball.net/projects/markdown/) and queried via [GraphQL](https://graphql.org/). You can either write posts on the theme repository itself or add them via [Contentful](https://www.contentful.com/) or [Netlify](https://www.netlify.com/). Since I like writing on my IDE, I am publishing via Github Pages with the option to migrate to Contentful when I reached the [Github repo size limit](https://docs.github.com/en/github/managing-large-files/what-is-my-disk-quota). Scalability, it matters.
 
 However, as with all starter templates, it will always be lacking all the features you wanted for your website. While the publishing tools are there, the theme is built with multiple authors in mind &mdash; similar to [Medium.com](http://medium.com/).
 
@@ -84,9 +84,12 @@ I needed to add the following for my website:
 * Menu links on desktop
 * Toggled menu for mobile
 * Sticky header
+* Disqus commenting system
+* Deployment to Github Pages
 
 #### Assets:
 * Custom logo and favicon
+* Custom fonts
 * Blog post hero images - not all my previous blog posts have images
 * Project hero images
 
@@ -158,14 +161,14 @@ www
       |- index.mdx
 ```
 
-Renaming is easy. But for the new post type **projects** where I needed to add a new taxonomy named **clients**, the following files should be updated as well:
+Renaming is easy. But for the new post type **projects** where I needed to add a new taxonomy for the project type, which I named **works**, the following files should be updated as well:
 
 1. `gatsby-config.js`
 2. src > gatsby > data > `data.query.js`
 3. src > gatsby > node > `createPages.js`
 4. src > gatsby > types > `index.d.ts`
 
-And on the post itself, the field (topic or client) should have a value already listed on the `topics.yml` or `clients.yml`.
+And on the post itself, the field (topic or work) should have a value already listed on the `topics.yml` or `works.yml`.
 
 ```
 # Blog post
@@ -185,7 +188,7 @@ content of the post
 ---
 title: "Title of the Project"
 slug: slug-of-the-project
-client: Client X
+work: Project Type A, Project Type B
 date: 2020-07-30
 hero: ./images/hero.jpg
 excerpt: "Excerpt of the project"
@@ -213,6 +216,21 @@ categories: ['Category 1, Category 2']
 content of the post
 ```
 
+
+```
+# Project
+---
+title: "Title of the Project"
+slug: slug-of-the-project
+work: Project Type A, Project Type B
+date: 2020-07-30
+hero: ./images/hero.jpg
+excerpt: "Excerpt of the project"
+categories: ['Client 1, Client 2']
+---
+content of the project
+```
+
 <hr />
 
 ## Sticky Header
@@ -235,3 +253,47 @@ useEffect(() => {
     };
 }, []);
 ```
+
+``` js
+const NavToolbar = styled.div`
+  // some styles here
+
+  &.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }
+`;
+```
+
+## Modifying the number of shown posts
+
+Originally, the Novela theme shows you 6 posts per page. I wanted to show 10 posts or projects on the Blog listing and Projects listing pages respectively. You can modify this on src > gatsby > node > `createPages.js`, and update the `pageLength` value.
+
+## Deploying to Github Pages
+
+Similar to my Jekyll site, I also wanted to deploy my website to Github via Github Pages (it's free). For this I installed [`gh-pages`](https://www.npmjs.com/package/gh-pages) and modified the `deploy` script on my `package.json`. You also need to add `--prefix-paths` to your `build` script for this to work.
+
+``` json
+"scripts": {
+    "develop": "rm -rf .cache && gatsby develop",
+    "clean": "gatsby clean",
+    "build": "gatsby build --prefix-paths",
+    "deploy": "gatsby build --prefix-paths && gh-pages -d public"
+  },
+```
+
+## Conclusion
+
+This post mostly covers the restructuring of the Novela theme to my website's structure and some of the main features I added. I also added and modified several UI and functionality such as:
+
+* The progress bar you see on the sticky header above that progresses as you scroll down the post to give users a hint how far they are reading relative to the post length
+* Added the sticky title on the right side inspired by the [Adobe Blog](https://blog.adobe.com/)
+* The Instagram feed was not working for some reason and I installed and used [`gatsby-remark-instagram-embed`](https://www.gatsbyjs.com/plugins/gatsby-remark-instagram-embed/) instead
+* Removed the newsletter section for now
+* Added Disqus commenting system: for this I used [`gatsby-plugin-disqus`](https://www.gatsbyjs.com/plugins/gatsby-plugin-disqus/)
+* The swiper thumbnail gallery on the Home page for showcasing clients: [Swiper React](https://swiperjs.com/react/)
+* For the typing animation the Home page, I used [`react-typist`](https://www.npmjs.com/package/react-typist)
+* Added breadcrumbs to posts
+
+That's it! If you are currently customizing the Novela theme and needed more details on how I did some of the customizations I posted here, or if you have a post about how you customized yours, feel free to share it with the rest of us by commenting below. &darr;
