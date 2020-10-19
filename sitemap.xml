@@ -34,12 +34,6 @@
 <url> <loc>https://gianfaye.com/blog/eliminating-all-the-bullshit</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://gianfaye.com/blog/hug-a-developer-today</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://gianfaye.com/projects</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://gianfaye.com/projects/page/2</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://gianfaye.com/project/rcbc-website</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://gianfaye.com/project/safe-steps-kids-website</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://gianfaye.com/project/the-queens-corgi-movie-landing-page</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://gianfaye.com/project/bevi-website</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://gianfaye.com/project/fosasia-website</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://gianfaye.com/project/strawberryjam-website</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://gianfaye.com/project/bazooka-rocks-3-landing-page</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://gianfaye.com/project/bazooka-rocks-2-landing-page</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
@@ -70,7 +64,6 @@
 <url> <loc>https://gianfaye.com/works/print</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://gianfaye.com/works/software</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://gianfaye.com/works</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://gianfaye.com/works/page/2</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://gianfaye.com/category/updates</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://gianfaye.com/category/diy</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://gianfaye.com/category/guide</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
