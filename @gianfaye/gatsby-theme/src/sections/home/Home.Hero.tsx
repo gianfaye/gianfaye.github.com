@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import { graphql, useStaticQuery } from 'gatsby';
+import { graphql, useStaticQuery, Link } from 'gatsby';
 import styled from '@emotion/styled';
 import Typist from 'react-typist';
 
@@ -58,9 +58,10 @@ const ArticlesHero: React.FC<ITopic> = ({ /*topics*/ }) => {
             >
               About
               <Typist.Backspace count={8} delay={200} />
-              <a href="/about" title="About me" className="Hero__About">
-                Web artisan
-              </a>
+              <Link to={"about"} className="Hero__About">Web artisan</Link>
+              {/*<a href="/about" title="About me" className="Hero__About">*/}
+              {/*  Web artisan*/}
+              {/*</a>*/}
             </Typist>
             <Typist
               cursor={{hideWhenDone: true, hideWhenDoneDelay: 0, element: '/'}}
@@ -68,9 +69,7 @@ const ArticlesHero: React.FC<ITopic> = ({ /*topics*/ }) => {
             >
               Projects
               <Typist.Backspace count={20} delay={400} />
-              <a href="/projects" title="Projects I worked on" className="Hero__Projects">
-                Maker of things
-              </a>
+              <Link to={"projects"} className="Hero__Projects">Maker of things</Link>
             </Typist>
             <Typist
               cursor={{hideWhenDone: true, hideWhenDoneDelay: 0, element: '/'}}
@@ -78,9 +77,7 @@ const ArticlesHero: React.FC<ITopic> = ({ /*topics*/ }) => {
             >
               Blog
               <Typist.Backspace count={20} delay={800} />
-              <a href="/blog" title="Things I write about" className="Hero__Blog">
-                Geek of all trades
-              </a>
+              <Link to={"blog"} className="Hero__Blog">Geek of all trades</Link>
             </Typist>
           </HeroHeading>
 
