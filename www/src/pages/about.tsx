@@ -25,9 +25,6 @@ function AboutPage() {
         <AboutContainer>
           <AboutIntro>
             <p>
-              I'm currently working as a Senior Frontend Developer at a digital marketing agency in Makati where I handle web projects and directly communicate with clients.
-            </p>
-            <p>
               I have 10 years of working experience as a web developer mainly focusing in frontend development but have worn several hats over the years when I have to do automated QA testing, content management, copywriting, project management, solutions architecture, graphic design, and user experience design.
             </p>
           </AboutIntro>
@@ -53,7 +50,7 @@ function AboutPage() {
             <AboutSection>
               <Headings.h2>Interests</Headings.h2>
               <AboutText>
-                Aside from web technologies, I am very interested in <strong>computer forensics</strong>, anything about <strong>InfoSec</strong>, the <strong>maker culture</strong>, and the <strong>Internet of Things</strong>. If I'm not tinkering stuff on <a href="https://www.youtube.com/watch?v=iDbyYGrswtg" target="_blank">the internet</a>, I'll probably be <a
+                Aside from web technologies, I am very interested in <strong>augmented reality</strong>, <strong>cybersecurity</strong>, the <strong>maker culture</strong>, and the <strong>internet of things</strong>. If I'm not tinkering stuff on <a href="https://www.youtube.com/watch?v=iDbyYGrswtg" target="_blank">the internet</a>, I'd probably be <a
                 href="/blog/coffee-getting-cold-alarm-device-arduino">tinkering things IRL</a>.
               </AboutText>
             </AboutSection>

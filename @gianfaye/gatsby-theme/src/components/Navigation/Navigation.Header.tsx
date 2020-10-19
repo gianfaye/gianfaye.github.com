@@ -142,18 +142,18 @@ const ToggleMenu: React.FC<{}> = () => {
       name: 'About',
       slug: '/about'
     },
+    // {
+    //   id: 2,
+    //   name: 'Projects',
+    //   slug: '/projects'
+    // },
     {
       id: 2,
-      name: 'Projects',
-      slug: '/projects'
-    },
-    {
-      id: 3,
       name: 'Blog',
       slug: '/blog'
     },
     {
-      id: 4,
+      id: 3,
       name: 'Timeline',
       slug: '/timeline'
     },

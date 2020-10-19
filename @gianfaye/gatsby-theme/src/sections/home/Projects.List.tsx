@@ -54,7 +54,7 @@ const Projects: React.FC<ProjectsProps> = ({
     return R;
   }
 
-  const recentProjects = projects.slice(1, 4); // get projects except latest, max 6
+  const recentProjects = projects.slice(0, 3); // get projects except latest, max 6
   const projectByThrees = chunk(recentProjects, 3); // group projects by 3s
 
   useEffect(() => getGridLayout(), []);

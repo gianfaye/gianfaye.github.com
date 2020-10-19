@@ -1,111 +1,3 @@
-- name: CNN Philippines
-  bio: |
-    Lorem
-  color: e0719e
-  avatar: ./logo/clients-logo-cnn-philippines.jpg
-  featured: true
-  social:
-    - url: https://unsplash.com
-
-- name: RCBC
-  bio: |
-    Lorem
-  color: e0719e
-  avatar: ./logo/clients-logo-rcbc.jpg
-  featured: true
-  social:
-    - url: https://unsplash.com
-
-- name: Turner
-  bio: |
-    Lorem
-  color: e0719e
-  avatar: ./logo/clients-logo-turner.jpg
-  featured: true
-  social:
-    - url: https://unsplash.com
-
-- name: Go Asia Entertainment
-  bio: |
-    Lorem
-  color: e0719e
-  avatar: ./logo/clients-logo-go-asia-entertainment.jpg
-  featured: true
-  social:
-    - url: https://unsplash.com
-
-- name: Department of Tourism
-  bio: |
-    Lorem
-  color: e0719e
-  avatar: ./logo/clients-logo-department-of-tourism.jpg
-  featured: true
-  social:
-    - url: https://unsplash.com
-
-- name: Traveloka
-  bio: |
-    Lorem
-  color: e0719e
-  avatar: ./logo/clients-logo-traveloka.jpg
-  featured: true
-  social:
-    - url: https://unsplash.com
-
-- name: Bevi
-  bio: |
-    Lorem
-  color: e0719e
-  avatar: ./logo/clients-logo-bevi.jpg
-  featured: true
-  social:
-    - url: https://unsplash.com
-
-- name: Prudence Foundation
-  bio: |
-    Lorem
-  color: e0719e
-  avatar: ./logo/clients-logo-prudence-foundation.jpg
-  featured: true
-  social:
-    - url: https://unsplash.com
-
-- name: Sanicare
-  bio: |
-    Lorem
-  color: e0719e
-  avatar: ./logo/clients-logo-sanicare.jpg
-  featured: true
-  social:
-    - url: https://unsplash.com
-
-- name: Uratex
-  bio: |
-    Lorem
-  color: e0719e
-  avatar: ./logo/clients-logo-uratex.jpg
-  featured: true
-  social:
-    - url: https://unsplash.com
-
-- name: Uratex
-  bio: |
-    Lorem
-  color: e0719e
-  avatar: ./logo/clients-logo-uratex.jpg
-  featured: true
-  social:
-    - url: https://unsplash.com
-
-- name: Orkide Villa
-  bio: |
-    Lorem
-  color: e0719e
-  avatar: ./logo/clients-logo-orkide.jpg
-  featured: true
-  social:
-    - url: https://unsplash.com
-
 - name: Knight Frank
   bio: |
     Lorem
@@ -129,6 +21,15 @@
     Lorem
   color: e0719e
   avatar: ./logo/clients-logo-uol-group-limited.jpg
+  featured: true
+  social:
+    - url: https://unsplash.com
+
+- name: CNN Philippines
+  bio: |
+    Lorem
+  color: e0719e
+  avatar: ./logo/clients-logo-cnn-philippines.jpg
   featured: true
   social:
     - url: https://unsplash.com
@@ -159,3 +60,4 @@
   featured: true
   social:
     - url: https://unsplash.com
+
