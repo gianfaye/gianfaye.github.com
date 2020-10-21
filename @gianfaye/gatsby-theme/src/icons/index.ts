@@ -32,6 +32,8 @@ import Tiles from './ui/Tiles.Icon';
 import MailtoMd from './ui/MailtoMd.Icon';
 import MenuIcon from './ui/Menu.Icon';
 import CloseIcon from './ui/Close.Icon';
+import Education from './ui/Education.Icon';
+import Calendar from './ui/Calendar.Icon';
 
 export default {
   Behance,
@@ -66,4 +68,6 @@ export default {
   ToggleOpen,
   Rows,
   Tiles,
+  Education,
+  Calendar,
 };
