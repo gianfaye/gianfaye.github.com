@@ -269,6 +269,36 @@ function TimelinePage() {
 
               <VerticalTimelineElement
                 className="vertical-timeline-element--work"
+                date="10 Dec 2016"
+                iconStyle={{ background: fillBg, color: fillFg }}
+                icon={<Icons.Calendar fill={fillFg}/>}
+              >
+                <TimelineHeading className="vertical-timeline-element-title">
+                  Attended <strong>MakeBlock Matchup</strong>
+                </TimelineHeading>
+                <TimelineSubheading className="vertical-timeline-element-subtitle">
+                  Builtable, 3D Tayo
+                </TimelineSubheading>
+                <TimelineImage>
+                  <Image src="/timeline/2016-12-10_event-builtable-makeblock-matchup.jpg" alt="Builtable MakeBlock Matchup"/>
+                </TimelineImage>
+                <TimelineText>
+                  Introduction to robotics. Make your own robot. Learn to program their blocking and movements. Event concludes with robot battles.
+                </TimelineText>
+                <ExploreButtonContainer>
+                  <ExploreButton href={'https://www.facebook.com/events/1406822422680912/'} title={'Builtable Matchup and Robolympics'} target={'_blank'}>
+                    Event Details
+                  </ExploreButton>
+                  <ExploreArrowContainer>
+                    <ExploreArrow>
+                      <Icons.ChevronLeft fill={fillFg} />
+                    </ExploreArrow>
+                  </ExploreArrowContainer>
+                </ExploreButtonContainer>
+              </VerticalTimelineElement>
+
+              <VerticalTimelineElement
+                className="vertical-timeline-element--work"
                 date="15 Nov 2016"
                 iconStyle={{ background: fillBg, color: fillFg }}
                 icon={<Icons.Education fill={fillFg}/>}
