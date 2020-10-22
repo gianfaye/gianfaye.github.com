@@ -34,14 +34,14 @@ const ClientsList: React.FC<ClientsListProps> = ({ clients }) => {
     <ClientsListContainer>
       <ClientsListContent>
         <ClientListHeader>
-          Worked on projects for:
+          Worked on projects for
         </ClientListHeader>
         <ClientListText>
           I've worked on and handled several projects for local and international brands and companies.
         </ClientListText>
-        <ClientListButton>
-          Explore Projects
-        </ClientListButton>
+        {/*<ClientListButton to={'/about'}>*/}
+        {/*  More About Me &rarr;*/}
+        {/*</ClientListButton>*/}
       </ClientsListContent>
       <List>
         <Swiper

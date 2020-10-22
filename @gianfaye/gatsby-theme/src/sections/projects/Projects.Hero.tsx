@@ -51,30 +51,6 @@ const ProjectsHero: React.FC<IWork> = ({ works }) => {
       <HeadingContainer style={{ maxWidth: `${hero.maxWidth}px` }}>
         <HeroHeading dangerouslySetInnerHTML={{ __html: "Projects" }} />
       </HeadingContainer>
-      {/*<SubheadingContainer>*/}
-        {/*<Bio work={featuredWork} />*/}
-        {/*<Works works={works} />*/}
-        {/*<GridControlsContainer>*/}
-        {/*  <GridButton*/}
-        {/*    onClick={() => setGridLayout('tiles')}*/}
-        {/*    active={tilesIsActive}*/}
-        {/*    data-a11y="false"*/}
-        {/*    title="Show projects in Tile grid"*/}
-        {/*    aria-label="Show projects in Tile grid"*/}
-        {/*  >*/}
-        {/*    <Icons.Tiles />*/}
-        {/*  </GridButton>*/}
-        {/*  <GridButton*/}
-        {/*    onClick={() => setGridLayout('rows')}*/}
-        {/*    active={!tilesIsActive}*/}
-        {/*    data-a11y="false"*/}
-        {/*    title="Show projects in Row grid"*/}
-        {/*    aria-label="Show projects in Row grid"*/}
-        {/*  >*/}
-        {/*    <Icons.Rows />*/}
-        {/*  </GridButton>*/}
-        {/*</GridControlsContainer>*/}
-      {/*</SubheadingContainer>*/}
     </Section>
   );
 };

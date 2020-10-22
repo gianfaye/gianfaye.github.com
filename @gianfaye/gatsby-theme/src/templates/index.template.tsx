@@ -41,7 +41,7 @@ const ArticlesPage: Template = ({ location, pageContext }) => {
         <ProjectsList projects={projects} />
         <ExploreButtonContainer>
           <ExploreButton as={Link} to={'/projects'}>
-            Explore all Projects I worked on
+            Explore all Projects I worked on that are not under NDA
           </ExploreButton>
           <ExploreArrowContainer>
             <ExploreArrow>

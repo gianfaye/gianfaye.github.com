@@ -55,6 +55,9 @@ const WorkHero: React.FC<IWork> = ({ works, work }) => {
           <HeroHeadingLabel>Explore</HeroHeadingLabel>
           <WorksList works={works} selectedWork={work} />
         </HeroHeading>
+        <HeroSubheading>
+          * That are not under NDA &#x1f937; Sadly, everything I did that I'm proud of for the past 6 years can't be added here.
+        </HeroSubheading>
       </HeadingContainer>
       {/*<SubheadingContainer>*/}
         {/*<Work works={works} />*/}
@@ -153,6 +156,33 @@ const HeroHeading = styled.h1`
 
   ${mediaqueries.phablet`
     font-size: 24px;
+  `}
+`;
+
+const HeroSubheading = styled.span`
+  display: block;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  margin-right: 35px;
+  line-height: 1.15;
+  color: ${p => p.theme.colors.primary};
+  font-family: ${p => p.theme.fonts.sansSerif};
+  text-align: right;
+  text-transform: uppercase;
+  margin-top: 20px;
+  letter-spacing: 0.5px;
+
+  a {
+    color: ${p => p.theme.colors.accent};
+  }
+
+  ${mediaqueries.desktop`
+    font-size: 28px
+  `}
+
+  ${mediaqueries.phablet`
+    font-size: 16px;
   `}
 `;
 

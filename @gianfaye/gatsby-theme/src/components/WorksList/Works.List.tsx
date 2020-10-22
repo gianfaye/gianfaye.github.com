@@ -19,7 +19,7 @@ const WorksList: React.FC<IWork> = ({ works, selectedWork }) => {
 
   const worksBlank = {
     id: 0,
-    name: 'all projects I worked on',
+    name: 'projects I worked on *',
     avatar: '',
     bio: '',
     slug: '/projects',
