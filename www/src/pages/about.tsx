@@ -9,11 +9,14 @@ import SEO from "@components/SEO";
 import Headings from "@components/Headings";
 import Image from '@components/Image';
 import mediaqueries from '@styles/media';
+import Icons from "@icons";
 
 function AboutPage() {
   const [colorMode] = useColorMode();
   const isDark = colorMode === `dark`;
   const invertImage = isDark && "invert";
+  const fill = isDark ? "#fff" : "#000";
+
   return (
     <Layout>
       <SEO />
@@ -27,9 +30,9 @@ function AboutPage() {
           </AboutAvatar>
         </AboutHeader>
         <AboutContainer>
-          <AboutIntro>
+          <AboutIntro className={'intro-top'}>
             <p>
-              I have 10 years of working experience as a web developer mainly focusing in frontend development but have worn several hats over the years when I have to do automated QA testing, content management, copywriting, project management, solutions architecture, graphic design, and user experience design.
+              I have 10 years of working experience as a web developer mainly focusing in frontend development but have worn several hats over the years when I have to do automated QA testing, user experience design, content management, copywriting, graphic design, video editing, and project management.
             </p>
           </AboutIntro>
           <AboutContent>
@@ -38,6 +41,42 @@ function AboutPage() {
                 You might be wondering if my tagline comes from the figure of speech, "Jack of All Trades, Master of None." That can be half true. There is an open discussion as to whether a generalist is better than a specialist, or the other way around. You can weigh in the pros and cons but it always falls back to the situation when one can be more efficient than the other. My end goal has always been <a href="/blog/everyday-is-a-starting-point">being both</a>. Rolling eyes aside, it can be done. How? Being able to switch between seeing things in micro versus macro. One can focus on the finer details while still being able to visualize the bigger picture &mdash; directing motion and all its tiny moving parts.
               </AboutText>
             </AboutSection>
+          </AboutContent>
+        </AboutContainer>
+      </Section>
+      <Section>
+        <AboutDivider>
+
+        </AboutDivider>
+      </Section>
+      <Section narrow>
+        <AboutContainer>
+          <AboutIntro>
+            <AboutSocialLinks>
+              <AboutSocialLink>
+                <AboutSocial href={'https://www.linkedin.com/gianfaye/'} target={'_blank'}>
+                  <Icons.LinkedIn fill={fill} /> LinkedIn
+                </AboutSocial>
+              </AboutSocialLink>
+              <AboutSocialLink>
+                <AboutSocial href={'https://github.com/gianfaye'} target={'_blank'}>
+                  <Icons.Github fill={fill} /> Github
+                </AboutSocial>
+              </AboutSocialLink>
+              <AboutSocialLink>
+                <AboutSocial href={'https://twitter.com/gianfaye'} target={'_blank'}>
+                  <Icons.Twitter fill={fill} /> Twitter
+                </AboutSocial>
+              </AboutSocialLink>
+              <AboutSocialLink>
+                <AboutSocial href={'mailto:contact@gianfaye.com'} target={'_blank'}>
+                  <Icons.Mailto fill={fill} /> contact@gianfaye.com
+                </AboutSocial>
+              </AboutSocialLink>
+            </AboutSocialLinks>
+
+          </AboutIntro>
+          <AboutContent>
             <AboutSection>
               <Headings.h2>Skillset</Headings.h2>
               <AboutText>
@@ -59,7 +98,6 @@ function AboutPage() {
               </AboutText>
             </AboutSection>
           </AboutContent>
-          {/*<AboutImage src={'./404.png'} />*/}
         </AboutContainer>
       </Section>
     </Layout>
@@ -126,20 +164,32 @@ const AboutContainer = styled.div`
 const AboutIntro = styled.div`
   width: 30%;
   padding: 30px;
-  margin-top: -60px;
+
+  &.intro-top{
+    margin-top: -60px;
+  }
 
   p{
     font-size: 20px;
+    font-weight: 600;
     line-height: 1.5;
     margin-bottom: 20px;
     position: relative;
-    color: ${p => p.theme.colors.grey};
+    color: ${p => p.theme.colors.primary};
 
     span{
       // position: absolute;
       // left: -30px;
       margin-right: 6px;
     }
+  }
+
+  svg{
+    padding: 10px;
+    width: 50px;
+    height: 50px;
+    background: #eee;
+    margin-right: 10px;
   }
 
   ${mediaqueries.desktop_medium`
@@ -208,4 +258,32 @@ const AboutText = styled.p`
     border-bottom: 2px solid;
     font-weight: 700;
   }
+`;
+
+const AboutSocialLinks = styled.ul`
+  list-style-type: none;
+`;
+
+const AboutSocialLink = styled.li`
+  margin-bottom: 10px;
+`;
+
+const AboutSocial = styled.a`
+  font-weight: 600;
+  color: ${p => p.theme.colors.primary};
+  font-size: 20px;
+`;
+
+const AboutDivider = styled.div`
+  margin: 0 -40px 40px -40px;
+  padding: 60px 0;
+  transition: opacity 0.25s;
+  display: grid;
+  grid-template-columns: 500px 1fr;
+  background: #f0f4f6;
+
+  ${mediaqueries.tablet`
+    grid-template-columns: 1fr;
+    padding: 60px;
+  `}
 `;

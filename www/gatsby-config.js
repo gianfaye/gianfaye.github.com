@@ -19,14 +19,14 @@ const siteMetadata = {
       url: `https://www.linkedin.com/gianfaye/`,
     },
     {
-      url: `https://instagram.com/gianfaye`,
-    },
-    {
       url: `https://twitter.com/gianfaye`,
     },
     {
       name: 'stackoverflow',
       url: `https://stackexchange.com/users/2642726/gian-faye?tab=accounts`,
+    },
+    {
+      url: `https://dev.to/gianfaye`,
     },
     {
       name: `mailto`,

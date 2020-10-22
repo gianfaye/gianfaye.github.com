@@ -6,7 +6,6 @@ import Headings from '@components/Headings';
 import Section from "@components/Section";
 import SEO from "@components/SEO";
 import Layout from "@components/Layout";
-import Paginator from "@components/Navigation/Navigation.Paginator";
 import Icons from "@icons";
 import { useColorMode } from "theme-ui";
 
@@ -24,8 +23,6 @@ const ArticlesPage: Template = ({ location, pageContext }) => {
   const projects = pageContext.additionalContext.projects;
   const clients = pageContext.additionalContext.clients;
 
-  //console.log('pageContext', pageContext);
-
   const [colorMode] = useColorMode();
   const isDark = colorMode === `dark`;
   const fill = isDark ? "#fff" : "#000";
@@ -33,7 +30,7 @@ const ArticlesPage: Template = ({ location, pageContext }) => {
   return (
     <Layout>
       <SEO pathname={location.pathname} />
-      <ArticlesHero /*topics={topics}*/ />
+      <ArticlesHero />
       <Section narrow>
         <HomeLatest articles={articles} projects={projects} />
       </Section>
