@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Global } from '@emotion/core';
 import styled from '@emotion/styled';
 import { useColorMode } from 'theme-ui';
@@ -9,6 +9,7 @@ import CustomerChat from '@components/CustomerChat/CustomerChat';
 import ArticlesContextProvider from '../../sections/articles/Articles.List.Context';
 
 import { globalStyles } from '@styles';
+import classNames from "classnames";
 
 /**
  * <Layout /> needs to wrap every page as it provides styles, navigation,
@@ -18,6 +19,83 @@ import { globalStyles } from '@styles';
 const Layout: React.FC<{}> = ({ children }) => {
   const [colorMode] = useColorMode();
 
+  const isMobile = () => {
+    const ua = navigator.userAgent;
+    return /Android|Mobi/i.test(ua);
+  };
+
+  const Cursor = () => {
+    if (typeof navigator !== 'undefined' && isMobile()) return null;
+    const [position, setPosition] = useState({x: -100, y: -100});
+    const [hidden, setHidden] = useState(false);
+    const [clicked, setClicked] = useState(false);
+    const [linkHovered, setLinkHovered] = useState(false);
+
+    useEffect(() => {
+      addEventListeners();
+      handleLinkHoverEvents();
+      return () => removeEventListeners();
+    }, []);
+
+    const addEventListeners = () => {
+      document.addEventListener("mousemove", onMouseMove);
+      document.addEventListener("mouseenter", onMouseEnter);
+      document.addEventListener("mouseleave", onMouseLeave);
+      document.addEventListener("mousedown", onMouseDown);
+      document.addEventListener("mouseup", onMouseUp);
+    };
+
+    const removeEventListeners = () => {
+      document.removeEventListener("mousemove", onMouseMove);
+      document.removeEventListener("mouseenter", onMouseEnter);
+      document.removeEventListener("mouseleave", onMouseLeave);
+      document.removeEventListener("mousedown", onMouseDown);
+      document.removeEventListener("mouseup", onMouseUp);
+    };
+
+    const handleLinkHoverEvents = () => {
+      document.querySelectorAll("a").forEach(el => {
+      el.addEventListener("mouseover", () => setLinkHovered(true));
+      el.addEventListener("mouseout", () => setLinkHovered(false));
+      });
+    };
+
+    const onMouseMove = (e) => {
+      setPosition({x: e.clientX, y: e.clientY});
+    };
+
+    const onMouseLeave = () => {
+      setHidden(true);
+    };
+
+    const onMouseEnter = () => {
+      setHidden(false);
+    };
+
+    const onMouseDown = () => {
+      setClicked(true);
+    };
+
+    const onMouseUp = () => {
+      setClicked(false);
+    };
+
+    const cursorClasses = classNames(
+      'cursor',
+      {
+        'cursor--clicked': clicked,
+        'cursor--hidden': hidden,
+        'cursor--link-hovered': linkHovered
+      }
+    );
+
+    return <div className={cursorClasses}
+                style={{
+                  left: `${position.x}px`,
+                  top: `${position.y}px`
+                }}/>
+  }
+
   useEffect(() => {
     parent.postMessage({ theme: colorMode }, '*');
     return () => {}
@@ -26,6 +104,7 @@ const Layout: React.FC<{}> = ({ children }) => {
   return (
     <ArticlesContextProvider>
       <Container>
+        <Cursor />
         <Global styles={globalStyles} />
         <NavigationHeader />
         {children}

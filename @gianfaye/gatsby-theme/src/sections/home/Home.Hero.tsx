@@ -52,7 +52,7 @@ const ArticlesHero: React.FC<ITopic> = ({ /*topics*/ }) => {
     <Section narrow relative id="Articles__Hero">
       <HomeHeroContainer>
         <HeadingContainer style={{ maxWidth: `${hero.maxWidth}px` }}>
-          <HeroHeading>
+          <HeroHeading className="mask">
             <Typist
               cursor={{hideWhenDone: true, hideWhenDoneDelay: 0, element: '/'}}
             >

@@ -66,6 +66,7 @@
     "trailingComma": "all"
   },
   "dependencies": {
+    "classnames": "^2.2.6",
     "gatsby-plugin-disqus": "^1.2.0",
     "gatsby-plugin-sitemap": "^2.4.12",
     "gatsby-remark-instagram-embed": "^1.0.0",

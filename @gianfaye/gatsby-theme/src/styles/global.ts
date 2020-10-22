@@ -96,6 +96,47 @@ export const globalStyles = css`
     height: 100%;
   }
 
+  .cursor {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #fafafa;
+    border-radius: 100%;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: difference;
+    transition: all 300ms ease;
+    transition-property:  width, height, opacity, background-color, transform, mix-blend-mode;
+  }
+  .cursor--hidden {
+    opacity: 0;
+  }
+
+  .cursor--clicked {
+    transform: translate(-50%, -50%) scale(0.9);
+    background-color: #fafafa;
+  }
+
+  .cursor--link-hovered {
+    transform: translate(-50%, -50%);
+
+    width: 70px;
+    height: 70px;
+    background-color: #fafafa;
+  }
+
+  a:hover{
+    cursor: crosshair !important;
+  }
+
+  html, body {
+    //cursor: none;
+    height: 100%;
+    min-height: 100%;
+    //background-color: #121212;
+  }
+
   article {
     word-break: break-word;
   }

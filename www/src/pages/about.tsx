@@ -1,6 +1,7 @@
 import React from "react";
 import styled from '@emotion/styled';
 import { Link } from 'gatsby';
+import { useColorMode } from "theme-ui";
 
 import Layout from "@components/Layout";
 import Section from "@components/Section";
@@ -10,6 +11,9 @@ import Image from '@components/Image';
 import mediaqueries from '@styles/media';
 
 function AboutPage() {
+  const [colorMode] = useColorMode();
+  const isDark = colorMode === `dark`;
+  const invertImage = isDark && "invert";
   return (
     <Layout>
       <SEO />
@@ -19,7 +23,7 @@ function AboutPage() {
             Geek <span>of all</span> Trades
           </AboutHeading>
           <AboutAvatar>
-            <img src="/photo.png" alt="Gian Faye Paguirigan"/>
+            <img src="/photo.png" alt="Gian Faye Paguirigan" className={invertImage}/>
           </AboutAvatar>
         </AboutHeader>
         <AboutContainer>
@@ -79,6 +83,7 @@ const AboutHeading = styled.h1`
   line-height: 1;
   margin-right: -130px;
   margin-bottom: 60px;
+  color: ${p => p.theme.colors.primary};
 
   span{
     font-size: 70px;
@@ -87,6 +92,7 @@ const AboutHeading = styled.h1`
     opacity: 0.2;
     margin-bottom: 16px;
     margin-right: 150px;
+    color: ${p => p.theme.colors.grey};
   }
 
   ${mediaqueries.tablet`
@@ -102,6 +108,10 @@ const AboutAvatar = styled.div`
   img{
     max-width: 500px;
     width: 100%;
+
+    &.invert{
+      filter: invert(1);
+    }
   }
 `;
 
@@ -156,6 +166,11 @@ const AboutContent = styled.div`
     text-transform: uppercase;
     letter-spacing: 2px;
     font-weight: 400;
+    color: ${p => p.theme.colors.primary};
+  }
+
+  p{
+    color: ${p => p.theme.colors.primary};
   }
 
   ${mediaqueries.tablet`
