@@ -41,7 +41,7 @@ const ArticlesPage: Template = ({ location, pageContext }) => {
         <ProjectsList projects={projects} />
         <ExploreButtonContainer>
           <ExploreButton as={Link} to={'/projects'}>
-            Explore all Projects I worked on that are not under NDA
+            Explore Projects I worked on
           </ExploreButton>
           <ExploreArrowContainer>
             <ExploreArrow>
@@ -226,7 +226,7 @@ const ExploreButton = styled.a`
   text-transform: uppercase;
   box-sizing: border-box;
   transition: background-color .15s ease,color .15s ease,border .15s ease;
-  padding: 12px 15px;
+  padding: 12px 28px 12px 8px;
   display: block;
   cursor: pointer;
   width: 100%;

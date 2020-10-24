@@ -232,31 +232,9 @@ const listItemRow = p => css`
   }
 
   ${mediaqueries.phablet`
-    //box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.2);
-    border-bottom-right-radius: 5px;
-    border-bottom-left-radius: 5px;
     margin-bottom: 30px;
   `}
 `;
-
-// const listItemTile = p => css`
-//   position: relative;
-//
-//   ${mediaqueries.tablet`
-//     margin-bottom: 60px;
-//   `}
-//
-//   @media (max-width: 540px) {
-//     background: ${p.theme.colors.card};
-//   }
-//
-//   ${mediaqueries.phablet`
-//     margin-bottom: 40px;
-//     //box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.2);
-//     border-bottom-right-radius: 5px;
-//     border-bottom-left-radius: 5px;
-//   `}
-// `;
 
 // If only 1 project, dont create 2 rows.
 const listRow = p => css`
@@ -279,9 +257,6 @@ const Item = styled.div<{ gridLayout: string }>`
 const ImageContainer = styled.div<{ narrow: boolean; gridLayout: string }>`
   position: relative;
   height: ${p => (p.gridLayout === 'tiles' ? '370px' : '380px')};
-  // box-shadow: 0 30px 60px -10px rgba(0, 0, 0, ${p => (p.narrow ? 0.22 : 0.3)}),
-  //   0 18px 36px -18px rgba(0, 0, 0, ${p => (p.narrow ? 0.25 : 0.33)});
-  //margin-bottom: ${p => (p.gridLayout === 'tiles' ? '30px' : 0)};
   overflow: hidden;
   z-index: 300;
   display: block;
@@ -301,8 +276,6 @@ const ImageContainer = styled.div<{ narrow: boolean; gridLayout: string }>`
     overflow: hidden;
     margin-bottom: 0;
     box-shadow: none;
-    //border-top-right-radius: 5px;
-    //border-top-left-radius: 5px;
   `}
 `;
 
@@ -460,8 +433,6 @@ const ProjectLink = styled(Link)`
   //border-bottom: 5px solid ${p => p.theme.colors.primary};
 
   &:hover ${ImageContainer} > div, &:focus ${ImageContainer} > div{
-    //transform: translateY(-1px);
-    //box-shadow: 0 50px 80px -20px rgba(0, 0, 0, 0.27),
       0 30px 50px -30px rgba(0, 0, 0, 0.3);
     transform: scale(1.1);
   }
@@ -488,7 +459,6 @@ const ProjectLink = styled(Link)`
   ${mediaqueries.phablet`
     &:hover ${ImageContainer} {
       transform: none;
-      //box-shadow: initial;
     }
 
     &:active {

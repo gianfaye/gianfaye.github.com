@@ -5,12 +5,12 @@ import { Link } from 'gatsby';
 
 import Headings from '@components/Headings';
 import Image, { ImagePlaceholder } from '@components/Image';
+import Section from "@components/Section";
 
 import mediaqueries from '@styles/media';
 import { IClient } from '@types';
 
 import SwiperCore, { Autoplay } from 'swiper';
-// Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 // Import Swiper styles
@@ -32,55 +32,51 @@ const ClientsList: React.FC<ClientsListProps> = ({ clients }) => {
 
   return (
     <ClientsListContainer>
-      <ClientsListContent>
-        <ClientListHeader>
-          Worked on projects for
-        </ClientListHeader>
-        <ClientListText>
-          I've worked on and handled several projects for local and international brands and companies.
-        </ClientListText>
-        {/*<ClientListButton to={'/about'}>*/}
-        {/*  More About Me &rarr;*/}
-        {/*</ClientListButton>*/}
-      </ClientsListContent>
-      <List>
-        <Swiper
-          spaceBetween={40}
-          slidesPerView={3}
-          loop={true}
-          grabCursor={true}
-          autoplay={{
-            delay: 3000,
-            disableOnInteraction: false
-          }}
-          breakpoints={{
-            1400: {
-              slidesPerView: 3,
-              spaceBetween: 20,
-            },
-            1200: {
-              slidesPerView: 2,
-              spaceBetween: 40,
-            },
-            1024: {
-              slidesPerView: 2,
-              spaceBetween: 20,
-            },
-            768: {
-              slidesPerView: 1,
-              spaceBetween: 20,
-            },
-          }}
-          onSlideChange={() => console.log('slide change')}
-          onSwiper={(swiper) => console.log(swiper)}
-        >
-          {clients.map((ap, index) => {
-            return (
-              <SwiperSlide><ListItem key={index}  client={ap}/></SwiperSlide>
-            );
-          })}
-        </Swiper>
-      </List>
+      <Section narrow>
+        <ClientsListWrapper>
+          <ClientsListContent>
+            <ClientListHeader>
+              Worked on projects for
+            </ClientListHeader>
+            <ClientListText>
+              I've worked on and handled several projects for local and international brands and companies.
+            </ClientListText>
+            <ClientListButton as={Link} to={'/about'}>
+              More About Me
+            </ClientListButton>
+          </ClientsListContent>
+          <ClientsListContainerWrapper>
+            <List>
+              <Swiper
+                //spaceBetween={40}
+                slidesPerView={1}
+                loop={true}
+                grabCursor={true}
+                autoplay={{
+                  delay: 3000,
+                  disableOnInteraction: false
+                }}
+                breakpoints={{
+                  1200: {
+                    slidesPerView: 3,
+                  },
+                  1024: {
+                    slidesPerView: 2,
+                  }
+                }}
+                onSlideChange={() => console.log('slide change')}
+                onSwiper={(swiper) => console.log(swiper)}
+              >
+                {clients.map((ap, index) => {
+                  return (
+                    <SwiperSlide><ListItem key={index}  client={ap}/></SwiperSlide>
+                  );
+                })}
+              </Swiper>
+            </List>
+          </ClientsListContainerWrapper>
+        </ClientsListWrapper>
+      </Section>
     </ClientsListContainer>
   );
 };
@@ -110,22 +106,33 @@ const ListItem: React.FC<ClientsListItemProps> = ({ client }) => {
 const ClientsListContainer = styled.div`
   margin: 0 -40px;
   padding: 60px 0;
-  transition: opacity 0.25s;
-  display: grid;
-  grid-template-columns: 500px 1fr;
   background: #f0f4f6;
+  overflow: hidden;
+`;
 
-  ${mediaqueries.tablet`
-    grid-template-columns: 1fr;
-    padding: 60px;
+const ClientsListWrapper = styled.div`
+  display: grid;
+  grid-template-columns: 30% 1fr;
+
+  ${mediaqueries.desktop`
+    grid-template-columns: 50% 1fr;
   `}
+  ${mediaqueries.phablet`
+    grid-template-columns: 1fr !important;
+    position: relative;
+    display: block;
+    text-align: center;
+  `}
+`;
+
+const ClientsListContainerWrapper = styled.div`
+  position: relative;
 `;
 
 const ClientsListContent = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-left: calc((100vw - 1220px) / 2 + 40px);
 
   ${mediaqueries.tablet`
     padding-left: 0;
@@ -169,11 +176,13 @@ const ClientListButton = styled.a`
     background: ${p => p.theme.colors.primary};
     color: ${p => p.theme.colors.background};
   }
+
+  ${mediaqueries.phablet`
+    margin: 0 auto;
+  `}
 `;
 
 const List = styled.div`
-  display: flex;
-  width: calc(100vw - 630px);
 
   ${mediaqueries.tablet`
     width: 100%;
@@ -192,52 +201,16 @@ const ImageContainer = styled.div`
   overflow: hidden;
   transition: transform 0.3s var(--ease-out-quad),
   box-shadow 0.3s var(--ease-out-quad);
+  margin: 0 auto;
 
   & > div {
     height: 100%;
   }
 
-  ${mediaqueries.tablet`
-    height: 200px;
-    margin-bottom: 35px;
-  `}
-
   ${mediaqueries.phablet`
     overflow: hidden;
     margin-bottom: 0;
     box-shadow: none;
-    border-top-right-radius: 5px;
-    border-top-left-radius: 5px;
-  `}
-`;
-
-const Title = styled(Headings.h2)`
-  font-size: 26px;
-  font-weight: 400;
-  font-family: ${p => p.theme.fonts.serif};
-  margin-bottom: 25px;
-  //transition: color 0.3s ease-in-out;
-  background-size: 0 100%;
-  background-repeat: no-repeat;
-  text-decoration: none;
-  -webkit-transition: background-size .8s ease;
-  transition: background-size .8s ease;
-  background-image: -webkit-gradient(linear,left top,left bottom,color-stop(65%,transparent),color-stop(10%,#37FE13));
-  background-image: linear-gradient(180deg,transparent 65%,#37FE13 0);
-
-  ${mediaqueries.desktop`
-    margin-bottom: 15px;
-  `}
-
-  ${mediaqueries.tablet`
-    font-size: 24px;
-  `}
-
-  ${mediaqueries.phablet`
-    font-size: 22px;
-    padding: 0;
-    margin-bottom: 10px;
-    -webkit-line-clamp: 3;
   `}
 `;
 
@@ -250,5 +223,6 @@ const ClientContent = styled.div`
   ${mediaqueries.tablet`
     margin: 0 auto;
     width: 100%;
+    border-radius: 100%;
   `}
 `;

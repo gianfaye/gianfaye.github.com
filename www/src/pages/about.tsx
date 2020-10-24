@@ -183,59 +183,66 @@ function AboutPage() {
       </Section>
       <Section>
         <AboutDivider>
-          <ClientsListContent>
-            <ClientListHeader>
-              My Favorite Stack &rarr;
-            </ClientListHeader>
-            <ClientListText>
-              Technologies I've extensively used at work and I can say i’m quite good at
-            </ClientListText>
-            <ClientListButton href={'mailto:contact@gianfaye.com'}>
-              Let's work together
-            </ClientListButton>
-          </ClientsListContent>
-          <List>
-            <Item>
-              <ClientContent>
-                <ImageContainer>
-                  <Image src={'/skills/html5.png'} alt={'HTML5'} />
-                </ImageContainer>
-                <Title>HTML5</Title>
-              </ClientContent>
-            </Item>
-            <Item>
-              <ClientContent>
-                <ImageContainer>
-                  <Image src={'/skills/css3.png'} alt={'CSS3'} />
-                </ImageContainer>
-                <Title>CSS3</Title>
-              </ClientContent>
-            </Item>
-            <Item>
-              <ClientContent>
-                <ImageContainer>
-                  <Image src={'/skills/react.png'} alt={'React'} />
-                </ImageContainer>
-                <Title>React</Title>
-              </ClientContent>
-            </Item>
-            <Item>
-              <ClientContent>
-                <ImageContainer>
-                  <Image src={'/skills/redux.png'} alt={'Redux'} />
-                </ImageContainer>
-                <Title>Redux</Title>
-              </ClientContent>
-            </Item>
-            <Item>
-              <ClientContent>
-                <ImageContainer>
-                  <Image src={'/skills/es6.png'} alt={'JavaScript ES6'} />
-                </ImageContainer>
-                <Title>JavaScript</Title>
-              </ClientContent>
-            </Item>
-          </List>
+          <Section narrow>
+            <AboutSectionsListWrapper>
+              <AboutSectionsListContent>
+                <AboutSectionListHeader>
+                  My Favorite Stack
+                </AboutSectionListHeader>
+                <AboutSectionListText>
+                  Technologies I've extensively used at work and I can say i’m quite good at
+                </AboutSectionListText>
+                <AboutSectionListButton href={'mailto:contact@gianfaye.com'}>
+                  Let's work together
+                </AboutSectionListButton>
+              </AboutSectionsListContent>
+              <AboutSectionsListContainerWrapper>
+                <List>
+                  <Item>
+                    <AboutSectionContent>
+                      <ImageContainer>
+                        <Image src={'/skills/html5.png'} alt={'HTML5'} />
+                      </ImageContainer>
+                      <Title>HTML5</Title>
+                    </AboutSectionContent>
+                  </Item>
+                  <Item>
+                    <AboutSectionContent>
+                      <ImageContainer>
+                        <Image src={'/skills/css3.png'} alt={'CSS3'} />
+                      </ImageContainer>
+                      <Title>CSS3</Title>
+                    </AboutSectionContent>
+                  </Item>
+                  <Item>
+                    <AboutSectionContent>
+                      <ImageContainer>
+                        <Image src={'/skills/react.png'} alt={'React'} />
+                      </ImageContainer>
+                      <Title>React</Title>
+                    </AboutSectionContent>
+                  </Item>
+                  <Item>
+                    <AboutSectionContent>
+                      <ImageContainer>
+                        <Image src={'/skills/redux.png'} alt={'Redux'} />
+                      </ImageContainer>
+                      <Title>Redux</Title>
+                    </AboutSectionContent>
+                  </Item>
+                  <Item>
+                    <AboutSectionContent>
+                      <ImageContainer>
+                        <Image src={'/skills/es6.png'} alt={'JavaScript ES6'} />
+                      </ImageContainer>
+                      <Title>JavaScript</Title>
+                    </AboutSectionContent>
+                  </Item>
+                </List>
+              </AboutSectionsListContainerWrapper>
+            </AboutSectionsListWrapper>
+          </Section>
+
         </AboutDivider>
       </Section>
       <Section narrow>
@@ -334,6 +341,7 @@ const AboutSubheading = styled.h2`
   `}
   ${mediaqueries.phablet`
     font-size: 40px;
+    margin: 20px;
   `}
 `;
 
@@ -428,7 +436,7 @@ const AboutContent = styled.div`
   }
 
   ${mediaqueries.tablet`
-     width: 100%;
+   width: 100%;
     padding: 0 30px;
   `}
 
@@ -468,10 +476,21 @@ const AboutText = styled.p`
 
 const AboutSocialLinks = styled.ul`
   list-style-type: none;
+  padding: 20px 0;
+
+  ${mediaqueries.desktop_medium`
+    padding: 50px 0;
+  `}
 `;
 
 const AboutSocialLink = styled.li`
   margin-bottom: 10px;
+
+  ${mediaqueries.phablet`
+    max-width: 150px;
+    margin: 0 auto;
+    margin-bottom: 10px;
+  `}
 `;
 
 const AboutSocial = styled.a`
@@ -489,42 +508,59 @@ const ParticleContainer = styled.div`
   //background: #f0f4f6;
 
   ${mediaqueries.tablet`
-    grid-template-columns: 1fr;
-    padding: 60px;
+    grid-template-columns: 1fr !important;
+    padding: 60px !important;
   `}
 `;
 const AboutDivider = styled.div`
-  margin: 0 -40px 40px -40px;
+  margin: 0 -40px;
   padding: 60px 0;
-  transition: opacity 0.25s;
-  display: grid;
-  grid-template-columns: 500px 1fr;
   background: #f0f4f6;
+  overflow: hidden;
 
   ${mediaqueries.tablet`
-    grid-template-columns: 1fr;
-    padding: 60px;
+    margin-bottom: 60px;
   `}
 `;
 
-const ClientsListContent = styled.div`
+const AboutSectionsListWrapper = styled.div`
+  display: grid;
+  grid-template-columns: 30% 1fr;
+
+  ${mediaqueries.desktop`
+    grid-template-columns: 50% 1fr;
+  `}
+  ${mediaqueries.desktop_medium`
+    grid-template-columns: 1fr !important;
+    position: relative;
+    display: block;
+    text-align: center;
+  `}
+`;
+
+const AboutSectionsListContainerWrapper = styled.div`
+  position: relative;
+  max-width: 825px;
+`;
+
+
+const AboutSectionsListContent = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-left: calc((100vw - 1220px) / 2 + 40px);
 
   ${mediaqueries.tablet`
     padding-left: 0;
   `}
 `;
 
-const ClientListHeader = styled.h3`
+const AboutSectionListHeader = styled.h3`
   font-size: 32px;
   line-height: 0.9;
   margin-bottom: 20px;
 `;
 
-const ClientListText = styled.p`
+const AboutSectionListText = styled.p`
   font-size: 20px;
   font-family: ${p => p.theme.fonts.italic};
   padding-right: 20px;
@@ -534,9 +570,15 @@ const ClientListText = styled.p`
   font-weight: 400;
   line-height: 1.3;
   letter-spacing: 0.6px;
+
+  ${mediaqueries.phablet`
+    max-width: 300px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+  `}
 `;
 
-const ClientListButton = styled.a`
+const AboutSectionListButton = styled.a`
   font-size: 12px;
   font-weight: 600;
   line-height: 20px;
@@ -555,17 +597,20 @@ const ClientListButton = styled.a`
     background: ${p => p.theme.colors.primary};
     color: ${p => p.theme.colors.background};
   }
+
+  ${mediaqueries.desktop_medium`
+    margin: 0 auto;
+  `}
 `;
 
 const List = styled.div`
   display: flex;
-  width: calc(100vw - 630px);
 
   ${mediaqueries.tablet`
     width: 100%;
+    flex-flow: column;
   `}
 `;
-
 
 const Item = styled.div`
   min-width: 100px;
@@ -573,44 +618,40 @@ const Item = styled.div`
 
 const ImageContainer = styled.div`
   position: relative;
-  // height: 230px;
-  // width: 230px;
   border-radius: 100%;
   overflow: hidden;
   transition: transform 0.3s var(--ease-out-quad),
   box-shadow 0.3s var(--ease-out-quad);
-
-  img{
-    width: 100%;
-  }
+  margin: 0 auto;
 
   & > div {
     height: 100%;
   }
 
-  ${mediaqueries.tablet`
-    height: 200px;
-    margin-bottom: 35px;
-  `}
-
   ${mediaqueries.phablet`
     overflow: hidden;
     margin-bottom: 0;
     box-shadow: none;
-    border-top-right-radius: 5px;
-    border-top-left-radius: 5px;
   `}
 `;
 
-const ClientContent = styled.div`
+const AboutSectionContent = styled.div`
   padding: 50px 3px;
   z-index: 600;
   display: block;
   position: relative;
 
+  img{
+    width: 100%;
+  }
+
   ${mediaqueries.tablet`
     margin: 0 auto;
     width: 100%;
+    border-radius: 100%;
+    max-width: 200px;
+    padding: 0;
+    margin-top: 30px;
   `}
 `;
 
@@ -626,7 +667,8 @@ const Title = styled(Headings.h2)`
   `}
 
   ${mediaqueries.tablet`
-    font-size: 24px;
+    font-size: 20px;
+    margin-bottom: 0;
   `}
 
   ${mediaqueries.phablet`

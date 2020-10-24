@@ -25,7 +25,6 @@ const Layout: React.FC<{}> = ({ children }) => {
   };
 
   const Cursor = () => {
-    if (typeof navigator !== 'undefined' && isMobile()) return null;
     const [position, setPosition] = useState({x: -100, y: -100});
     const [hidden, setHidden] = useState(false);
     const [clicked, setClicked] = useState(false);
@@ -104,7 +103,7 @@ const Layout: React.FC<{}> = ({ children }) => {
   return (
     <ArticlesContextProvider>
       <Container>
-        <Cursor />
+        { (typeof navigator !== 'undefined' && isMobile()) || <Cursor /> }
         <Global styles={globalStyles} />
         <NavigationHeader />
         {children}

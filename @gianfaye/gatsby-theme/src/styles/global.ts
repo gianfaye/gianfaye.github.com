@@ -96,45 +96,45 @@ export const globalStyles = css`
     height: 100%;
   }
 
-  .cursor {
-    width: 30px;
-    height: 30px;
-    border: 1px solid #fafafa;
-    border-radius: 100%;
-    position: fixed;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-    z-index: 9999;
-    mix-blend-mode: difference;
-    transition: all 300ms ease;
-    transition-property:  width, height, opacity, background-color, transform, mix-blend-mode;
-  }
-  .cursor--hidden {
-    opacity: 0;
-  }
+  @media (hover: hover) {
+    .cursor {
+      width: 30px;
+      height: 30px;
+      border: 1px solid #fafafa;
+      border-radius: 100%;
+      position: fixed;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      z-index: 9999;
+      mix-blend-mode: difference;
+      transition: all 300ms ease;
+      transition-property:  width, height, opacity, background-color, transform, mix-blend-mode;
+    }
+    .cursor--hidden {
+      opacity: 0;
+    }
 
-  .cursor--clicked {
-    transform: translate(-50%, -50%) scale(0.9);
-    background-color: #fafafa;
-  }
+    .cursor--clicked {
+      transform: translate(-50%, -50%) scale(0.9);
+      background-color: #fafafa;
+    }
 
-  .cursor--link-hovered {
-    transform: translate(-50%, -50%);
+    .cursor--link-hovered {
+      transform: translate(-50%, -50%);
 
-    width: 70px;
-    height: 70px;
-    background-color: #fafafa;
-  }
+      width: 70px;
+      height: 70px;
+      background-color: #fafafa;
+    }
 
-  a:hover{
-    cursor: crosshair !important;
-  }
+    a:hover{
+      cursor: crosshair !important;
+    }
 
-  html, body {
-    //cursor: none;
-    height: 100%;
-    min-height: 100%;
-    //background-color: #121212;
+    html, body {
+      height: 100%;
+      min-height: 100%;
+    }
   }
 
   article {
@@ -253,6 +253,8 @@ export const globalStyles = css`
   --swiper-theme-color: #007aff;
 }
 .swiper-container {
+  width: 100%;
+  height: 100%;
   margin-left: auto;
   margin-right: auto;
   position: relative;
@@ -261,7 +263,15 @@ export const globalStyles = css`
   padding: 0;
   /* Fix of Webkit flickering */
   z-index: 1;
+  max-width: 825px;
+  margin: 0;
 }
+
+  @media (max-width: 1024px){
+    .swiper-container{
+      max-width: 375px;
+    }
+  }
 .swiper-container-vertical > .swiper-wrapper {
   flex-direction: column;
 }
@@ -291,8 +301,8 @@ export const globalStyles = css`
 }
 .swiper-slide {
   flex-shrink: 0;
-  width: 100%;
-  height: 100%;
+  width:300px;
+  height:300px;
   position: relative;
   transition-property: transform;
 }
