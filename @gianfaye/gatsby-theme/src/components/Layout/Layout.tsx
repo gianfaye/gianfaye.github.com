@@ -103,13 +103,13 @@ const Layout: React.FC<{}> = ({ children }) => {
   return (
     <ArticlesContextProvider>
       <Container>
-        { (typeof navigator !== 'undefined' && isMobile()) || <Cursor /> }
         <Global styles={globalStyles} />
         <NavigationHeader />
         {children}
         <NavigationFooter />
         {/*<CustomerChat/>*/}
       </Container>
+      { (typeof navigator !== 'undefined' && isMobile()) || <Cursor /> }
     </ArticlesContextProvider>
   );
 };
