@@ -46,8 +46,8 @@ const HomeLatest: React.FC<HomeLatestProps> = ({ projects, articles, alwaysShowA
         hasOnlyOneArticle={hasOnlyOneArticle}
         hasOnlyOneProject={hasOnlyOneProject}
       >
-        <ListItem itemType={"featured"} item={articles[1]} narrow={true} />
-        <ListItem itemType={"latest"} item={articles[0]} narrow={false} />
+        <ListItem itemType={"featured"} item={articles[0]} narrow={true} />
+        <ListItem itemType={"latest"} item={articles[1]} narrow={false} />
       </List>
     </HomeLatestContainer>
   );
@@ -72,7 +72,7 @@ const ListItem: React.FC<HomeLatestItemProps> = ({ item, itemType, narrow }) => 
         <ImageContainer narrow={narrow} gridLayout={gridLayout}>
           {hasHeroImage ? <Image src={imageSource} /> : <ImagePlaceholder />}
           <ItemPill>
-            {itemType == 'featured' ? 'Featured Article' : 'Latest Post'}
+            {itemType == 'featured' ? 'Featured Article' : 'Updates'}
           </ItemPill>
         </ImageContainer>
         <ArticleContent
