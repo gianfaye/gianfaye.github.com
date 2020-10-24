@@ -147,6 +147,9 @@ const Footer: React.FC<{}> = () => {
             <FooterSublink as={Link} to={'/terms'}>
               Terms of Use
             </FooterSublink>
+            <FooterSublink href={'/rss.xml'} target={'_blank'}>
+              RSS
+            </FooterSublink>
           </FooterSublinks>
         </FooterBottomContainer>
       </FooterContainer>
