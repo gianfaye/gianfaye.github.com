@@ -286,7 +286,6 @@ const Title = styled(Headings.h2)`
   text-transform: uppercase;
   margin-bottom: ${p =>
   p.hasOverflow && p.gridLayout === 'tiles' ? '25px' : '10px'};
-  //transition: color 0.3s ease-in-out;
   ${limitToTwoLines};
   background-size: 0 100%;
   background-repeat: no-repeat;
@@ -317,7 +316,6 @@ const Excerpt = styled.p<{
 }>`
   ${limitToTwoLines};
   display: block;
-  //font-style: italic;
   margin-top: 5px;
   font-size: 16px;
   line-height: 26px;

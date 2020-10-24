@@ -1,9 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import styled from '@emotion/styled';
-import { css } from '@emotion/core';
 import { Link } from 'gatsby';
 
-import Headings from '@components/Headings';
 import Image, { ImagePlaceholder } from '@components/Image';
 import Section from "@components/Section";
 
@@ -13,8 +11,6 @@ import { IClient } from '@types';
 import SwiperCore, { Autoplay } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-// Import Swiper styles
-// import 'swiper/swiper.scss';
 SwiperCore.use([Autoplay]);
 
 interface ClientsListProps {
@@ -48,7 +44,6 @@ const ClientsList: React.FC<ClientsListProps> = ({ clients }) => {
           <ClientsListContainerWrapper>
             <List>
               <Swiper
-                //spaceBetween={40}
                 slidesPerView={1}
                 loop={true}
                 grabCursor={true}

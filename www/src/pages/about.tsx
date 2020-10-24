@@ -323,16 +323,9 @@ const AboutSubheading = styled.h2`
   font-family: ${p => p.theme.fonts.sansSerif};
   text-transform: uppercase;
   width: 60%;
-  //text-align: right;
   font-size: 100px;
   line-height: 1;
-  //margin-left: -130px;
-  //margin-bottom: 60px;
   color: ${p => p.theme.colors.primary};
-  // transform: rotate(-90deg);
-  // position: absolute;
-  // left: 0;
-  // top: 0;
   margin-top: 50px;
 
   ${mediaqueries.tablet`
