@@ -6,6 +6,7 @@
 <url> <loc>https://gianfaye.com/blog</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://gianfaye.com/blog/page/2</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://gianfaye.com/blog/page/3</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://gianfaye.com/blog/starting-a-business-in-the-philippines</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://gianfaye.com/blog/migrating-from-jekyll-to-gatsby-using-novela</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://gianfaye.com/blog/coffee-getting-cold-alarm-device-arduino</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://gianfaye.com/blog/free-https-support-with-kloudsec</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
@@ -64,6 +65,7 @@
 <url> <loc>https://gianfaye.com/works/print</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://gianfaye.com/works/software</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://gianfaye.com/works</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://gianfaye.com/category/guides</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://gianfaye.com/category/updates</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://gianfaye.com/category/diy</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://gianfaye.com/category/guide</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
