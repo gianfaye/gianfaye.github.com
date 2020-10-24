@@ -56,7 +56,7 @@ const WorkHero: React.FC<IWork> = ({ works, work }) => {
           <WorksList works={works} selectedWork={work} />
         </HeroHeading>
         <HeroSubheading>
-          * That are not under NDA &#x1f937; Sadly, everything I did that I'm proud of for the past 6 years can't be added here.
+          * That are not under NDA &#x1f937; Everything I did for the past 6 years can't be added here.
         </HeroSubheading>
       </HeadingContainer>
       {/*<SubheadingContainer>*/}

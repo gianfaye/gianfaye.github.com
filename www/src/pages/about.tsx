@@ -409,6 +409,10 @@ const AboutIntro = styled.div`
 const AboutFeature = styled.div`
   width: 100%;
   padding: 50px;
+
+  ${mediaqueries.phablet`
+    padding: 0;
+  `}
 `;
 
 const AboutContent = styled.div`
@@ -439,7 +443,7 @@ const AboutContent = styled.div`
 `;
 
 const AboutSection = styled.div`
-  margin-bottom: 30px;
+  //margin-bottom: 30px;
   display: block;
   position: relative;
 `;
@@ -480,9 +484,9 @@ const AboutSocialLink = styled.li`
   margin-bottom: 10px;
 
   ${mediaqueries.phablet`
-    max-width: 150px;
-    margin: 0 auto;
-    margin-bottom: 10px;
+    // max-width: 150px;
+    // margin: 0 auto;
+    // margin-bottom: 10px;
   `}
 `;
 
@@ -512,6 +516,7 @@ const AboutDivider = styled.div`
   overflow: hidden;
 
   ${mediaqueries.tablet`
+    margin-top: 60px;
     margin-bottom: 60px;
   `}
 `;
@@ -519,6 +524,7 @@ const AboutDivider = styled.div`
 const AboutSectionsListWrapper = styled.div`
   display: grid;
   grid-template-columns: 30% 1fr;
+  margin: 0 auto;
 
   ${mediaqueries.desktop`
     grid-template-columns: 50% 1fr;
