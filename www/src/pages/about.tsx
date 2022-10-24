@@ -1,11 +1,9 @@
 import { useState, useEffect, useCallback } from "react";
-import type { Container, Engine } from "tsparticles-engine";
+import type { Engine } from "tsparticles-engine";
 import styled from '@emotion/styled';
-import { Link } from 'gatsby';
 import { useColorMode } from "theme-ui";
 import Particles from 'react-particles';
 import { loadFull } from "tsparticles";
-
 import Layout from "@components/Layout";
 import Section from "@components/Section";
 import SEO from "@components/SEO";
@@ -14,34 +12,23 @@ import Image from '@components/Image';
 import mediaqueries from '@styles/media';
 import Icons from "@icons";
 
-
 function useWindowSize() {
-  // Initialize state with undefined width/height so server and client renders match
-  // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
   const [windowSize, setWindowSize] = useState({
     width: undefined,
     height: undefined,
   });
 
   useEffect(() => {
-    // Handler to call on window resize
     function handleResize() {
-      // Set window width/height to state
       setWindowSize({
         width: window.innerWidth,
         height: window.innerHeight,
       });
     }
-
-    // Add event listener
     window.addEventListener("resize", handleResize);
-
-    // Call handler right away so state gets updated with initial window size
     handleResize();
-
-    // Remove event listener on cleanup
     return () => window.removeEventListener("resize", handleResize);
-  }, []); // Empty array ensures that effect is only run on mount
+  }, []);
 
   return windowSize;
 }
@@ -56,10 +43,6 @@ function AboutPage() {
   const particlesInit = useCallback(async (engine: Engine) => {
     await loadFull(engine);
   }, []);
-
-  // const particlesLoaded = useCallback(async (container: Container | undefined) => {
-  //   await console.log(container);
-  // }, []);
 
   return (
     <Layout>
@@ -76,13 +59,13 @@ function AboutPage() {
         <AboutContainer>
           <AboutIntro className={'intro-top'}>
             <p>
-              I have over 10 years of working experience as a web developer mainly focusing in frontend development but have worn several hats over the years when I have to do automated QA testing, user experience design, content management, copywriting, graphic design, video editing, and project management.
+              I have over 10 years of working experience as a web developer mainly focusing in frontend development but have worn several hats over the years when I did automated QA testing, user experience design, content management, copywriting, graphic design, video editing, and project management.
             </p>
           </AboutIntro>
           <AboutContent>
             <AboutSection>
               <AboutText>
-                You might be wondering if my tagline comes from the figure of speech, "Jack of All Trades, Master of None." That can be half true. There is an open discussion as to whether a generalist is better than a specialist, or the other way around. You can weigh in the pros and cons but it always falls back to the situation when one can be more efficient than the other. My end goal has always been <a href="/blog/everyday-is-a-starting-point">being both</a>. Rolling eyes aside, it can be done. How? Being able to switch between seeing things in micro versus macro. One can focus on the finer details while still being able to visualize the bigger picture &mdash; directing motion and all its tiny moving parts. &#9724;
+                You might be wondering if my tagline comes from the figure of speech, "Jack of All Trades, Master of None." That can be half true. There is an open discussion as to whether a generalist is better than a specialist, or the other way around. You can weigh in the pros and cons but it always falls back to the situation when one can be more efficient than the other. My end goal has always been <a href="/blog/everyday-is-a-starting-point">being both</a>. It can be done. How? Being able to switch between seeing things in micro versus macro. One can focus on the finer details while still being able to visualize the bigger picture &mdash; directing motion and all its tiny moving parts. &#9724;
               </AboutText>
             </AboutSection>
           </AboutContent>
@@ -390,8 +373,6 @@ const AboutIntro = styled.div`
     color: ${p => p.theme.colors.primary};
 
     span{
-      // position: absolute;
-      // left: -30px;
       margin-right: 6px;
     }
   }
@@ -457,7 +438,6 @@ const AboutContent = styled.div`
 `;
 
 const AboutSection = styled.div`
-  //margin-bottom: 30px;
   display: block;
   position: relative;
 `;
@@ -496,12 +476,6 @@ const AboutSocialLinks = styled.ul`
 
 const AboutSocialLink = styled.li`
   margin-bottom: 10px;
-
-  ${mediaqueries.phablet`
-    // max-width: 150px;
-    // margin: 0 auto;
-    // margin-bottom: 10px;
-  `}
 `;
 
 const AboutSocial = styled.a`
@@ -517,7 +491,6 @@ const ParticleContainer = styled.div`
   display: grid;
   grid-template-columns: 500px 1fr;
   height: 300px;
-  //background: #f0f4f6;
 
   & canvas{
     position: relative !important;
@@ -636,7 +609,6 @@ const Item = styled.div`
 
 const ImageContainer = styled.div`
   position: relative;
-  // border-radius: 100%;
   overflow: hidden;
   transition: transform 0.3s var(--ease-out-quad),
   box-shadow 0.3s var(--ease-out-quad);
