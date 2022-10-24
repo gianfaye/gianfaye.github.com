@@ -1,3 +1,111 @@
+- name: Turner
+  bio: |
+    Lorem
+  color: e0719e
+  avatar: ./logo/clients-logo-turner.jpg
+  featured: true
+  social:
+    - url: https://unsplash.com
+
+- name: Prudence
+  bio: |
+    Lorem
+  color: e0719e
+  avatar: ./logo/clients-logo-prudence-foundation.jpg
+  featured: true
+  social:
+    - url: https://unsplash.com
+
+- name: RCBC
+  bio: |
+    Lorem
+  color: e0719e
+  avatar: ./logo/clients-logo-rcbc.jpg
+  featured: true
+  social:
+    - url: https://unsplash.com
+
+- name: Traveloka
+  bio: |
+    Lorem
+  color: e0719e
+  avatar: ./logo/clients-logo-traveloka.jpg
+  featured: true
+  social:
+    - url: https://unsplash.com
+
+- name: CNN Philippines
+  bio: |
+    Lorem
+  color: e0719e
+  avatar: ./logo/clients-logo-cnn-philippines.jpg
+  featured: true
+  social:
+    - url: https://unsplash.com
+
+- name: DMCI Leasing
+  bio: |
+    Lorem
+  color: e0719e
+  avatar: ./logo/clients-logo-dmci-leasing.jpg
+  featured: true
+  social:
+    - url: https://unsplash.com
+
+- name: Mazda Philippines
+  bio: |
+    Lorem
+  color: e0719e
+  avatar: ./logo/clients-logo-mazda.jpg
+  featured: true
+  social:
+    - url: https://unsplash.com
+
+- name: Astellas
+  bio: |
+    Lorem
+  color: e0719e
+  avatar: ./logo/clients-logo-astellas.jpg
+  featured: true
+  social:
+    - url: https://unsplash.com
+
+- name: Department of Tourism
+  bio: |
+    Lorem
+  color: e0719e
+  avatar: ./logo/clients-logo-department-of-tourism.jpg
+  featured: true
+  social:
+    - url: https://unsplash.com
+
+- name: Sanicare
+  bio: |
+    Lorem
+  color: e0719e
+  avatar: ./logo/clients-logo-sanicare.jpg
+  featured: true
+  social:
+    - url: https://unsplash.com
+
+- name: Uratex
+  bio: |
+    Lorem
+  color: e0719e
+  avatar: ./logo/clients-logo-uratex.jpg
+  featured: true
+  social:
+    - url: https://unsplash.com
+
+- name: Orkide
+  bio: |
+    Lorem
+  color: e0719e
+  avatar: ./logo/clients-logo-orkide.jpg
+  featured: true
+  social:
+    - url: https://unsplash.com
+
 - name: Knight Frank
   bio: |
     Lorem
@@ -25,24 +133,6 @@
   social:
     - url: https://unsplash.com
 
-- name: CNN Philippines
-  bio: |
-    Lorem
-  color: e0719e
-  avatar: ./logo/clients-logo-cnn-philippines.jpg
-  featured: true
-  social:
-    - url: https://unsplash.com
-
-- name: CompareAsiaGroup
-  bio: |
-    Lorem
-  color: e0719e
-  avatar: ./logo/clients-logo-compare-asia-group.jpg
-  featured: true
-  social:
-    - url: https://unsplash.com
-
 - name: PULP Magazine
   bio: |
     Lorem
@@ -61,3 +151,11 @@
   social:
     - url: https://unsplash.com
 
+- name: CompareAsiaGroup
+  bio: |
+    Lorem
+  color: e0719e
+  avatar: ./logo/clients-logo-compare-asia-group.jpg
+  featured: true
+  social:
+    - url: https://unsplash.com

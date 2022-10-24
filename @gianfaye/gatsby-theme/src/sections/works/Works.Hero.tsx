@@ -56,7 +56,7 @@ const WorkHero: React.FC<IWork> = ({ works, work }) => {
           <WorksList works={works} selectedWork={work} />
         </HeroHeading>
         <HeroSubheading>
-          * That are not under NDA &#x1f937; Everything I did for the past 6 years can't be added here.
+          <strong>Disclaimer:</strong> All information and materials posted here are available to the public and are copyrighted by their respective owners. There is no intended claim of ownership to any of the materials posted in this page and is for the sole purpose of showcasing the skills and previous works of the developer as part of their portfolio.
         </HeroSubheading>
       </HeadingContainer>
       {/*<SubheadingContainer>*/}
@@ -162,14 +162,14 @@ const HeroHeading = styled.h1`
 const HeroSubheading = styled.span`
   display: block;
   font-style: normal;
-  font-weight: 600;
-  font-size: 16px;
-  margin-right: 35px;
+  // font-weight: 600;
+  font-size: 14px;
+  // margin-right: 35px;
   line-height: 1.15;
   color: ${p => p.theme.colors.primary};
-  font-family: ${p => p.theme.fonts.sansSerif};
-  text-align: right;
-  text-transform: uppercase;
+  // font-family: ${p => p.theme.fonts.serif};
+  text-align: left;
+  // text-transform: uppercase;
   margin-top: 20px;
   letter-spacing: 0.5px;
 

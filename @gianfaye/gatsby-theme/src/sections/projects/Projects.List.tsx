@@ -136,7 +136,7 @@ const ListItem: React.FC<ProjectsListItemProps> = ({ project, narrow }) => {
           </Excerpt>
           <MetaData
             gridLayout={gridLayout}>
-            Client: <span className="Project__Categories">{project.categories}</span>
+            <span className="Project__Categories">{project.categories}</span>
           </MetaData>
         </ProjectContent>
       </Item>
