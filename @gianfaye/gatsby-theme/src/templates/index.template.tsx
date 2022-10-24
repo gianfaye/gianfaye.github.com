@@ -13,7 +13,7 @@ import ArticlesHero from "../sections/home/Home.Hero";
 import ClientsList from "../sections/home/Clients.List";
 import ArticlesList from "../sections/home/Articles.List";
 import ProjectsList from "../sections/home/Projects.List";
-import HomeLatest from "../sections/home/Home.Latest";
+import HomeLatest from "../sections/Home/Home.Latest";
 
 import mediaqueries from '@styles/media';
 import { Template } from "@types";
