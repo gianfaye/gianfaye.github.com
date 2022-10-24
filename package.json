@@ -12,7 +12,7 @@
     "start": "yarn workspace www develop",
     "bootstrap": "yarn lerna bootstrap",
     "prod": "yarn lerna version && yarn lerna publish",
-    "deploy": "gatsby build --prefix-paths && gh-pages -d public"
+    "deploy": "gatsby build && gh-pages -d public"
   },
   "workspaces": [
     "@gianfaye/gatsby-theme",
@@ -71,7 +71,7 @@
     "gatsby-plugin-disqus": "^1.2.0",
     "gatsby-plugin-sitemap": "^2.4.12",
     "gatsby-remark-instagram-embed": "^1.0.0",
-    "gh-pages": "^3.1.0",
+    "gh-pages": "^4.0.0",
     "react-particles": "^2.3.3",
     "react-typist": "^2.0.5",
     "react-vertical-timeline-component": "^3.3.0",
