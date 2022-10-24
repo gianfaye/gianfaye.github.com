@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
+import type { Container, Engine } from "tsparticles-engine";
 import styled from '@emotion/styled';
 import { Link } from 'gatsby';
 import { useColorMode } from "theme-ui";
+import Particles from 'react-particles';
+import { loadFull } from "tsparticles";
 
 import Layout from "@components/Layout";
 import Section from "@components/Section";
@@ -11,7 +14,6 @@ import Image from '@components/Image';
 import mediaqueries from '@styles/media';
 import Icons from "@icons";
 
-import Particles from 'react-particles-js';
 
 function useWindowSize() {
   // Initialize state with undefined width/height so server and client renders match
@@ -51,6 +53,14 @@ function AboutPage() {
   const fill = isDark ? "#fff" : "#000";
   const size = useWindowSize();
 
+  const particlesInit = useCallback(async (engine: Engine) => {
+    await loadFull(engine);
+  }, []);
+
+  // const particlesLoaded = useCallback(async (container: Container | undefined) => {
+  //   await console.log(container);
+  // }, []);
+
   return (
     <Layout>
       <SEO />
@@ -66,7 +76,7 @@ function AboutPage() {
         <AboutContainer>
           <AboutIntro className={'intro-top'}>
             <p>
-              I have 10 years of working experience as a web developer mainly focusing in frontend development but have worn several hats over the years when I have to do automated QA testing, user experience design, content management, copywriting, graphic design, video editing, and project management.
+              I have over 10 years of working experience as a web developer mainly focusing in frontend development but have worn several hats over the years when I have to do automated QA testing, user experience design, content management, copywriting, graphic design, video editing, and project management.
             </p>
           </AboutIntro>
           <AboutContent>
@@ -82,8 +92,11 @@ function AboutPage() {
         <ParticleContainer>
           <Particles
             width={`${size.width}px`}
-            height={'300px'}
-            params={{
+            height='300px'
+            id="tsparticles"
+            init={particlesInit}
+            options={{
+              fullScreen: false,
               interactivity: {
                 detectsOn: "canvas",
                 events: {
@@ -113,6 +126,7 @@ function AboutPage() {
                   },
                 },
               },
+              fpsLimit: 120,
               particles: {
                 color: {
                   value: "#000",
@@ -132,15 +146,15 @@ function AboutPage() {
                   enable: true,
                   outMode: "bounce",
                   random: false,
-                  speed: 2,
+                  speed: 0.5,
                   straight: false,
                 },
                 number: {
                   density: {
                     enable: true,
-                    value_area: 100,
+                    value_area: 150,
                   },
-                  value: 40,
+                  value: 50,
                 },
                 opacity: {
                   value: 0.3,
@@ -225,9 +239,9 @@ function AboutPage() {
                   <Item>
                     <AboutSectionContent>
                       <ImageContainer>
-                        <Image src={'/skills/redux.png'} alt={'Redux'} />
+                        <Image src={'/skills/typescript.png'} alt={'TypeScript'} />
                       </ImageContainer>
-                      <Title>Redux</Title>
+                      <Title>TypeScript</Title>
                     </AboutSectionContent>
                   </Item>
                   <Item>
@@ -502,7 +516,12 @@ const ParticleContainer = styled.div`
   transition: opacity 0.25s;
   display: grid;
   grid-template-columns: 500px 1fr;
+  height: 300px;
   //background: #f0f4f6;
+
+  & canvas{
+    position: relative !important;
+  }
 
   ${mediaqueries.tablet`
     grid-template-columns: 1fr !important;
@@ -617,7 +636,7 @@ const Item = styled.div`
 
 const ImageContainer = styled.div`
   position: relative;
-  border-radius: 100%;
+  // border-radius: 100%;
   overflow: hidden;
   transition: transform 0.3s var(--ease-out-quad),
   box-shadow 0.3s var(--ease-out-quad);
