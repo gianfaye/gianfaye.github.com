@@ -11,7 +11,8 @@
     "lint": "eslint --ignore-path .gitignore .",
     "start": "yarn workspace www develop",
     "bootstrap": "yarn lerna bootstrap",
-    "prod": "yarn lerna version && yarn lerna publish"
+    "prod": "yarn lerna version && yarn lerna publish",
+    "deploy": "gatsby build --prefix-paths && gh-pages -d public"
   },
   "workspaces": [
     "@gianfaye/gatsby-theme",
