@@ -59,6 +59,9 @@ const ArticlesHero: React.FC<ITopic> = ({ /*topics*/ }) => {
               About
               <Typist.Backspace count={8} delay={200} />
               <Link to={"about"} className="Hero__About">Web artisan</Link>
+              {/*<a href="/about" title="About me" className="Hero__About">*/}
+              {/*  Web artisan*/}
+              {/*</a>*/}
             </Typist>
             <Typist
               cursor={{hideWhenDone: true, hideWhenDoneDelay: 0, element: '/'}}
@@ -78,9 +81,30 @@ const ArticlesHero: React.FC<ITopic> = ({ /*topics*/ }) => {
             </Typist>
           </HeroHeading>
 
+          {/*<HeroHeading dangerouslySetInnerHTML={{ __html: hero.heading }} />*/}
         </HeadingContainer>
         <SubheadingContainer>
           <Bio siteData={hero} />
+          {/*<GridControlsContainer>*/}
+          {/*  <GridButton*/}
+          {/*    onClick={() => setGridLayout('tiles')}*/}
+          {/*    active={tilesIsActive}*/}
+          {/*    data-a11y="false"*/}
+          {/*    title="Show articles in Tile grid"*/}
+          {/*    aria-label="Show articles in Tile grid"*/}
+          {/*  >*/}
+          {/*    <Icons.Tiles />*/}
+          {/*  </GridButton>*/}
+          {/*  <GridButton*/}
+          {/*    onClick={() => setGridLayout('rows')}*/}
+          {/*    active={!tilesIsActive}*/}
+          {/*    data-a11y="false"*/}
+          {/*    title="Show articles in Row grid"*/}
+          {/*    aria-label="Show articles in Row grid"*/}
+          {/*  >*/}
+          {/*    <Icons.Rows />*/}
+          {/*  </GridButton>*/}
+          {/*</GridControlsContainer>*/}
         </SubheadingContainer>
       </HomeHeroContainer>
     </Section>
