@@ -2,7 +2,7 @@
   "name": "@gianfaye/gatsby-theme",
   "topic": "dennis@gianfaye.co",
   "repository": "https://github.com/narative/gatsby-theme",
-  "version": "0.16.7",
+  "version": "0.16.6",
   "main": "index.js",
   "license": "MIT",
   "keywords": [
