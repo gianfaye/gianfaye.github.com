@@ -111,7 +111,7 @@ const ListItem: React.FC<HomeLatestItemProps> = ({ item, itemType, narrow }) => 
               className="Project"
               narrow={narrow}
               gridLayout={gridLayout}>
-              Client: <span className="Project__Categories">{item.categories}</span>
+              <span className="Project__Categories">{item.categories}</span>
             </MetaData>
           }
         </ArticleContent>
