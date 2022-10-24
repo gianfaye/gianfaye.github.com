@@ -12,7 +12,7 @@
     "start": "yarn workspace www develop",
     "bootstrap": "yarn lerna bootstrap",
     "prod": "yarn lerna version && yarn lerna publish",
-    "deploy": "gatsby build && gh-pages -d public"
+    "deploy": "gatsby build && gh-pages -d public -b master"
   },
   "workspaces": [
     "@gianfaye/gatsby-theme",
