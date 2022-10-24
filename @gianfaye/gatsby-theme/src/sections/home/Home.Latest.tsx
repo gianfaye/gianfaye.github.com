@@ -46,7 +46,7 @@ const HomeLatest: React.FC<HomeLatestProps> = ({ projects, articles, alwaysShowA
         hasOnlyOneArticle={hasOnlyOneArticle}
         hasOnlyOneProject={hasOnlyOneProject}
       >
-        <ListItem itemType={"featured"} item={articles[1]} narrow={true} />
+        <ListItem itemType={"featured"} item={articles[3]} narrow={true} />
         <ListItem itemType={"latest"} item={articles[0]} narrow={false} />
       </List>
     </HomeLatestContainer>
