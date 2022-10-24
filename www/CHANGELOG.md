@@ -3,14 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [1.6.6](https://github.com/gianfaye/gianfaye.github.com/compare/www@1.6.5...www@1.6.6) (2022-10-24)
-
-**Note:** Version bump only for package www
-
-
-
-
-
 ## 1.6.5 (2022-10-24)
 
 **Note:** Version bump only for package www
