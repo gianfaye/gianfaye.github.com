@@ -134,7 +134,7 @@ const Footer: React.FC<{}> = () => {
           <FooterCopyright>
             <FooterText>
               {/*© {copyrightDate} {name}*/}
-              © 2020 Gian Faye Paguirigan
+              © 2022 Gian Faye Paguirigan
             </FooterText>
           </FooterCopyright>
           <FooterSublinks>

@@ -1,0 +1,557 @@
+---
+title: "The 10 Commandments in React"
+slug: ten-common-coding-patterns-in-react
+topic: Web Development
+date: 2022-12-23
+hero: ./images/ten-commandments-in-react.jpg
+excerpt: "Ten common coding patterns that are used in React applications"
+categories: ['Learning']
+---
+
+Say you are developing a large or complex application where a well-structured codebase can make it easier to understand how the different pieces of the application fit and grow together, while remaining easy to maintain over time.
+
+Is that even possible in real life? 😱 How? 🧐 Answer: Yes, using coding patterns. (*Did I just hear a senior chuckle?* 🤨) Knowing the common coding patterns in React and when to use them *can help* structure the code in a way that is more maintainable, scalable, and reusable.
+
+Here are the **Ten Commandments (Coding Patterns) in React** every React developer should know (*and follow, of course.* 😉)
+
+## #1 Thou shall separate logical from dumb components
+
+*...to promote peace (on your code, at least)*
+
+aka **Container/presentational pattern**: This pattern involves separating the stateful "container" components that handle data and logic from the presentational "dumb" components that are responsible for rendering the UI. This can help to improve the reusability, maintainability, and the ~~world~~ peace of your code.
+
+```js
+// presentational/dumb component
+function UserList(props) {
+  return (
+    <ul>
+      {props.users.map(user => (
+        <li key={user.id}>{user.name}</li>
+      ))}
+    </ul>
+  );
+}
+
+// container/stateful component
+function UserListContainer(props) {
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    async function fetchUsers() {
+      const response = await fetch('/users');
+      const data = await response.json();
+      setUsers(data);
+    }
+
+    fetchUsers();
+  }, []);
+
+  return <UserList users={users} />;
+}
+
+```
+
+In this example, the `UserList` component is a presentational component that is responsible for rendering a list of users. The `UserListContainer` component is a container component that manages the state and logic for fetching the users data. It uses the `useEffect` hook to perform an asynchronous fetch request to retrieve the data, and it passes the data down to the `UserList` component through props.
+
+This separation of concerns can make it easier to maintain and scale the application, as the presentational component is focused solely on rendering the UI, and the container component is responsible for managing the state and logic. The presentational component can be reused in different contexts without having to worry about the state or logic, and the container component can be easily replaced or updated without affecting the UI.
+
+<hr />
+
+## #2 Thou shall know when to summon the higher-order
+
+*for commoners err.. common functionalities*
+
+aka **Higher-order components (HOCs)**: Higher-order components are functions that take a component as an argument and return a new component with additional functionality. HOCs can be used to add common functionality, such as authentication, data fetching, or error handling, to multiple components.
+
+```js
+import React, { useState, useEffect } from 'react';
+
+// HOC that adds data fetching functionality to a component
+function withData(WrappedComponent) {
+  return function WithData(props) {
+    const [data, setData] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+      async function fetchData() {
+        setLoading(true);
+        try {
+          const response = await fetch('/data');
+          const data = await response.json();
+          setData(data);
+          setLoading(false);
+        } catch (error) {
+          setError(error);
+          setLoading(false);
+        }
+      }
+
+      fetchData();
+    }, []);
+
+    return (
+      <WrappedComponent
+        data={data}
+        loading={loading}
+        error={error}
+        {...props}
+      />
+    );
+  };
+}
+
+// Presentational component that displays data
+function DataList(props) {
+  if (props.loading) {
+    return <p>Loading data...</p>;
+  } else if (props.error) {
+    return <p>Error: {props.error.message}</p>;
+  } else {
+    return (
+      <ul>
+        {props.data.map(item => (
+          <li key={item.id}>{item.name}</li>
+        ))}
+      </ul>
+    );
+  }
+}
+
+// Enhanced component that fetches data
+const DataListWithData = withData(DataList);
+
+function MyComponent() {
+  return <DataListWithData />;
+}
+
+```
+In this example, the `withData` HOC adds data fetching functionality to the `DataList` component. The `withData` HOC uses the `useEffect` hook to perform an asynchronous fetch request to retrieve the data, and it passes the data, loading state, and error state down to the `DataList` component through props.
+
+The `DataListWithData` component is created by calling the `withData` HOC with the `DataList` component as an argument. When the `DataListWithData` component is rendered, it will fetch data from `withData` which then renders the `DataList` component with the data populated.
+
+<hr />
+
+## #3 Thou shall share thy blessings
+
+*(and thy component's behavior)*
+
+aka **Render props**: The render props pattern is a technique for sharing behavior between components. It involves exposing a prop that is a function that is called with data and returns a JSX element. This allows the component to be flexible and reusable, as the component's behavior can be customized by the parent component that uses it.
+
+```js
+import React from 'react';
+
+function DataProvider(props) {
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch('/data');
+      const data = await response.json();
+      setData(data);
+    }
+
+    fetchData();
+  }, []);
+
+  return props.render(data);
+}
+
+function MyComponent() {
+  return (
+    <DataProvider render={data => (
+      <div>
+        {data ? (
+          // Render the data here
+        ) : (
+          <p>Loading data...</p>
+        )}
+      </div>
+    )} />
+  );
+}
+```
+In this example, the `DataProvider` component fetches data from the server and exposes it through a render prop. The `MyComponent` component uses the `DataProvider` component and provides a function to the render prop that renders the data.
+
+This allows the `DataProvider` component to be flexible and reusable, as it can be used in any context where data needs to be fetched and rendered. The `MyComponent` component can customize the behavior of the `DataProvider` component by providing a different function to the render prop.
+
+Render props are a convenient way to share behavior between components, and they can help to make components more flexible and reusable. They are particularly useful when the behavior of a component needs to be customized based on the context in which it is used.
+
+<hr />
+
+## #4 Thou shall make use of hooks
+
+*...it's a miracle to the React community, really.*
+
+**Hooks** are a way to use state and other React features in functional components. Prior to the introduction of hooks, it was only possible to use state and other React features in class-based components. (*cue pails of tears of pre-2019 React devs* 😭)
+
+Here's an example of how to use the `useState` hook in a functional component in a React application:
+
+```js
+import React, { useState } from 'react';
+
+function Example() {
+  // Declare a state variable called "count"
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <p>You clicked {count} times</p>
+      <button onClick={() => setCount(count + 1)}>
+        Click me
+      </button>
+    </div>
+  );
+}
+```
+
+In this example, the `useState` hook is used to declare a state variable called `count`. The `useState` hook returns an array with two elements: the current state value, and a function that can be used to update the state value. In this case, the `count` variable holds the current value of the state, and the `setCount` function is used to update the value of the state.
+
+The `useState` hook can be used multiple times in a single component to manage multiple pieces of state.
+
+Here's an example of how to use the `useEffect` hook in a functional component in a React application:
+
+```js
+import React, { useState, useEffect } from 'react';
+
+function Example() {
+  const [count, setCount] = useState(0);
+
+  // Similar to componentDidMount and componentDidUpdate
+  useEffect(() => {
+    // Update the document title using the browser API
+    document.title = `You clicked ${count} times`;
+  });
+
+  return (
+    <div>
+      <p>You clicked {count} times</p>
+      <button onClick={() => setCount(count + 1)}>
+        Click me
+      </button>
+    </div>
+  );
+}
+
+```
+In this example, the `useEffect` hook is used to perform an action after the component has been rendered. The `useEffect` hook takes a function as an argument, and this function will be called after the component has been rendered. In this case, the function updates the document title using the browser API.
+
+There are [many other hooks available in React](https://usehooks.com/), and they can be used to perform a variety of tasks such as data fetching, subscribing to events, and managing the lifecycle of a component.
+
+<hr />
+
+## #5 Thou shall only load what shall be loaded
+
+*don't let them users wait for eternity...*
+
+aka **Lazy loading**: Lazy loading is a technique that allows you to defer the loading of a component until it is actually needed. This can be useful in situations where you have a large application with many components, as it can help to improve the performance and loading time of the application by only loading the components that are actually needed.
+
+In React, you can use the `React.lazy` function and the `Suspense` component to implement lazy loading. The `React.lazy` function allows you to import a component that will be loaded asynchronously, and the `Suspense` component allows you to specify a fallback UI to display while the component is being loaded.
+
+Here's an example of how to use `React.lazy` and `Suspense` to implement lazy loading in a React application:
+
+```js
+import React, { lazy, Suspense } from 'react';
+
+const LazyComponent = lazy(() => import('./LazyComponent'));
+
+function App() {
+  return (
+    <Suspense fallback={<p>Loading...</p>}>
+      <LazyComponent />
+    </Suspense>
+  );
+}
+```
+
+<hr />
+
+## #6 Thou shall split your journey into smaller paths
+
+*or the vast ocean that is your codebase into rivers (of joy, I hope)*
+
+aka **Code splitting**: Code splitting is a technique that allows you to split your code into smaller chunks, and only load the code that is needed for a specific route or component. This can help improve the performance of your React application, as it allows you to only load the code that is required for the current view, rather than loading all of the code upfront.
+
+Here is an example of how you can use code splitting in a React application with React Router:
+
+```js
+import React, { Suspense } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
+const Home = React.lazy(() => import('./routes/Home'));
+const About = React.lazy(() => import('./routes/About'));
+
+function App() {
+  return (
+    <Router>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/about" component={About} />
+        </Switch>
+      </Suspense>
+    </Router>
+  );
+}
+
+export default App;
+
+```
+
+In this example, the `Home` and `About` routes are loaded asynchronously using the `React.lazy` and `Suspense` components. This allows the code for these routes to be split into separate bundles, which are only loaded when the route is accessed. The Suspense component is used to provide a fallback element that is displayed while the route is being loaded.
+
+You can also use code splitting with the `React.lazy` and `Suspense` components to split code at the **component** level, rather than at the **route** level. For example:
+
+```js
+const MyComponent = React.lazy(() => import('./MyComponent'));
+
+function App() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <MyComponent />
+    </Suspense>
+  );
+}
+
+```
+
+In this case, the `MyComponent` component is loaded asynchronously, and the `Suspense` component is used to provide a fallback element while the component is being loaded.
+
+## #7 Thou shall see the world with patterns
+
+**Pattern matching** is a technique that allows you to compare a value to a pattern, and execute different code based on whether the value matches the pattern. In React, you can use pattern matching to write more concise and expressive code, particularly when working with props or state that may have multiple possible values.
+
+```js
+function AlertMessages(props) {
+  switch (props.type) {
+    case 'success':
+      return <div style={{ color: 'green' }}>{props.message}</div>;
+    case 'error':
+      return <div style={{ color: 'red' }}>{props.message}</div>;
+    default:
+      return <div>{props.message}</div>;
+  }
+}
+```
+
+In this example, the `AlertMessages` component takes a `type` prop and a `message` prop. The component uses a `switch` statement to match the `type` prop against different patterns, and returns a different element based on the value of the `type` prop.
+
+You can also use the `&&` operator to perform pattern matching in React. For example:
+
+```js
+function AlertMessages(props) {
+  return (
+    <div>
+      {props.type === 'success' && (
+        <div style={{ color: 'green' }}>{props.message}</div>
+      )}
+      {props.type === 'error' && (
+        <div style={{ color: 'red' }}>{props.message}</div>
+      )}
+      {props.type !== 'success' && props.type !== 'error' && (
+        <div>{props.message}</div>
+      )}
+    </div>
+  );
+}
+
+```
+In this example, the `AlertMessages` component uses the `&&` operator to match the `type` prop against different patterns, and returns a different element based on the value of the `type` prop.
+
+<hr />
+
+## #8 Thou shall know your states properly
+
+*and manage them accordingly* 🕵️‍💁‍
+
+**State** is an important concept in React, as it allows you to store and manage data that is specific to a particular component. State allows you to create interactive and dynamic components, as the component's behavior can change in response to changes in state.
+
+There are several different ways to manage state in a React application. One of the most common approaches is to use the `useState` hook, which is a function provided by React that allows you to add state to functional components.
+
+Here is an example of how you can use the `useState` hook in a React functional component:
+
+```js
+import { useState } from 'react';
+
+function Counter() {
+  // Declare a state variable and a function to update it
+  const [count, setCount] = useState(0);
+
+  // Increment the count when the button is clicked
+  function handleClick() {
+    setCount(count + 1);
+  }
+
+  return (
+    <div>
+      <p>The count is {count}</p>
+      <button onClick={handleClick}>Increment</button>
+    </div>
+  );
+}
+```
+In this example, the `Counter` component uses the `useState` hook to declare a state variable called `count`, which is initialized to `0`. It also declares a function called `setCount` that can be used to update the value of count.
+
+The `Counter` component renders a button that, when clicked, increments the value of count by calling the `setCount` function with the new `count` value. It also displays the current value of `count` in a paragraph element.
+
+You can also use the useState hook to add multiple state variables to a component. For example:
+
+```js
+import { useState } from 'react';
+
+function User() {
+  // Declare two state variables and two functions to update them
+  const [name, setName] = useState('John');
+  const [age, setAge] = useState(30);
+
+  // Update the name when the input value changes
+  function handleNameChange(event) {
+    setName(event.target.value);
+  }
+
+  // Update the age when the input value changes
+  function handleAgeChange(event) {
+    setAge(event.target.value);
+  }
+
+  return (
+    <div>
+      <p>
+        Name: <input value={name} onChange={handleNameChange} />
+      </p>
+      <p>
+        Age: <input value={age} onChange={handleAgeChange} />
+      </p>
+    </div>
+  );
+}
+
+```
+In this example, the `User` component uses the useState hook to declare two state variables: `name` and `age`. It also declares two functions: `setName` and `setAge`, which can be used to update the values of the state variables.
+
+The component renders two input elements that are bound to the name and age state variables, and updates the state variables when the input values change.
+
+<hr />
+
+## #9 Thou shall handle blocking tasks in the background
+
+*async I have something to do* 🧐*, await I remember now* 😀💡
+
+**Asynchronous programming** is a way of writing code that performs tasks that may take some time to complete, such as making network requests or reading from a database. In React, you can use asynchronous programming to handle tasks that need to be performed in the background, without blocking the main thread.
+
+Here is an example of how you can use asynchronous programming in a React component:
+
+```js
+import React, { useState, useEffect } from 'react';
+
+function WaterFetcher() {
+  const [data, setData] = useState(null);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  // Fetch data from an API when the component mounts
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        setLoading(true);
+        const response = await fetch('https://wine-api.com/data');
+        const json = await response.json();
+        setData(json);
+      } catch (e) {
+        setError(e);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchData();
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>{error.message}</div>;
+  }
+
+  if (data) {
+    return <div>{data.message}</div>;
+  }
+
+  return null;
+}
+
+```
+In this example, the `WaterFetcher` component uses the `useEffect` hook to perform an asynchronous task when the component mounts. The task fetches data from an API using the fetch function, and stores the data in the component's state using the setData function.
+
+The component also has state variables for error and loading, which are used to store any errors that occur during the fetch, and a flag indicating whether the fetch is currently in progress.
+
+The component renders different elements based on the values of these state variables. If loading is true, it displays a loading message. If error is not null, it displays an error message. If data is not null, it displays the data.
+
+<hr />
+
+## #10 Thou shall normalize data
+
+*...or suFf3R thE c0n$eQUençeS* 😈
+
+**Data normalization** is the process of transforming data into a consistent and standardized format. Normalizing data can make it easier to work with and analyze, as it can remove any inconsistencies or errors that may be present in the data.
+
+In React, you can use custom functions or helper libraries to normalize data. Here's an example of using a custom function to normalize data in a React component:
+
+```js
+import React from 'react';
+
+function normalizeData(data) {
+  // Normalize the data here
+  return normalizedData;
+}
+
+function MyComponent(props) {
+  const normalizedData = normalizeData(props.data);
+
+  return (
+    // Render the normalized data here
+  );
+}
+```
+
+Here's an example of using a helper library to normalize data in a React component:
+
+```js
+import React from 'react';
+import normalize from 'normalize-data-library';
+
+function MyComponent(props) {
+  const normalizedData = normalize(props.data);
+
+  return (
+    // Render the normalized data here
+  );
+}
+```
+It's also possible to use a combination of custom functions and helper libraries to normalize data in a React component.
+
+Keep in mind that the specific steps involved in normalizing data will depend on the format of the data and the desired output.
+
+Data normalization is often an iterative process, as you may need to perform multiple steps in order to fully normalize the data. It's also a good idea to validate the normalized data to ensure that it is accurate and consistent.
+
+<hr />
+
+So in summary (or if you scrolled all the way down and didn't read 😠):
+1. Thou shall separate logical from dumb components: **Container/presentational**
+2. Thou shall know when to summon the higher-order: **Higher-Order Components**
+3. Thou shall share thy blessings and thy components behavior: **Render Props**
+4. Thou shall make use of hooks: **Hooks, duh.**
+5. Thou shall only load what shall be loaded: **Lazy Loading**
+6. Thou shall split your journey into smaller paths: **Code Splitting**
+7. Thou shall see the world with patterns: **Pattern Matching**
+8. Thou shall know your states properly: **State Management**
+9. Thou shall handle blocking tasks in the background: **Asynchronous Fetching**
+10. Thou shall normalize data: **Data Normalization**
+
+<hr />
+
+You've just seen the surface. There are [more advanced patterns](https://www.patterns.dev/) you can use for developing apps in React and modern web apps in general. The world is your oyster, lots of pearls out there.
+
+I hope you enjoyed reading and feel free to leave some comments below if you oppose to these commandments or whatnot.
+
