@@ -1,0 +1,736 @@
+---
+title: "10 Most Popular State Management Libraries in React"
+slug: ten-most-popular-state-management-libraries-in-react
+topic: Web Development
+date: 2022-11-19
+hero: ./images/ten-most-popular-state-management-libraries-in-react.jpg
+excerpt: "A glimpse on the most popular state management tools in React and how to apply them"
+categories: ['Learning']
+---
+
+**State management** refers to the process of managing and manipulating the state of a React application. State is the data or variables that determine the behavior of a component, and can include things like form values, user input, and application data.
+
+In React, state is typically managed at the component level, with each component maintaining its own state. This can be sufficient for simple applications with small or medium-sized state trees, but as the complexity of the application increases, it can become challenging to manage state in this way.
+
+To address this issue, developers often turn to state management libraries, which provide tools and techniques for managing state in a more predictable and consistent way. These libraries allow you to store and manipulate state in a central location, rather than having to pass it down the component tree through props. This can make it easier to update and query state, and can help to prevent the need for complex props drilling.
+
+Here are the 10 most popular state management libraries for React:
+
+## #1 Redux
+
+**Redux** is a widely-used state management library that allows you to store all of your application's state in a single store, and provides tools for updating and querying the state in a predictable and consistent way. It is especially useful for applications with complex state trees or that require the ability to undo and redo actions.
+
+To use Redux in a React application, first, install the `redux` and `react-redux` libraries:
+
+```
+npm install redux react-redux
+```
+
+Next, create a reducer function that specifies how the state should be updated in response to actions:
+
+```js
+const counterReducer = (state = 0, action) => {
+  switch (action.type) {
+    case 'INCREMENT':
+      return state + 1;
+    case 'DECREMENT':
+      return state - 1;
+    default:
+      return state;
+  }
+};
+```
+
+Then, create a store using the reducer function:
+
+```js
+import { createStore } from 'redux';
+
+const store = createStore(counterReducer);
+```
+
+Now, you can use the store to update and query the state of your application. For example, you can dispatch actions to the store to update the state:
+
+```js
+store.dispatch({ type: 'INCREMENT' });
+```
+
+You can also use the store's `getState` method to retrieve the current state:
+
+```js
+console.log(store.getState()); // Output: 1
+```
+
+Finally, you can use the `react-redux` library to connect your React components to the store, allowing them to access and update the state:
+
+```js
+import { connect } from 'react-redux';
+
+const mapStateToProps = (state) => ({
+  count: state,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  increment: () => dispatch({ type: 'INCREMENT' }),
+  decrement: () => dispatch({ type: 'DECREMENT' }),
+});
+
+const Counter = ({ count, increment, decrement }) => (
+  <div>
+    <p>Count: {count}</p>
+    <button onClick={increment}>Increment</button>
+    <button onClick={decrement}>Decrement</button>
+  </div>
+);
+
+export default Counter;
+```
+
+Visit [Redux.js.org](https://redux.js.org/) for the documentation 🔗
+
+<hr />
+
+## #2 MobX
+
+**MobX** is based on the concept of reactive programming. It allows you to easily manage and manipulate the state of your application by using observable data structures and reactive computations. MobX is known for its simplicity and ease of use, and is a good choice for developers who are new to state management.
+
+Install the mobx and mobx-react libraries:
+
+```
+npm install mobx mobx-react
+```
+
+Next, create a store class that holds the state of your application. This store should contain any variables that you want to be able to update and observe:
+
+```js
+import { observable } from 'mobx';
+
+class CounterStore {
+  @observable count = 0;
+}
+
+const store = new CounterStore();
+```
+
+Now, you can use the store to update and query the state of your application. For example, you can define methods on the store to update the state:
+
+```js
+class CounterStore {
+  @observable count = 0;
+
+  increment() {
+    this.count++;
+  }
+
+  decrement() {
+    this.count--;
+  }
+}
+
+const store = new CounterStore();
+```
+
+You can also use the store to update and query the state of your application. For example, you can call the increment and decrement methods on the store to update the state:
+
+```js
+store.increment();
+store.decrement();
+```
+
+Visit [MobX.js.org](https://mobx.js.org/) for more details 🔗
+
+<hr />
+
+## #3 React Context
+
+**React Context** is a built-in feature of React that allows you to pass data down the component tree without the need for props drilling. It is a simple and lightweight alternative to libraries like Redux or MobX, and is particularly well-suited for applications with small or medium-sized state trees.
+
+To use React Context in a React application, you will need to create a context using the `createContext` function, and then provide the context to your components using the `Context.Provider` component. Here is an example of how you might use React Context to manage the state of a simple counter application:
+
+First, create a context using the `createContext` function:
+
+```js
+import { createContext } from 'react';
+
+const CounterContext = createContext();
+```
+
+Next, create a provider component that wraps your application and provides the context to your components:
+
+```js
+import { useState } from 'react';
+
+const CounterProvider = ({ children }) => {
+  const [count, setCount] = useState(0);
+
+  const increment = () => setCount(count + 1);
+  const decrement = () => setCount(count - 1);
+
+  return (
+    <CounterContext.Provider value={{ count, increment, decrement }}>
+      {children}
+    </CounterContext.Provider>
+  );
+};
+```
+
+Now, you can use the `CounterContext.Consumer` component to access the context within your components:
+
+```js
+import { useContext } from 'react';
+
+const Counter = () => {
+  const { count, increment, decrement } = useContext(CounterContext);
+
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <button onClick={increment}>Increment</button>
+      <button onClick={decrement}>Decrement</button>
+    </div>
+  );
+};
+
+```
+
+Finally, wrap your application in the `CounterProvider` component:
+
+```js
+import { render } from 'react-dom';
+
+render(
+  <CounterProvider>
+    <App />
+  </CounterProvider>,
+  document.getElementById('root')
+);
+```
+
+This will make the context available to all of the components within the `CounterProvider`, allowing them to access and update the state using the `useContext` hook.
+
+Read more about the [Context API](https://reactjs.org/docs/context.html) from the React.js website 🔗
+
+<hr />
+
+## #4 Unstated
+
+**Unstated** is a lightweight state management library for React that allows you to manage the state of your application using simple container components. It is based on the concept of dependency injection, and uses a declarative approach to state management  by creating container components that hold and manipulate the state, and then injecting the state into your presentational components as props. Unstated is known for its simplicity and minimalistic approach to state management.
+
+Install the unstated library:
+
+```
+npm install unstated
+```
+
+Create a container component that manages the state of your application:
+
+```js
+import { Container } from 'unstated';
+
+class CounterContainer extends Container {
+  state = {
+    count: 0,
+  };
+
+  increment() {
+    this.setState({ count: this.state.count + 1 });
+  }
+
+  decrement() {
+    this.setState({ count: this.state.count - 1 });
+  }
+}
+
+const counter = new CounterContainer();
+```
+
+Now, you can use the container to update and query the state of your application. For example, you can call the `increment` and `decrement` methods on the container to update the state:
+
+```js
+counter.increment();
+counter.decrement();
+```
+
+You can also access the `state` property of the container to retrieve the current state:
+
+```js
+console.log(counter.state.count); // Output: 0
+```
+
+Finally, you can use the `inject` higher-order component provided by Unstated to inject the container into your components, allowing them to access and update the state:
+
+```js
+import { inject } from 'unstated';
+
+const Counter = ({ counter }) => (
+  <div>
+    <p>Count: {counter.state.count}</p>
+    <button onClick={counter.increment}>Increment</button>
+    <button onClick={counter.decrement}>Decrement</button>
+  </div>
+);
+
+export default inject(counter)(Counter);
+```
+
+Check out the [unstated](https://github.com/jamiebuilds/unstated) repository in GitHub 🔗
+
+<hr />
+
+## #5 Apollo Client
+
+**Apollo Client** is a popular state management library for managing GraphQL data in React applications. It provides tools for querying and mutating GraphQL data, and allows you to easily integrate your application with a GraphQL server. Apollo Client is a good choice for developers who are using GraphQL in their applications.
+
+Here is an example of using Apollo Client for state management in a React application:
+
+```js
+import React from 'react';
+import { useQuery, useMutation } from '@apollo/client';
+
+import { GET_TODO, TOGGLE_TODO } from '../queries';
+
+function Todo({ id }) {
+  const { data, loading, error } = useQuery(GET_TODO, { variables: { id } });
+  const [toggleTodo] = useMutation(TOGGLE_TODO);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
+
+  const { todo } = data;
+
+  return (
+    <div>
+      <input
+        type="checkbox"
+        checked={todo.completed}
+        onChange={() => toggleTodo({ variables: { id } })}
+      />
+      <label>{todo.text}</label>
+    </div>
+  );
+}
+```
+
+In this example, the `useQuery` hook is used to fetch a todo item with a specific ID from the server, and the `useMutation` hook is used to toggle the completion status of the todo item. The `TOGGLE_TODO` mutation updates the server and the local cache automatically with the new data.
+
+The `GET_TODO` and `TOGGLE_TODO` queries and mutations should be defined separately. Here's an example of how they might look:
+
+```js
+import { gql } from '@apollo/client';
+
+export const GET_TODO = gql`
+  query GetTodo($id: ID!) {
+    todo(id: $id) {
+      id
+      text
+      completed
+    }
+  }
+`;
+
+export const TOGGLE_TODO = gql`
+  mutation ToggleTodo($id: ID!) {
+    toggleTodo(id: $id) {
+      id
+      completed
+    }
+  }
+`;
+
+```
+
+Read the [Apollo Client](https://www.apollographql.com/docs/react/) documentation from the Apollo GraphQL website 🔗
+
+<hr />
+
+## #6 Recoil
+
+**Recoil** is a new state management library from Facebook that is designed for building large-scale applications with complex state trees. It allows you to manage your application's state using a graph-based model, and provides tools for efficiently querying and updating the state.
+
+```js
+import React from 'react';
+import { atom, useRecoilState } from 'recoil';
+
+const todoListState = atom({
+  key: 'todoListState',
+  default: [],
+});
+
+function TodoList() {
+  const [todoList, setTodoList] = useRecoilState(todoListState);
+
+  const addTodo = (newTodo) => {
+    setTodoList((oldTodoList) => [...oldTodoList, newTodo]);
+  };
+
+  return (
+    <div>
+      {todoList.map((todo) => (
+        <Todo key={todo.id} todo={todo} />
+      ))}
+      <AddTodoForm onAddTodo={addTodo} />
+    </div>
+  );
+}
+
+function AddTodoForm({ onAddTodo }) {
+  const [text, setText] = React.useState('');
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    onAddTodo({ text, completed: false });
+    setText('');
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        value={text}
+        onChange={(event) => setText(event.target.value)}
+      />
+      <button type="submit">Add Todo</button>
+    </form>
+  );
+}
+
+function Todo({ todo }) {
+  return <div>{todo.text}</div>;
+}
+```
+
+In this example, the `todoListState` atom is defined and initialized with an empty array. The `useRecoilState` hook is used to read and update the value of the `todoListState` atom. The `TodoList` component displays a list of todo items and a form for adding new todo items. The `AddTodoForm` component has a form with an input field and a submit button. When the form is submitted, a new todo item is added to the list by calling the `onAddTodo` callback prop with the new todo item.
+
+Visit the [Recoil](https://recoiljs.org/) website for more information 🔗
+
+<hr />
+
+## #7 Zustand
+
+**Zustand** is a lightweight state management library that is based on the concept of hooks. It allows you to manage the state of your application using simple functions that are called inside your components, and is particularly well-suited for applications with small or medium-sized state trees.
+
+```js
+import React from 'react';
+import create from 'zustand';
+
+const useStore = create((set) => ({
+  todoList: [],
+  addTodo: (newTodo) => set((state) => ({
+    todoList: [...state.todoList, newTodo],
+  })),
+}));
+
+function TodoList() {
+  const { todoList, addTodo } = useStore();
+
+  return (
+    <div>
+      {todoList.map((todo) => (
+        <Todo key={todo.id} todo={todo} />
+      ))}
+      <AddTodoForm onAddTodo={addTodo} />
+    </div>
+  );
+}
+
+function AddTodoForm({ onAddTodo }) {
+  const [text, setText] = React.useState('');
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    onAddTodo({ text, completed: false });
+    setText('');
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        value={text}
+        onChange={(event) => setText(event.target.value)}
+      />
+      <button type="submit">Add Todo</button>
+    </form>
+  );
+}
+
+function Todo({ todo }) {
+  return <div>{todo.text}</div>;
+}
+```
+
+In this example, the `useStore` hook is used to create a store with a `todoList` state variable and an `addTodo` action. The `TodoList` component displays a list of todo items and a form for adding new todo items. The `AddTodoForm` component has a form with an input field and a submit button. When the form is submitted, a new todo item is added to the list by calling the `onAddTodo` callback prop with the new todo item.
+
+Check out the [Zustand](https://github.com/pmndrs/zustand) repository in GitHub 🔗
+
+<hr />
+
+## #8 **XState**
+
+**XState** is based on the concept of finite state machines. It allows you to model the different states and transitions of your application using a simple and expressive syntax, and provides tools for updating and querying the state in a predictable and consistent way.
+
+```js
+import React from 'react';
+import { useMachine } from '@xstate/react';
+import { Machine } from 'xstate';
+
+const todoMachine = Machine({
+  id: 'todo',
+  initial: 'idle',
+  states: {
+    idle: {
+      on: {
+        ADD: 'adding',
+      },
+    },
+    adding: {
+      on: {
+        SUBMIT: 'idle',
+        CANCEL: 'idle',
+      },
+    },
+  },
+});
+
+function TodoList() {
+  const [current, send] = useMachine(todoMachine);
+  const { todoList } = current.context;
+
+  return (
+    <div>
+      {current.matches('idle') && (
+        <button onClick={() => send('ADD')}>Add Todo</button>
+      )}
+      {current.matches('adding') && (
+        <AddTodoForm
+          onSubmit={(newTodo) => {
+            send('SUBMIT', { newTodo });
+          }}
+          onCancel={() => send('CANCEL')}
+        />
+      )}
+      {todoList.map((todo) => (
+        <Todo key={todo.id} todo={todo} />
+      ))}
+    </div>
+  );
+}
+
+function AddTodoForm({ onSubmit, onCancel }) {
+  const [text, setText] = React.useState('');
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    onSubmit({ text, completed: false });
+    setText('');
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        value={text}
+        onChange={(event) => setText(event.target.value)}
+      />
+      <button type="submit">Add Todo</button>
+      <button type="button" onClick={onCancel}>Cancel</button>
+    </form>
+  );
+}
+
+function Todo({ todo }) {
+  return <div>{todo.text}</div>;
+}
+```
+
+In this example, the `todoMachine` is a finite state machine (FSM) that manages the state of the todo list application. The `useMachine` hook is used to interpret the FSM and provide the current state and an action dispatcher to the component. The `TodoList` component displays a button for adding a new todo item or a form for adding a new todo item, depending on the current state. When the form is submitted, the new todo item is added to the list by dispatching the `SUBMIT` action.
+
+Read further on the [XState.js.org](https://xstate.js.org/docs/) documentation 🔗
+
+<hr />
+
+## #9 Easy Peasy
+
+**Easy Peasy** is based on the concept of a global store and an abstraction of Redux. It allows you to manage the state of your application using a single, centralized store, and provides tools for updating and querying the state in a predictable and consistent way. Easy Peasy is known for its simplicity and ease of use as tagged with being developer-friendly.
+
+```js
+import React from 'react';
+import { useStoreState, useStoreActions } from 'easy-peasy';
+
+const store = {
+  todos: {
+    items: [],
+    add: (state, payload) => {
+      state.items.push(payload);
+    },
+  },
+};
+
+function TodoList() {
+  const todoList = useStoreState((state) => state.todos.items);
+  const addTodo = useStoreActions((actions) => actions.todos.add);
+
+  return (
+    <div>
+      {todoList.map((todo) => (
+        <Todo key={todo.id} todo={todo} />
+      ))}
+      <AddTodoForm onAddTodo={addTodo} />
+    </div>
+  );
+}
+
+function AddTodoForm({ onAddTodo }) {
+  const [text, setText] = React.useState('');
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    onAddTodo({ text, completed: false });
+    setText('');
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        value={text}
+        onChange={(event) => setText(event.target.value)}
+      />
+      <button type="submit">Add Todo</button>
+    </form>
+  );
+}
+
+function Todo({ todo }) {
+  return <div>{todo.text}</div>;
+}
+```
+
+In this example, the store is defined with a `todos` property that has an array of todo `items` and an `add` action. The `useStoreState` hook is used to read the value of the items state variable, and the `useStoreActions` hook is used to get the add action. The `TodoList` component displays a list of todo items and a form for adding new todo items. The `AddTodoForm` component has a form with an input field and a submit button. When the form is submitted, a new todo item is added to the list by calling the `onAddTodo` callback prop with the new todo item.
+
+Check out the [Easy Peasy](https://github.com/ctrlplusb/easy-peasy) repository in GitHub 🔗
+
+<hr />
+
+## #10 Valtio
+
+**Valtio** is a state management library for React that uses the Observer pattern to synchronize state changes between components. It provides a simple API for managing state, including creating stores, reading and updating state values, and subscribing to state changes.
+
+In Valtio, a store is an object that holds the application's state variables and actions. State variables are values that represent the state of the application, and actions are functions that can update the state variables. Components can use the `useStore` hook to read the values of state variables and actions from the store and subscribe to updates. When a state variable or action is updated, Valtio will automatically re-render the subscribed components with the new values.
+
+```js
+import React from 'react';
+import { createStore, useStore } from 'valtio';
+
+const todoStore = createStore({
+  todos: [],
+  addTodo: (newTodo) => {
+    todoStore.todos.push(newTodo);
+  },
+});
+
+function TodoList() {
+  const { todos, addTodo } = useStore(todoStore);
+
+  return (
+    <div>
+      {todos.map((todo) => (
+        <Todo key={todo.id} todo={todo} />
+      ))}
+      <AddTodoForm onAddTodo={addTodo} />
+    </div>
+  );
+}
+
+function AddTodoForm({ onAddTodo }) {
+  const [text, setText] = React.useState('');
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    onAddTodo({ text, completed: false });
+    setText('');
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        value={text}
+        onChange={(event) => setText(event.target.value)}
+      />
+      <button type="submit">Add Todo</button>
+    </form>
+  );
+}
+
+function Todo({ todo }) {
+  return <div>{todo.text}</div>;
+}
+
+```
+
+In this example, the `todoStore` is a store object with a `todos` state variable and an `addTodo` action. The `useStore` hook is used to read the value of the todos `state` variable and the `addTodo` action from the store. The `TodoList` component displays a list of todo items and a form for adding new todo items. The `AddTodoForm` component has a form with an input field and a submit button. When the form is submitted, a new todo item is added to the list by calling the `onAddTodo` callback prop with the new todo item.
+
+The `useSnapshot` hook in Valtio is used to get a snapshot of the current state of a store. It returns an object with the values of all the state variables in the store at the time the hook is called.
+
+```js
+import { createStore, useSnapshot } from 'valtio';
+
+const todoStore = createStore({
+  todos: [],
+  addTodo: (newTodo) => {
+    todoStore.todos.push(newTodo);
+  },
+});
+
+function TodoList() {
+  const { todos, addTodo } = useStore(todoStore);
+  const snapshot = useSnapshot(todoStore);
+
+  console.log(snapshot); // { todos: [ { text: 'Take out the trash', completed: false }, ... ] }
+
+  return (
+    <div>
+      {todos.map((todo) => (
+        <Todo key={todo.id} todo={todo} />
+      ))}
+      <AddTodoForm onAddTodo={addTodo} />
+    </div>
+  );
+}
+
+function AddTodoForm({ onAddTodo }) {
+  const [text, setText] = React.useState('');
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    onAddTodo({ text, completed: false });
+    setText('');
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        value={text}
+        onChange={(event) => setText(event.target.value)}
+      />
+      <button type="submit">Add Todo</button>
+    </form>
+  );
+}
+
+function Todo({ todo }) {
+  return <div>{todo.text}</div>;
+}
+
+```
+The `useSnapshot` hook is called with the `todoStore` as an argument. It returns an object with the values of all the state variables in the store, which can be logged to the console or used in other ways.
+
+Take a glimpse at the [Valtio](https://github.com/pmndrs/valtio) repository in GitHub 🔗
+
+<hr />
+
+There are many other state management libraries available for React, and the best one for your application will depend on your specific needs and requirements. It's important to carefully evaluate the different options and choose the one that best fits your needs.
+
+Feel free to mention some worthy 👌🏻 state management libraries you can vouch for on the comments section below 👇🏻
