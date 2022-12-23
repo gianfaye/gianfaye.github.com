@@ -264,6 +264,21 @@
     - url: https://github.com
     - url: mailto:myem@il.com
 
+
+- name: Ecommerce
+  bio: |
+    Written by You. This is where your topic bio lives. Share your work, your
+    joys and of course, your Twitter handle.
+  color: f6e049
+  avatar: ./avatars/communication.png
+  social:
+    - url: https://github.com
+    - url: https://github.com
+    - url: https://github.com
+    - url: https://github.com
+    - url: https://github.com
+    - url: mailto:myem@il.com
+
 - name: Social Media
   bio: |
     Written by You. This is where your topic bio lives. Share your work, your
