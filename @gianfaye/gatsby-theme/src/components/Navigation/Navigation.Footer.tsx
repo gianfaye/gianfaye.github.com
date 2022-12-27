@@ -62,14 +62,14 @@ const Footer: React.FC<{}> = () => {
                 <FooterColumn>
                   <FooterMainLinks>
                     <FooterMainLink as={Link} to={'/'}>Home</FooterMainLink>
-                    <FooterMainLink as={Link} to={'/about'}>About</FooterMainLink>
+                    <FooterMainLink as={Link} to={'/blog'}>Blog</FooterMainLink>
                     <FooterMainLink as={Link} to={'/projects'}>Projects</FooterMainLink>
                   </FooterMainLinks>
                 </FooterColumn>
                 <FooterColumn>
                   <FooterMainLinks>
+                    <FooterMainLink as={Link} to={'/about'}>About</FooterMainLink>
                     <FooterMainLink as={Link} to={'/timeline'}>Timeline</FooterMainLink>
-                    <FooterMainLink as={Link} to={'/blog'}>Blog</FooterMainLink>
                     <FooterMainLink as={Link} to={'/topics'}>Topics</FooterMainLink>
                   </FooterMainLinks>
                 </FooterColumn>
@@ -99,27 +99,21 @@ const Footer: React.FC<{}> = () => {
                     <FooterColumn>
                       <FooterLinks>
                         <FooterLink as={Link} to={'/topics/web-development'}>Web Development</FooterLink>
-                        <FooterLink as={Link} to={'/topics/cybersecurity'}>Cybersecurity</FooterLink>
-                        {/*<FooterLink as={Link} to={'/topics/user-experience'}>User Experience</FooterLink>*/}
-                        {/*<FooterLink as=Link to={'/topics/web-performance'}>Web Performance</FooterLink>*/}
-                        <FooterLink as={Link} to={'/topics/data-analytics'}>Data Analytics</FooterLink>
+                        <FooterLink as={Link} to={'/topics/artificial-intelligence'}>Artificial Intelligence</FooterLink>
+                        <FooterLink as={Link} to={'/topics/internet-of-things'}>Internet of Things</FooterLink>
+                        <FooterLink as={Link} to={'/topics/augmented-reality'}>Augmented Reality</FooterLink>
                         <FooterLink as={Link} to={'/topics/visual-design'}>Visual Design</FooterLink>
-                        <FooterLink as={Link} to={'/topics/communication'}>Communication</FooterLink>
-                        {/*<FooterLink as=Link to={'/topics/web-development'}>Search Engine Optimization</FooterLink>*/}
+                        <FooterLink as={Link} to={'/topics/business'}>Business</FooterLink>
                       </FooterLinks>
                     </FooterColumn>
                     <FooterColumn>
                       <FooterLinks>
-                        <FooterLink as={Link} to={'/topics/internet-of-things'}>Internet of Things</FooterLink>
+                        <FooterLink as={Link} to={'/topics/cybersecurity'}>Cybersecurity</FooterLink>
+                        <FooterLink as={Link} to={'/topics/machine-learning'}>Machine Learning</FooterLink>
                         <FooterLink as={Link} to={'/topics/maker-culture'}>Maker Culture</FooterLink>
+                        <FooterLink as={Link} to={'/topics/data-analytics'}>Data Analytics</FooterLink>
                         <FooterLink as={Link} to={'/topics/photography'}>Photography</FooterLink>
                         <FooterLink as={Link} to={'/topics/personal-growth'}>Personal Growth</FooterLink>
-                        <FooterLink as={Link} to={'/topics/career-advice'}>Career Advice</FooterLink>
-                        {/*<FooterLink>Virtual Reality</FooterLink>*/}
-                        {/*<FooterLink>Augmented Reality</FooterLink>*/}
-                        {/*<FooterLink>Machine Learning</FooterLink>*/}
-                        {/*<FooterLink>Artificial Intelligence</FooterLink>*/}
-                        {/*<FooterLink>Blockchain</FooterLink>*/}
                       </FooterLinks>
                     </FooterColumn>
                   </FooterRow>

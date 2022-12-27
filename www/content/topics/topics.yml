@@ -1,6 +1,6 @@
 - name: Web Development
   bio: |
-    Lorem
+    Articles related to Web Development
   color: e0719e
   avatar: ./avatars/web-development.png
   featured: true
@@ -12,9 +12,100 @@
     - url: https://github.com
     - url: mailto:myem@il.com
 
+#- name: User Experience
+#  bio: |
+#    Articles related to User Experience Design (UX Design)
+#  color: 7fd6c2
+#  avatar: ./avatars/user-experience.png
+#  social:
+#    - url: https://github.com
+#    - url: https://github.com
+#    - url: https://github.com
+#    - url: https://github.com
+#    - url: https://github.com
+#    - url: mailto:myem@il.com
+
+- name: Cybersecurity
+  bio: |
+    Articles related to Cybersecurity
+  color: aac6fc
+  avatar: ./avatars/cybersecurity.png
+  social:
+    - url: https://github.com
+    - url: https://github.com
+    - url: https://github.com
+    - url: https://github.com
+    - url: https://github.com
+    - url: mailto:myem@il.com
+
+- name: Augmented Reality
+  bio: |
+    Articles related to Augmented Reality (AR)
+  color: aac6fc
+  avatar: ./avatars/augmented-reality.png
+  social:
+    - url: https://github.com
+    - url: https://github.com
+    - url: https://github.com
+    - url: https://github.com
+    - url: https://github.com
+    - url: mailto:myem@il.com
+
+- name: Internet of Things
+  bio: |
+    Articles related to the Internet of Things (IoT)
+  color: eebed3
+  avatar: ./avatars/internet-of-things.png
+  social:
+    - url: https://github.com
+    - url: https://github.com
+    - url: https://github.com
+    - url: https://github.com
+    - url: https://github.com
+    - url: mailto:myem@il.com
+
+- name: Maker Culture
+  bio: |
+    Articles related to the DIY (Do-It-Yourself) movement and the Maker Culture
+  color: eebed3
+  avatar: ./avatars/maker-culture.png
+  social:
+    - url: https://github.com
+    - url: https://github.com
+    - url: https://github.com
+    - url: https://github.com
+    - url: https://github.com
+    - url: mailto:myem@il.com
+
+- name: Artificial Intelligence
+  bio: |
+    Articles related to Artificial Intelligence (AI)
+  color: aac6fc
+  avatar: ./avatars/artificial-intelligence.png
+  social:
+    - url: https://github.com
+    - url: https://github.com
+    - url: https://github.com
+    - url: https://github.com
+    - url: https://github.com
+    - url: mailto:myem@il.com
+
+- name: Machine Learning
+  bio: |
+    Articles related to Machine Learning (ML)
+  color: f6e049
+  avatar: ./avatars/machine-learning.png
+  social:
+    - url: https://github.com
+    - url: https://github.com
+    - url: https://github.com
+    - url: https://github.com
+    - url: https://github.com
+    - url: mailto:myem@il.com
+
 - name: Data Analytics
   bio: |
-    Lorem
+    Articles related to Data Analytics
   color: e0719e
   avatar: ./avatars/data-analytics.png
   featured: true
@@ -26,19 +117,135 @@
     - url: https://github.com
     - url: mailto:myem@il.com
 
-#- name: User Experience
-#  bio: |
-#    Written by You. This is where your topic bio lives. Share your work, your
-#    joys and of course, your Twitter handle.
-#  color: 7fd6c2
-#  avatar: ./avatars/user-experience.png
-#  social:
-#    - url: https://github.com
-#    - url: https://github.com
-#    - url: https://github.com
-#    - url: https://github.com
-#    - url: https://github.com
-#    - url: mailto:myem@il.com
+- name: Visual Design
+  bio: |
+    Articles related to Visual Design
+  color: aac6fc
+  avatar: ./avatars/visual-design.png
+  social:
+    - url: https://github.com
+    - url: https://github.com
+    - url: https://github.com
+    - url: https://github.com
+    - url: https://github.com
+    - url: mailto:myem@il.com
+
+- name: Photography
+  bio: |
+    Articles related to Photography
+  color: e0719e
+  avatar: ./avatars/photography.png
+  social:
+    - url: https://github.com
+    - url: https://github.com
+    - url: https://github.com
+    - url: https://github.com
+    - url: https://github.com
+    - url: mailto:myem@il.com
+
+- name: Social Media
+  bio: |
+    Articles related to Social Media
+  color: f6e049
+  avatar: ./avatars/social-media.png
+  social:
+    - url: https://github.com
+    - url: https://github.com
+    - url: https://github.com
+    - url: https://github.com
+    - url: https://github.com
+    - url: mailto:myem@il.com
+
+- name: Communication
+  bio: |
+    Articles related to Communication
+  color: f6e049
+  avatar: ./avatars/communication.png
+  social:
+    - url: https://github.com
+    - url: https://github.com
+    - url: https://github.com
+    - url: https://github.com
+    - url: https://github.com
+    - url: mailto:myem@il.com
+
+- name: Ecommerce
+  bio: |
+    Articles related to E-commerce
+  color: aac6fc
+  avatar: ./avatars/ecommerce.png
+  social:
+    - url: https://github.com
+    - url: https://github.com
+    - url: https://github.com
+    - url: https://github.com
+    - url: https://github.com
+    - url: mailto:myem@il.com
+
+- name: Business
+  bio: |
+    Articles related to Business
+  color: eebed3
+  avatar: ./avatars/business.png
+  social:
+    - url: https://github.com
+    - url: https://github.com
+    - url: https://github.com
+    - url: https://github.com
+    - url: https://github.com
+    - url: mailto:myem@il.com
+
+- name: Personal Growth
+  bio: |
+    Articles related to Personal Growth
+  color: eebed3
+  avatar: ./avatars/personal-growth.png
+  social:
+    - url: https://github.com
+    - url: https://github.com
+    - url: https://github.com
+    - url: https://github.com
+    - url: https://github.com
+    - url: mailto:myem@il.com
+
+- name: Career Advice
+  bio: |
+    Articles related to Career Advice
+  color: e0719e
+  avatar: ./avatars/career-advice.png
+  social:
+    - url: https://github.com
+    - url: https://github.com
+    - url: https://github.com
+    - url: https://github.com
+    - url: https://github.com
+    - url: mailto:myem@il.com
+
+- name: Science
+  bio: |
+    Articles related to Science
+  color: e0719e
+  avatar: ./avatars/open-source.png
+  social:
+    - url: https://github.com
+    - url: https://github.com
+    - url: https://github.com
+    - url: https://github.com
+    - url: https://github.com
+    - url: mailto:myem@il.com
+
+- name: Environment
+  bio: |
+    Articles related to the Environment
+  color: e0719e
+  avatar: ./avatars/open-source.png
+  social:
+    - url: https://github.com
+    - url: https://github.com
+    - url: https://github.com
+    - url: https://github.com
+    - url: https://github.com
+    - url: mailto:myem@il.com
 
 #- name: Web Performance
 #  bio: |
@@ -54,34 +261,6 @@
 #    - url: https://github.com
 #    - url: mailto:myem@il.com
 
-- name: Internet of Things
-  bio: |
-    Written by You. This is where your topic bio lives. Share your work, your
-    joys and of course, your Twitter handle.
-  color: eebed3
-  avatar: ./avatars/internet-of-things.png
-  social:
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: mailto:myem@il.com
-
-- name: Maker Culture
-  bio: |
-    Written by You. This is where your topic bio lives. Share your work, your
-    joys and of course, your Twitter handle.
-  color: eebed3
-  avatar: ./avatars/maker-culture.png
-  social:
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: mailto:myem@il.com
-
 #- name: Search Engine Optimization
 #  bio: |
 #    Lorem
@@ -95,34 +274,6 @@
 #    - url: https://github.com
 #    - url: https://github.com
 #    - url: mailto:myem@il.com
-
-#- name: Machine Learning
-#  bio: |
-#    Written by You. This is where your topic bio lives. Share your work, your
-#    joys and of course, your Twitter handle.
-#  color: f6e049
-#  avatar: ./avatars/machine-learning.png
-#  social:
-#    - url: https://github.com
-#    - url: https://github.com
-#    - url: https://github.com
-#    - url: https://github.com
-#    - url: https://github.com
-#    - url: mailto:myem@il.com
-
-- name: Cybersecurity
-  bio: |
-    Written by You. This is where your topic bio lives. Share your work, your
-    joys and of course, your Twitter handle.
-  color: aac6fc
-  avatar: ./avatars/cybersecurity.png
-  social:
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: mailto:myem@il.com
 
 #- name: Networks
 #  bio: |
@@ -152,20 +303,6 @@
 #    - url: https://github.com
 #    - url: mailto:myem@il.com
 
-- name: Photography
-  bio: |
-    Written by You. This is where your topic bio lives. Share your work, your
-    joys and of course, your Twitter handle.
-  color: e0719e
-  avatar: ./avatars/photography.png
-  social:
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: mailto:myem@il.com
-
 #- name: Blockchain
 #  bio: |
 #    Written by You. This is where your topic bio lives. Share your work, your
@@ -194,90 +331,6 @@
 #    - url: https://github.com
 #    - url: mailto:myem@il.com
 
-#- name: Artificial Intelligence
-#  bio: |
-#    Written by You. This is where your topic bio lives. Share your work, your
-#    joys and of course, your Twitter handle.
-#  color: aac6fc
-#  avatar: ./avatars/artificial-intelligence.png
-#  social:
-#    - url: https://github.com
-#    - url: https://github.com
-#    - url: https://github.com
-#    - url: https://github.com
-#    - url: https://github.com
-#    - url: mailto:myem@il.com
-#
-#- name: Augmented Reality
-#  bio: |
-#    Written by You. This is where your topic bio lives. Share your work, your
-#    joys and of course, your Twitter handle.
-#  color: aac6fc
-#  avatar: ./avatars/augmented-reality.png
-#  social:
-#    - url: https://github.com
-#    - url: https://github.com
-#    - url: https://github.com
-#    - url: https://github.com
-#    - url: https://github.com
-#    - url: mailto:myem@il.com
-
-- name: Ecommerce
-  bio: |
-    Written by You. This is where your topic bio lives. Share your work, your
-    joys and of course, your Twitter handle.
-  color: aac6fc
-  avatar: ./avatars/ecommerce.png
-  social:
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: mailto:myem@il.com
-
-- name: Visual Design
-  bio: |
-    Written by You. This is where your topic bio lives. Share your work, your
-    joys and of course, your Twitter handle.
-  color: aac6fc
-  avatar: ./avatars/visual-design.png
-  social:
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: mailto:myem@il.com
-
-- name: Communication
-  bio: |
-    Written by You. This is where your topic bio lives. Share your work, your
-    joys and of course, your Twitter handle.
-  color: f6e049
-  avatar: ./avatars/communication.png
-  social:
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: mailto:myem@il.com
-
-- name: Social Media
-  bio: |
-    Written by You. This is where your topic bio lives. Share your work, your
-    joys and of course, your Twitter handle.
-  color: f6e049
-  avatar: ./avatars/social-media.png
-  social:
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: mailto:myem@il.com
-
 #- name: Graphic Design
 #  bio: |
 #    Written by You. This is where your topic bio lives. Share your work, your
@@ -291,48 +344,6 @@
 #    - url: https://github.com
 #    - url: https://github.com
 #    - url: mailto:myem@il.com
-
-- name: Augmented Reality
-  bio: |
-    Written by You. This is where your topic bio lives. Share your work, your
-    joys and of course, your Twitter handle.
-  color: 7fd6c2
-  avatar: ./avatars/blogging.png
-  social:
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: mailto:myem@il.com
-
-- name: Business
-  bio: |
-    Written by You. This is where your topic bio lives. Share your work, your
-    joys and of course, your Twitter handle.
-  color: eebed3
-  avatar: ./avatars/business.png
-  social:
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: mailto:myem@il.com
-
-- name: Personal Growth
-  bio: |
-    Written by You. This is where your topic bio lives. Share your work, your
-    joys and of course, your Twitter handle.
-  color: eebed3
-  avatar: ./avatars/personal-growth.png
-  social:
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: mailto:myem@il.com
 
 #- name: Industrial Design
 #  bio: |
@@ -431,45 +442,3 @@
 #    - url: https://github.com
 #    - url: https://github.com
 #    - url: mailto:myem@il.com
-
-- name: Career Advice
-  bio: |
-    Written by You. This is where your topic bio lives. Share your work, your
-    joys and of course, your Twitter handle.
-  color: e0719e
-  avatar: ./avatars/career-advice.png
-  social:
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: mailto:myem@il.com
-
-- name: Science
-  bio: |
-    Written by You. This is where your topic bio lives. Share your work, your
-    joys and of course, your Twitter handle.
-  color: e0719e
-  avatar: ./avatars/open-source.png
-  social:
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: mailto:myem@il.com
-
-- name: Environment
-  bio: |
-    Written by You. This is where your topic bio lives. Share your work, your
-    joys and of course, your Twitter handle.
-  color: e0719e
-  avatar: ./avatars/open-source.png
-  social:
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: mailto:myem@il.com
