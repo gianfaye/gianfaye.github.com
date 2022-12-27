@@ -222,19 +222,19 @@
 #    - url: https://github.com
 #    - url: mailto:myem@il.com
 
-#- name: Ecommerce
-#  bio: |
-#    Written by You. This is where your topic bio lives. Share your work, your
-#    joys and of course, your Twitter handle.
-#  color: aac6fc
-#  avatar: ./avatars/ecommerce.png
-#  social:
-#    - url: https://github.com
-#    - url: https://github.com
-#    - url: https://github.com
-#    - url: https://github.com
-#    - url: https://github.com
-#    - url: mailto:myem@il.com
+- name: Ecommerce
+  bio: |
+    Written by You. This is where your topic bio lives. Share your work, your
+    joys and of course, your Twitter handle.
+  color: aac6fc
+  avatar: ./avatars/ecommerce.png
+  social:
+    - url: https://github.com
+    - url: https://github.com
+    - url: https://github.com
+    - url: https://github.com
+    - url: https://github.com
+    - url: mailto:myem@il.com
 
 - name: Visual Design
   bio: |
@@ -251,21 +251,6 @@
     - url: mailto:myem@il.com
 
 - name: Communication
-  bio: |
-    Written by You. This is where your topic bio lives. Share your work, your
-    joys and of course, your Twitter handle.
-  color: f6e049
-  avatar: ./avatars/communication.png
-  social:
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: mailto:myem@il.com
-
-
-- name: Ecommerce
   bio: |
     Written by You. This is where your topic bio lives. Share your work, your
     joys and of course, your Twitter handle.
@@ -307,19 +292,19 @@
 #    - url: https://github.com
 #    - url: mailto:myem@il.com
 
-#- name: Blogging
-#  bio: |
-#    Written by You. This is where your topic bio lives. Share your work, your
-#    joys and of course, your Twitter handle.
-#  color: 7fd6c2
-#  avatar: ./avatars/blogging.png
-#  social:
-#    - url: https://github.com
-#    - url: https://github.com
-#    - url: https://github.com
-#    - url: https://github.com
-#    - url: https://github.com
-#    - url: mailto:myem@il.com
+- name: Augmented Reality
+  bio: |
+    Written by You. This is where your topic bio lives. Share your work, your
+    joys and of course, your Twitter handle.
+  color: 7fd6c2
+  avatar: ./avatars/blogging.png
+  social:
+    - url: https://github.com
+    - url: https://github.com
+    - url: https://github.com
+    - url: https://github.com
+    - url: https://github.com
+    - url: mailto:myem@il.com
 
 - name: Business
   bio: |
