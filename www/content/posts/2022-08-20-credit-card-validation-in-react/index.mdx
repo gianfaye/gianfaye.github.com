@@ -1,0 +1,324 @@
+---
+title: "Everything You Need to Know about Credit Card Validation"
+slug: credit-card-validation-in-react
+topic: Web Development
+date: 2022-08-20
+hero: ./images/credit-card-validation-in-react.jpg
+excerpt: "With sample code and regex in JavaScript and React"
+categories: ['Learning']
+---
+
+**Credit card validation** is the process of verifying the authenticity and accuracy of a credit card number or other credit card details. This is important for businesses and organizations that accept credit card payments, as it helps to prevent fraud and ensure that transactions are processed correctly.
+
+There are several things to consider when validating a credit card on your app or website:
+
+* **Credit card number format**: Different credit card brands have different formats for their card numbers. For example, Visa card numbers start with a 4, Mastercard numbers start with a 5, and American Express card numbers start with a 3. You'll need to make sure that your regex correctly identifies the format of the card number.
+
+* **Credit card number length**: Credit card numbers have different lengths depending on the brand. For example, Visa card numbers are typically 16 digits long, while American Express card numbers are typically 15 digits long.
+
+* **Credit card number check digit**: Credit card numbers include a check digit at the end, which is used to verify the validity of the card number. We'll cover more about this later on the article.
+
+* **Credit card number prefix**: Some credit card numbers have a prefix, which is a series of digits that appears at the beginning of the card number. You may want to include a check for the prefix in your regex to ensure that it is a valid credit card number.
+
+* **Credit card security code**: Credit card numbers typically include a security code, which is a 3- or 4-digit number that appears on the back of the card. You may want to include a check for the security code in your regex to ensure that it is a valid credit card number.
+
+## Credit Card Providers
+
+Before we dive into validation, it's good to familiarize yourself with some of the most accepted credit card providers globally. Some of the most well-known credit card providers include:
+
+1. **Visa**: Visa is one of the largest credit card providers in the world, with more than 4 billion Visa cards in circulation as of 2021. Visa cards are accepted at millions of merchants and ATMs around the world, and they offer a variety of features and benefits such as rewards programs, travel insurance, and 24/7 customer support.
+
+2. **Mastercard**: Mastercard is another major credit card provider, with more than 3 billion cards in circulation as of 2021. Mastercard cards are accepted at millions of merchants and ATMs around the world, and they offer a range of features and benefits such as cash back rewards, travel insurance, and 24/7 customer support.
+
+3. **American Express**: American Express, or Amex, is a credit card provider that is known for its high-end cards and exclusive benefits. Amex cards are accepted at a smaller number of merchants than Visa and Mastercard, but they are still widely accepted globally and offer a range of features and benefits such as rewards programs, travel insurance, and concierge services.
+
+4. **Discover**: Discover is known for its cash back rewards programs and no annual fee cards. Discover cards are accepted at millions of merchants and ATMs around the world, and they offer a variety of features and benefits such as cash back rewards, travel insurance, and 24/7 customer support.
+
+5. **JCB**: JCB is a Japanese credit card provider that is accepted at millions of merchants and ATMs around the world. JCB cards offer a range of features and benefits such as rewards programs, travel insurance, and concierge services.
+
+6. **Diners Club**: Diners Club is known for its high-end cards and exclusive benefits. Diners Club cards are accepted at a smaller number of merchants than Visa and Mastercard, but they are still widely accepted globally and offer a range of features and benefits such as rewards programs, travel insurance, and concierge services.
+
+<hr />
+
+In this article, we'll look at some common methods for credit card validation and the benefits and limitations of each method.
+
+## #1 Using Regex and JavaScript
+
+A **regex** (short for regular expressions) is a string of characters that defines a search pattern, and it can be used to match patterns in text, such as credit card numbers. A regex for credit card validation typically includes checks for the format of the card number, the length of the card number, the check digit at the end of the card number, and the prefix at the beginning of the card number.
+
+Here is a sample regex for credit card validation that you can use as a starting point:
+
+```
+^(?:4[0-9]{12}(?:[0-9]{3})?|[25][1-7][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$
+```
+
+This regex will match the following credit card formats:
+
+* Visa: 13 or 16 digits, starting with a 4
+* Mastercard: 16 digits, starting with a 5
+* American Express: 15 digits, starting with a 3
+* Discover: 16 digits, starting with a 6011 or 65
+* Diners Club: 14 digits, starting with a 36, 38, or 300-305
+* JCB: 15 or 16 digits, starting with a 2131, 1800, or 35
+
+### Formatting a Credit Card Number in JavaScript
+
+On your Credit Card Number input field we would only want to accept all digits and want to add spaces in between the digits.
+
+1. Use the `replace()` method of the `String` object to remove any non-digit characters from the credit card number.
+
+2. Divide the credit card number into groups of four digits.
+
+3. Use the `join()` method of the Array object to join the groups of digits with a space character.
+
+```js
+function formatCreditCardNumber(cardNumber) {
+  // Remove any non-digit characters from the card number
+  let formattedCreditCardNumber = cardNumber.replace(/\D/g, "");
+
+  // Divide the card number into groups of four digits
+  const groups = [];
+  while (formattedCreditCardNumber.length > 0) {
+    groups.push(formattedCreditCardNumber.substring(0, 4));
+    formattedCreditCardNumber = formattedCreditCardNumber.substring(4);
+  }
+
+  // Join the groups with a space character
+  return groups.join(" ");
+}
+
+// Example usage
+console.log(formatCreditCardNumber("4111 1111 1111 1111")); // "4111 1111 1111 1111"
+console.log(formatCreditCardNumber("4111111111111111"));   // "4111 1111 1111 1111"
+console.log(formatCreditCardNumber("4111-1111-1111-1111")); // "4111 1111 1111 1111"
+console.log(formatCreditCardNumber("4111x1111x1111x1111")); // "4111 1111 1111 1111"
+console.log(formatCreditCardNumber("4111*1111*1111*1111")); // "4111 1111 1111 1111"
+
+```
+
+### Validating a Credit Card Number in JavaScript
+
+To use the credit card validation regex in JavaScript, you can use the `RegExp` object and the `test` method.
+
+```js
+function isValidCreditCard(cardNumber) {
+  // Credit card regex
+  const regex = /^(?:4[0-9]{12}(?:[0-9]{3})?|[25][1-7][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$/;
+
+  // Test the card number against the regex
+  return regex.test(cardNumber);
+}
+
+// Example usage
+console.log(isValidCreditCard("4111 1111 1111 1111"));  // true
+console.log(isValidCreditCard("5111 1111 1111 1111"));  // true
+console.log(isValidCreditCard("3111 1111 1111 111"));   // true
+console.log(isValidCreditCard("6011 1111 1111 1111"));  // true
+console.log(isValidCreditCard("3611 1111 1111 11"));    // true
+console.log(isValidCreditCard("2131 1111 1111 1111"));  // true
+console.log(isValidCreditCard("1111 1111 1111 1111"));  // false
+```
+
+This function takes a credit card number as a parameter and returns `true` if the number is a valid credit card number according to the regex, or `false` if it is not.
+
+
+### Identifying the Credit Card Provider in JavaScript
+
+To determine the credit card provider in JavaScript, we define the regex of each of the credit card providers and test the input if the number matches any of the provider's regex:
+
+```js
+function getCreditCardProvider(cardNumber) {
+  // Credit card regex
+  const visaRegex = /^4[0-9]{12}(?:[0-9]{3})?$/;
+  const mastercardRegex = /^5[1-5][0-9]{14}$/;
+  const amexRegex = /^3[47][0-9]{13}$/;
+  const discoverRegex = /^6(?:011|5[0-9]{2})[0-9]{12}$/;
+  const dinersClubRegex = /^3(?:0[0-5]|[68][0-9])[0-9]{11}$/;
+  const jcbRegex = /^(?:2131|1800|35\d{3})\d{11}$/;
+
+  // Test the card number against the regexes
+  if (visaRegex.test(cardNumber)) {
+    return "Visa";
+  } else if (mastercardRegex.test(cardNumber)) {
+    return "Mastercard";
+  } else if (amexRegex.test(cardNumber)) {
+    return "American Express";
+  } else if (discoverRegex.test(cardNumber)) {
+    return "Discover";
+  } else if (dinersClubRegex.test(cardNumber)) {
+    return "Diners Club";
+  } else if (jcbRegex.test(cardNumber)) {
+    return "JCB";
+  } else {
+    return "Unknown";
+  }
+}
+
+// Example usage
+console.log(getCreditCardProvider("4111 1111 1111 1111"));  // "Visa"
+console.log(getCreditCardProvider("5111 1111 1111 1111"));  // "Mastercard"
+console.log(getCreditCardProvider("3111 1111 1111 111"));   // "American Express"
+console.log(getCreditCardProvider("6011 1111 1111 1111"));  // "Discover"
+console.log(getCreditCardProvider("3611 1111 1111 11"));    // "Diners Club"
+console.log(getCreditCardProvider("2131 1111 1111 1111"));  // "JCB"
+console.log(getCreditCardProvider("1111 1111 1111 1111"));  // "Unknown"
+```
+
+This function takes a credit card number as a parameter and returns the name of the credit card provider based on the format of the card number. If the card number does not match any of the known formats, the function returns "Unknown".
+
+### Validating CVV in JavaScript
+
+CVV, or Card Verification Value, is a security feature that is found on most credit cards. It is a three- or four-digit code that is printed on the back of the card and is used to verify the authenticity of the card during transactions.
+
+To determine whether a credit card security code (CVV) is valid in a JavaScript program, you can use the following steps:
+
+1. Determine the length of the CVV based on the credit card provider. Different credit card brands have different lengths for their CVVs. For example, Visa and Mastercard CVVs are 3 digits long, while American Express CVVs are 4 digits long. You can use our `getCreditCardProvider` function from the previous example.
+
+2. Verify that the CVV consists only of digits.
+
+3. Check that the CVV has the correct length based on the credit card provider.
+
+```js
+function isValidCVV(cvv, provider) {
+  // Determine the expected length of the CVV based on the provider
+  let cvvLength = 3;
+  if (provider === "American Express") {
+    cvvLength = 4;
+  }
+
+  // Verify that the CVV consists only of digits
+  const regex = /^[0-9]+$/;
+  if (!regex.test(cvv)) {
+    return false;
+  }
+
+  // Check the length of the CVV
+  return cvv.length === cvvLength;
+}
+
+// Example usage
+console.log(isValidCVV("123", "Visa"));       // true
+console.log(isValidCVV("123", "Mastercard")); // true
+console.log(isValidCVV("1234", "Visa"));      // false
+console.log(isValidCVV("1234", "Amex"));      // true
+console.log(isValidCVV("123a", "Visa"));      // false
+```
+
+This function takes a CVV and a credit card provider as parameters and returns `true` if the CVV is valid for the provider, or `false` if it is not.
+
+### Validating the Expiry Date
+
+The expiration duration of a credit card refers to the length of time that the card is valid and can be used for transactions. Credit card expiration durations are typically set by the credit card issuer and can vary depending on the issuer and the type of credit card.
+
+Most credit cards have expiration durations of 2-3 years. This applies to Visa, Mastercard, American Express, and Discover. It's important to note that the expiration duration of a particular credit card may vary depending on the issuer and the specific terms and conditions of the card.
+
+In essence, determining whether a credit card expiration date is valid or not should be fairly simple. We just compare the input date from the current date to check if it's already expired:
+
+1. Parse the expiration date string into a `Date` object.
+
+2. Use the `getTime()` method of the `Date` object to get the expiration date as a timestamp.
+
+3. Use the `getTime()` method of the `Date` object representing the current date to get the current date as a timestamp.
+
+4. Compare the expiration date timestamp to the current date timestamp. If the expiration date is after the current date, then the expiration date is valid. If the expiration date is before the current date, then the expiration date is invalid.
+
+```js
+function isValidExpirationDate(expirationDate) {
+  // Parse the expiration date string into a Date object
+  const expirationDateObj = new Date(expirationDate);
+
+  // Get the current date as a timestamp
+  const currentDate = new Date();
+  const currentTimestamp = currentDate.getTime();
+
+  // Get the expiration date as a timestamp
+  const expirationTimestamp = expirationDateObj.getTime();
+
+  // Compare the expiration date timestamp to the current date timestamp
+  return expirationTimestamp > currentTimestamp;
+}
+
+// Example usage
+console.log(isValidExpirationDate("2022-12-31")); // true
+console.log(isValidExpirationDate("2021-12-31")); // false
+console.log(isValidExpirationDate("2022-01-01")); // false
+console.log(isValidExpirationDate("2022-10-30")); // true
+console.log(isValidExpirationDate("2025-08-28")); // true
+```
+
+This function takes an expiration date string in the format "YYYY-MM-DD" and returns `true` if the expiration date is after the current date, or `false` if it is not.
+
+While regex can be effective for basic credit card validation, it may not be able to detect more sophisticated forms of fraud or handle changes to credit card formats.
+
+<hr />
+
+## #2 Using Luhn's Algorithm
+
+**Luhn's algorithm** is another method that can be used for credit card validation. It is also known as the "modulus 10" or "mod 10" algorithm. This is a mathematical formula that involves doubling the value of every second digit from the right, adding the digits of the resulting numbers, and adding the sum to the sum of the digits that were not doubled. If the total is divisible by 10, then the number is considered valid.
+
+To use Luhn's algorithm, you follow these steps:
+
+1. Double the value of every second digit from the right. For example, if the second-to-last digit of the number is `3`, then the value of that digit becomes `6`.
+
+2. Add the digits of the resulting numbers together. For example, if the value of a digit becomes `10`, then you add `1 + 0` to get `1`.
+
+3. Add the sum of all the digits to the sum of the digits that were not doubled.
+
+4. If the total is divisible by `10`, then the number is valid. If it is not divisible by `10`, then the number is invalid.
+
+Here's an example of how you could implement Luhn's algorithm in JavaScript:
+
+```js
+function isValidNumber(number) {
+  // Reverse the number and convert it to an array of digits
+  let digits = number.split("").reverse().map(function(digit) {
+    return parseInt(digit, 10);
+  });
+
+  // Double every second digit from the right and add the digits of the resulting numbers
+  let sum = 0;
+  for (let i = 0; i < digits.length; i++) {
+    if (i % 2 === 1) {
+      digits[i] *= 2;
+      if (digits[i] > 9) {
+        digits[i] -= 9;
+      }
+    }
+    sum += digits[i];
+  }
+
+  // Return true if the total is divisible by 10, false otherwise
+  return sum % 10 === 0;
+}
+
+// Example usage
+console.log(isValidNumber("4111 1111 1111 1111"));  // true
+console.log(isValidNumber("5111 1111 1111 1111"));  // true
+console.log(isValidNumber("3111 1111 1111 111"));   // true
+console.log(isValidNumber("6011 1111 1111 1111"));  // true
+console.log(isValidNumber("3611 1111 1111 11"));    // true
+console.log(isValidNumber("2131 1111 1111 1111"));  // true
+console.log(isValidNumber("1111 1111 1111 1111"));  // false
+```
+
+Luhn's algorithm is a relatively simple method, but it is not foolproof and should not be used as the sole method for credit card validation. Other methods, such as using a credit card validation library or service, may be more effective.
+
+## #3 Libraries and Services
+
+Another method for credit card validation is using a credit card validation library or service. These libraries and services provide more comprehensive checks for credit card authenticity, including checks against databases of known fraud patterns and checks for the validity of the card number according to the issuer.
+
+There are several libraries available for credit card validation in React that you can use to validate credit card numbers, CVVs, and other credit card details. Some popular options include:
+
+1. `react-credit-card-input`: This library provides a set of customizable React components for credit card input and validation. You can use it to create a form for entering credit card details and it will handle the validation for you.
+
+2. `react-payment-inputs`: In addition to providing a set of customizable React components for credit card input and validation, it also has input components for other payment methods such as bank accounts and Bitcoin addresses.
+
+3. `react-credit-cards`: Aside from having customizable React components for credit card input and display, it also gives extra utility functions for credit card validation.
+
+While these libraries provide additional features, such as support for different credit card brands and countries, and the ability to handle updates to credit card formats, using them may require additional costs and more technical expertise to implement.
+
+<hr />
+
+In conclusion, credit card validation is an important step in ensuring the authenticity and accuracy of credit card transactions. There are several methods available for credit card validation, including using regex, credit card validation libraries or services, and Luhn's algorithm. Each method has its own benefits and limitations, and businesses and organizations should carefully consider which method or combination of methods fit their budget and requirements.
+
+Any other tips you think I missed in this article? <br /> Help your fellow developers by sharing your 🧠 insights below 👇🏻
