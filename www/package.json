@@ -8,7 +8,7 @@
     "develop": "rm -rf .cache && gatsby develop",
     "clean": "gatsby clean",
     "build": "gatsby build --prefix-paths",
-    "deploy": "gatsby build --prefix-paths && gh-pages -d public"
+    "deploy": "gatsby build --prefix-paths && cp CNAME public && gh-pages -d public"
   },
   "dependencies": {
     "@gianfaye/gatsby-theme": "^0.16.4",
