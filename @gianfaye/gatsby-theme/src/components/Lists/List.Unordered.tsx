@@ -6,13 +6,12 @@ const UnorderedList = styled.ul`
   counter-reset: list;
   color: ${p => p.theme.colors.articleText};
   position: relative;
-  padding: 15px 0 30px 30px;
+  padding: 15px 0 15px 25px;
   transition: ${p => p.theme.colorModeTransition};
   margin: 0 auto;
   font-size: 18px;
-
   width: 100%;
-  max-width: 680px;
+  max-width: 700px;
 
   ${mediaqueries.desktop`
     max-width: 507px;
@@ -60,7 +59,7 @@ const UnorderedList = styled.ul`
   li::before {
     content: '';
     position: absolute;
-    left: -30px;
+    left: -20px;
     top: 8px;
     height: 8px;
     width: 8px;
@@ -69,6 +68,10 @@ const UnorderedList = styled.ul`
     ${mediaqueries.tablet`
       left: 0;
     `};
+  }
+
+  li:last-of-type {
+    padding-bottom: 0;
   }
 `;
 
