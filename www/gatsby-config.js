@@ -26,9 +26,6 @@ const siteMetadata = {
       url: `https://stackexchange.com/users/2642726/gian-faye?tab=accounts`,
     },
     {
-      url: `https://dev.to/gianfaye`,
-    },
-    {
       name: `mailto`,
       url: `mailto:contact@gianfaye.com`,
     },

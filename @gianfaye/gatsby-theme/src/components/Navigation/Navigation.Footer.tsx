@@ -132,9 +132,9 @@ const Footer: React.FC<{}> = () => {
             </FooterText>
           </FooterCopyright>
           <FooterSublinks>
-            <FooterSublink as={Link} to={'/colophon'}>
-              About this site
-            </FooterSublink>
+            {/*<FooterSublink as={Link} to={'/colophon'}>*/}
+            {/*  About this site*/}
+            {/*</FooterSublink>*/}
             <FooterSublink as={Link} to={'/privacy'}>
               Privacy
             </FooterSublink>
