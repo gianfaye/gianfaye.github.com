@@ -1,0 +1,122 @@
+---
+title: "How to Bypass the Internal Server Error 500 in My SSS Website Forgot / Reset Password"
+slug: sss-website-reset-password-error
+topic: Web Development, Cybersecurity
+date: 2022-12-30
+hero: ./images/sss-website-reset-password-error.jpg
+excerpt: "A quick guide how to bypass the Internal Server Error from the email link when you forgot your password and need to reset it on the My.SSS Member Portal"
+categories: ['Guide']
+---
+
+As a security measure, SSS will force all its users to reset their password when its more than **180 days old**. However, when you proceed to use their **Forgot User ID / Password** feature, the link that will be sent to your email will redirect to an Internal Server Error page.
+
+![SSS Internal Server Error](/images/sss-reset-password-error.jpg)
+
+<hr />
+
+An **Internal Server Error** (error code: 500) is a message that appears when the server encounters an unanticipated condition that prevents it from fulfilling the client's request (e.g. from a web browser). This is a general error message that can be caused by a variety of issues, such as server setup issues, programming faults, or hardware problems.
+
+<hr />
+
+If you get an Internal Server Error while viewing a website, it is usually best to try again later, since the problem may fix itself. If the problem persists, you should contact the website administrator or hosting provider to report it and see if they can assist you in resolving it.
+
+I first encountered this back in **December 2021** and sent an email to their customer service email at onlineserviceassistance@sss.gov.ph:
+
+![SSS email December 2021](/images/sss-email-dec-2021.jpg)
+
+Several months went past and I followed up last **April 2022** to no avail:
+
+![SSS email April 2022](/images/sss-email-apr-2022.jpg)
+
+I even tried contacting them on a different channel via Facebook Messenger but my messages weren't even seen:
+
+![SSS Facebook Messenger April 2022](/images/sss-messenger.jpg)
+
+Fast forward to **December 2022**, it’s that time of the year when most people set new goals for the upcoming year, I checked if the problem still exists. Guess what, it still is. 😅
+
+![SSS Internal Server Error as of December 2022](/images/sss-reset-password-error-dec-2022.jpg)
+
+It's when I decided to take off my customer/client hat and worn my web geek hat and tried to figure out how to resolve this problem on my own. 🧐
+
+One of the common issues that arises from data processing is the usage of unsupported characters or symbols. So I checked the URL (or the link) from the email:
+
+```
+https://member.sss.gov.ph/members/registrationPages/setPassword/resetPass.jsp
+?ticket=34280181922020020107045%0D%2029G6ZG9MLZKG5HLISLIWUZAJOWL
+
+// Note: This isn't the full URL, I omitted and replaced some characters for security purposes.
+```
+
+A question mark `?` after the subdirectory or a file name represents there is a query parameter on that URL.
+
+<hr />
+
+A **query parameter** is a value that is included in the query string of a URL (Uniform Resource Locator). Query strings are used in URLs following the question mark (?) to pass additional information to a server as part of a request.
+
+<hr />
+
+For example:
+
+```
+http://example.com/search?keyword=banana
+```
+
+From this example, we have the domain `example.com`, the subdirectory `search` and a query parameter with the name `keyword` and a query value of `banana`. This most likely means we are accessing a page that tells the website that I am searching for a `banana`.
+
+Going back to SSS’s reset password link:
+
+```
+https://member.sss.gov.ph/members/registrationPages/setPassword/resetPass.jsp
+?ticket=34280181922020020107045%0D%2029G6ZG9MLZKG5HLISLIWUZAJOWL
+```
+
+If we break this down:
+* `https://` is the HTTP protocol, in this case it’s https which means it’s a secured version of HTTP
+* `member.sss.gov.ph` is the domain name or layman's term, the website
+* `/members` is a subdirectory/subfolder under that domain name
+* `/registrationPages` is a subdirectory within `/members`
+* `/setPassword` is a subdirectory within `/registrationPages`
+* `resetPass.jsp` is a file to show the page, it has a .jsp extension which stands for Java Server Page (JSP is a mix of Java, a programming language, and HTML and XML, both markup languages)
+* `?ticket=<some random characters>` is a query for the ticket parameter with the value of whichever is after the equal `=` sign
+
+Let’s just focus on this value from the `ticket` parameter.
+
+```
+34280181922020020107045%0D%2029G6ZG9MLZKG5HLISLIWUZAJOWL
+```
+
+I noticed there are some illegal characters in here. I highlighted them below:
+
+34280181922020020107045**%0D%20**29G6ZG9MLZKG5HLISLIWUZAJOWL
+
+Unless you are in the web development industry, you won’t have any idea that there’s an anomaly here. It looks just like random gibberish characters, right?
+
+Both `%0D` and `%20` are special characters in URL Encoding and are not allowed in a URL. 🚫
+
+<hr />
+
+**URL encoding** is a method of representing special characters in a URL (Uniform Resource Locator). Spaces, punctuation, and some special characters are not permitted in URLs and must be encoded in order for the URL to remain valid and be properly processed by the server and other web-based services. Each special character is represented with a unique `%` symbol and additional characters.
+
+<hr />
+
+The `%0D` character is a URL-encoded representation of the carriage return (CR) character, which is a special character used in some computer systems to mark the end of a line of text while the `%20` represents a space character, which is also not allowed in a URL.
+
+So to fix our URL, we just remove these 2 special characters. Your link might show some other special characters so try removing them those too if it still doesn’t work on your end.
+
+There’s a pattern you can follow: `%` followed by `two (2) digits or letters` or `combination of a digit and letter`.
+
+Here’s [a list of URL encoded characters](https://www.freecodecamp.org/news/url-encoded-characters-reference) for your reference.
+
+The fixed URL should look like this:
+
+```
+https://member.sss.gov.ph/members/registrationPages/setPassword/resetPass.jsp?
+ticket=3428018192202002010704529G6ZG9MLZKG5HLISLIWUZAJOWL
+```
+
+So when I tried accessing it, I can now proceed to resetting my password:
+
+![SSS Reset Password](/images/sss-reset-password-success.jpg)
+
+Looking as how it has been a year since I encountered the problem and it’s still not resolved to this date, I might as well share this to others who forgot their password or need to reset their password while waiting for a resolution on their system. 👀
+
