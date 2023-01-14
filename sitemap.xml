@@ -4,10 +4,12 @@
 <url> <loc>https://gianfaye.com/page/2</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://gianfaye.com/page/3</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://gianfaye.com/page/4</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://gianfaye.com/page/5</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://gianfaye.com/blog</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://gianfaye.com/blog/page/2</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://gianfaye.com/blog/page/3</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://gianfaye.com/blog/page/4</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://gianfaye.com/blog/page/5</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://gianfaye.com/blog/sss-website-reset-password-error</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://gianfaye.com/blog/ten-most-popular-state-management-libraries-in-react</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://gianfaye.com/blog/online-grocery-shopping-apps-in-the-philippines</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
@@ -16,9 +18,15 @@
 <url> <loc>https://gianfaye.com/blog/ten-common-coding-patterns-in-react</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://gianfaye.com/blog/emerging-trends-in-the-internet-of-things</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://gianfaye.com/blog/free-coursera-access-with-certifications-under-dost</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://gianfaye.com/blog/starting-a-business-in-the-philippines</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://gianfaye.com/blog/augmented-reality-and-its-potential-uses</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://gianfaye.com/blog/migrating-from-jekyll-to-gatsby-using-novela</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://gianfaye.com/blog/certificate-of-registration-in-bir</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://gianfaye.com/blog/business-registration-forms-in-bir</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://gianfaye.com/blog/business-registration-requirements-in-bir</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://gianfaye.com/blog/business-name-registration-in-dti</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://gianfaye.com/blog/government-agencies-bir-and-dti</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://gianfaye.com/blog/about-you-and-your-business</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://gianfaye.com/blog/starting-a-business-in-the-philippines</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://gianfaye.com/blog/coffee-getting-cold-alarm-device-arduino</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://gianfaye.com/blog/free-https-support-with-kloudsec</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://gianfaye.com/blog/arduino-getting-started</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
@@ -82,6 +90,7 @@
 <url> <loc>https://gianfaye.com/topics/page/2</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://gianfaye.com/topics/page/3</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://gianfaye.com/topics/page/4</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://gianfaye.com/topics/page/5</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://gianfaye.com/works/website</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://gianfaye.com/works/landing-page</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://gianfaye.com/works/print</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
