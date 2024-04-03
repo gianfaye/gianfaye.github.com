@@ -298,7 +298,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* typo in Image.tsx ([384f754](https://github.com/narative/gatsby-theme/commit/384f754))
+* typo in Image.jsx ([384f754](https://github.com/narative/gatsby-theme/commit/384f754))
 
 
 

@@ -350,7 +350,7 @@ module.exports.contentful = {
     }
   }`,
   clients: `{
-    clients: allContentfuClient {
+    clients: allContentfulClient {
       edges {
         node {
           avatar {

@@ -1,64 +1,49 @@
 /* eslint-disable */
 
 module.exports = ({
-  contentTopics = 'content/topics',
-  contentWorks = 'content/works',
-  contentClients = 'content/clients',
-  contentPosts = 'content/posts',
-  contentProjects = 'content/projects',
-  pathPrefix = '',
-  sources: { local, contentful } = { local: true, contentful: false },
-}) => ({
+                    contentTopics = 'content/topics',
+                    contentWorks = 'content/works',
+                    contentClients = 'content/clients',
+                    contentPosts = 'content/posts',
+                    contentProjects = 'content/projects',
+                    pathPrefix = '',
+                    sources: { local, contentful } = { local: true, contentful: false },
+                  }) => ({
   pathPrefix,
-  mapping: {
-    'Mdx.frontmatter.topic': `TopicsYaml`,
-    'Mdx.frontmatter.work': `WorksYaml`,
-    'Mdx.frontmatter.client': `ClientsYaml`,
+  siteMetadata: {
+    title: 'Gian Faye Paguirigan | Frontend Developer',
+    description: 'I\'m a frontend engineer and UX designer from the Philippines. This site is a collective of my works, ideas, and learnings.',
+    siteUrl: 'https://gianfaye.com',
+    feed_url: 'https://gianfaye.com/rss.xml',
+    image_url: 'https://gianfaye.com/site-preview.jpg',
   },
   plugins: [
-    `gatsby-plugin-typescript`,
     `gatsby-image`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
-    `gatsby-transformer-remark`,
     `gatsby-transformer-yaml`,
     `gatsby-plugin-theme-ui`,
     {
+      resolve: `gatsby-transformer-remark`,
+      options: {},
+    },
+    {
       resolve: `gatsby-plugin-feed`,
       options: {
-        query: `
-          {
-            site {
-              siteMetadata {
-                title
-                description
-                siteUrl
-                site_url: siteUrl
-              }
-            }
-          }
-        `,
-        setup: ({
-          query: {
-            site: { siteMetadata },
-          },
-          ...rest
-        }) => {
-          siteMetadata.feed_url = siteMetadata.siteUrl + '/rss.xml';
-          siteMetadata.image_url =
-            siteMetadata.siteUrl + '/icons/icon-512x512.png';
-          const siteMetadataModified = siteMetadata;
-          siteMetadataModified.feed_url = `${siteMetadata.siteUrl}/rss.xml`;
-          siteMetadataModified.image_url = `${siteMetadata.siteUrl}/icons/icon-512x512.png`;
-
+        setup: ({ query: { site } }) => {
+          const siteMetadataModified = {
+            ...site.siteMetadata,
+            feed_url: `${site.siteMetadata.siteUrl}/rss.xml`,
+            image_url: `${site.siteMetadata.siteUrl}/icons/icon-512x512.png`,
+          };
           return {
             ...siteMetadataModified,
-            ...rest,
           };
         },
         feeds: [
           {
+            title: 'Gian Faye Paguirigan | gianfaye.com | Frontend Developer Philippines',
             serialize: ({ query: { site, allArticle, allContentfulArticle, allProject, allContentfulProject } }) => {
               if (local && !contentful) {
                 const allLocalData = { ...allArticle, ...allProject };
@@ -115,7 +100,7 @@ module.exports = ({
               local && !contentful
                 ? `
               {
-                allArticle(sort: {order: DESC, fields: date}) {
+                allArticle(sort: {date: DESC}) {
                   edges {
                     node {
                       body
@@ -128,7 +113,7 @@ module.exports = ({
                     }
                   }
                 }
-                allProject(sort: {order: DESC, fields: date}) {
+                allProject(sort: {date: DESC}) {
                   edges {
                     node {
                       body
@@ -144,9 +129,9 @@ module.exports = ({
               }
               `
                 : !local && contentful
-                ? `
+                  ? `
               {
-                allContentfulArticle(sort: {order: DESC, fields: date}) {
+                allContentfulArticle(sort: {date: DESC}) {
                   edges {
                     node {
                       excerpt
@@ -165,7 +150,7 @@ module.exports = ({
                     }
                   }
                 }
-                allContentfulProject(sort: {order: DESC, fields: date}) {
+                allContentfulProject(sort: {date: DESC}) {
                   edges {
                     node {
                       excerpt
@@ -189,9 +174,9 @@ module.exports = ({
                 }
               }
               `
-                : `
+                  : `
               {
-                allArticle(sort: {order: DESC, fields: date}) {
+                allArticle(sort: {date: DESC}) {
                   edges {
                     node {
                       body
@@ -204,7 +189,7 @@ module.exports = ({
                     }
                   }
                 }
-                allProject(sort: {order: DESC, fields: date}) {
+                allProject(sort: {date: DESC}) {
                   edges {
                     node {
                       body
@@ -217,7 +202,7 @@ module.exports = ({
                     }
                   }
                 }
-                allContentfulArticle(sort: {order: DESC, fields: date}) {
+                allContentfulArticle(sort: {date: DESC}) {
                   edges {
                     node {
                       excerpt
@@ -236,7 +221,7 @@ module.exports = ({
                     }
                   }
                 }
-                allContentfulProject(sort: {order: DESC, fields: date}) {
+                allContentfulProject(sort: {date: DESC}) {
                   edges {
                     node {
                       excerpt
@@ -311,6 +296,7 @@ module.exports = ({
       resolve: `gatsby-plugin-mdx`,
       options: {
         extensions: [`.mdx`, `.md`],
+        remarkPlugins: [async () => import(`remark-slug`)], // eslint-disable-line global-require
         gatsbyRemarkPlugins: [
           {
             resolve: `gatsby-remark-images`,
@@ -341,16 +327,16 @@ module.exports = ({
             resolve: "gatsby-remark-embed-video",
             options: {
               width: 680,
-              ratio: 1.77, // Optional: Defaults to 16/9 = 1.77
-              height: 400, // Optional: Overrides optional.ratio
-              related: false, //Optional: Will remove related videos from the end of an embedded YouTube video.
-              noIframeBorder: true, //Optional: Disable insertion of <style> border: 0
+              ratio: 1.77,
+              height: 400,
+              related: false,
+              noIframeBorder: true,
               urlOverrides: [
                 {
                   id: 'youtube',
                   embedURL: (videoId) => `https://www.youtube-nocookie.com/embed/${videoId}`,
                 }
-              ] //Optional: Override URL of a service provider, e.g to enable youtube-nocookie support
+              ]
             }
           },
           { resolve: `gatsby-remark-copy-linked-files` },
@@ -360,11 +346,10 @@ module.exports = ({
             resolve: 'gatsby-remark-external-links',
             options: {
               target: '_blank',
-              rel: 'noreferrer', // eslint-disable-line unicorn/prevent-abbreviations
+              rel: 'noreferrer',
             },
           },
         ],
-        remarkPlugins: [require(`remark-slug`)], // eslint-disable-line global-require
       },
     },
     {
