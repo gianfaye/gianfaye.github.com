@@ -10,16 +10,16 @@ const createPaginatedPages = require('gatsby-paginate');
 
 const templatesDirectory = path.resolve(__dirname, '../../templates');
 const templates = {
-  home: path.resolve(templatesDirectory, 'index.template.tsx'),
-  articles: path.resolve(templatesDirectory, 'articles.template.tsx'),
-  article: path.resolve(templatesDirectory, 'article.template.tsx'),
-  projects: path.resolve(templatesDirectory, 'projects.template.tsx'),
-  project: path.resolve(templatesDirectory, 'project.template.tsx'),
-  topic: path.resolve(templatesDirectory, 'topic.template.tsx'),
-  topics: path.resolve(templatesDirectory, 'topics.template.tsx'),
-  work: path.resolve(templatesDirectory, 'work.template.tsx'),
-  works: path.resolve(templatesDirectory, 'works.template.tsx'),
-  category: path.resolve(templatesDirectory, 'category.template.tsx'),
+  home: path.resolve(templatesDirectory, 'index.template.jsx'),
+  articles: path.resolve(templatesDirectory, 'articles.template.jsx'),
+  article: path.resolve(templatesDirectory, 'article.template.jsx'),
+  projects: path.resolve(templatesDirectory, 'projects.template.jsx'),
+  project: path.resolve(templatesDirectory, 'project.template.jsx'),
+  topic: path.resolve(templatesDirectory, 'topic.template.jsx'),
+  topics: path.resolve(templatesDirectory, 'topics.template.jsx'),
+  work: path.resolve(templatesDirectory, 'work.template.jsx'),
+  works: path.resolve(templatesDirectory, 'works.template.jsx'),
+  category: path.resolve(templatesDirectory, 'category.template.jsx'),
 };
 
 const query = require('../data/data.query');

@@ -20,7 +20,7 @@ module.exports = ({ node, actions, getNode, createNodeId }, themeOptions) => {
   // ///////////////// Utility functions ///////////////////
 
   function generateArticlePermalink(slug, date) {
-    const [year, month, day] = date.match(/\d{4}-\d{2}-\d{2}/)[0].split('-');
+    const [year, month, day] = date.toString().split('-');
     const permalinkData = {
       year,
       month,
@@ -28,10 +28,10 @@ module.exports = ({ node, actions, getNode, createNodeId }, themeOptions) => {
       slug,
     };
 
-    const permalinkArticle = articlePermalinkFormat.replace(
-      /(:[a-z_]+)/g,
-      match => {
-        const key = match.substr(1);
+    const permalinkArticle = articlePermalinkFormat.replaceAll(
+      /(:[_a-z]+)/g,
+      (match) => {
+        const key = match.slice(1);
         if (permalinkData.hasOwnProperty(key)) {
           return permalinkData[key];
         }
@@ -47,7 +47,7 @@ module.exports = ({ node, actions, getNode, createNodeId }, themeOptions) => {
   }
 
   function generateProjectPermalink(slug, date) {
-    const [year, month, day] = date.match(/\d{4}-\d{2}-\d{2}/)[0].split('-');
+    const [year, month, day] = date.toString().split('-');
     const permalinkData = {
       year,
       month,
@@ -55,10 +55,10 @@ module.exports = ({ node, actions, getNode, createNodeId }, themeOptions) => {
       slug,
     };
 
-    const permalinkProject = projectPermalinkFormat.replace(
-      /(:[a-z_]+)/g,
-      match => {
-        const key = match.substr(1);
+    const permalinkProject = projectPermalinkFormat.replaceAll(
+      /(:[_a-z]+)/g,
+      (match) => {
+        const key = match.slice(1);
         if (permalinkData.hasOwnProperty(key)) {
           return permalinkData[key];
         }
@@ -74,7 +74,7 @@ module.exports = ({ node, actions, getNode, createNodeId }, themeOptions) => {
   }
 
   function generateSlug(...arguments_) {
-    return `/${arguments_.join('/')}`.replace(/\/\/+/g, '/');
+    return `/${arguments_.join('/')}`.replaceAll(/\/\/+/g, '/');
   }
 
   // ///////////////////////////////////////////////////////
@@ -264,6 +264,28 @@ module.exports = ({ node, actions, getNode, createNodeId }, themeOptions) => {
     });
 
     createParentChildLink({ parent: fileNode, child: node });
+  }
+
+  if (
+    ['ContentfulTopic', 'ContentfulWork', 'ContentfulClient'].includes(
+      node.internal.type,
+    )
+  ) {
+    const type = node.internal.type.replace(/^Contentful/, '');
+    createNodeField({
+      node,
+      name: 'slug',
+      value: generateSlug(
+        basePath,
+        `${type.toLowerCase()}s`,
+        slugify(node.name, { lower: true }),
+      ),
+    });
+    createNodeField({
+      node,
+      name: `${type.toLowerCase()}Page`,
+      value: themeOptions[`${type.toLowerCase()}Page`] || false,
+    });
   }
 
   if (node.internal.type === `ContentfulTopic`) {

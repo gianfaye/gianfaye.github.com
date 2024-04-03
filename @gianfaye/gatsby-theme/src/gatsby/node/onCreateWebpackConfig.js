@@ -10,7 +10,7 @@ module.exports = ({ actions }) => {
         '@utils': path.resolve(__dirname, '../../utils/'),
         '@types': path.resolve(__dirname, '../../types/'),
       },
-      extensions: ['.js', '.json', '.ts', '.tsx'],
+      extensions: ['.js', '.json', '.ts', '.jsx'],
     },
   });
 };
