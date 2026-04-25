@@ -1,5 +1,15 @@
 ---
+import { getCollection } from 'astro:content';
 import '../styles/global.css';
+
+const posts = await getCollection('posts');
+const projects = await getCollection('projects');
+const sortedPosts = [...posts].sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+const sortedProjects = [...projects].sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
 ---
 
 <html lang="en">
@@ -7,14 +17,33 @@ import '../styles/global.css';
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>gianfaye.com — Astro scaffold</title>
+    <title>gianfaye.com — Phase 1 content sanity check</title>
   </head>
   <body class="min-h-screen bg-neutral-50 text-neutral-900 antialiased">
-    <main class="mx-auto max-w-2xl px-6 py-24">
+    <main class="mx-auto max-w-3xl px-6 py-12">
       <h1 class="text-4xl font-bold tracking-tight">gianfaye.com</h1>
-      <p class="mt-4 text-neutral-600">
-        Astro scaffold — Phase 0 deploy pipeline check.
+      <p class="mt-2 text-neutral-600">
+        Phase 1: content collections wired up. {posts.length} posts, {projects.length} projects.
       </p>
+
+      <h2 class="mt-10 text-2xl font-semibold">Posts ({posts.length})</h2>
+      <ul class="mt-3 space-y-1 text-sm">
+        {sortedPosts.slice(0, 5).map((p) => (
+          <li>
+            <span class="text-neutral-500">{p.data.date.toISOString().slice(0, 10)}</span> · {p.data.title}
+          </li>
+        ))}
+        <li class="text-neutral-500">…and {posts.length - 5} more</li>
+      </ul>
+
+      <h2 class="mt-10 text-2xl font-semibold">Projects ({projects.length})</h2>
+      <ul class="mt-3 space-y-1 text-sm">
+        {sortedProjects.map((p) => (
+          <li>
+            <span class="text-neutral-500">{p.data.date.toISOString().slice(0, 10)}</span> · {p.data.title} <span class="text-neutral-400">({p.data.work})</span>
+          </li>
+        ))}
+      </ul>
     </main>
   </body>
 </html>
