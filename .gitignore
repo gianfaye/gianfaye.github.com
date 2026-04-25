@@ -79,3 +79,8 @@ yarn-error.log
 
 # NPM lock files
 package-lock.json
+
+# Astro site-v2 (npm-based; needs lock file and public/ assets including CNAME + .nojekyll)
+!site-v2/package-lock.json
+!site-v2/public/
+!site-v2/public/**
