@@ -1,1 +1,123 @@
 @import "tailwindcss";
+
+/* Voyager Grotesque (sans, body) */
+@font-face {
+  font-family: "Voyager Grotesque";
+  font-weight: 400;
+  font-style: normal;
+  src: url("/fonts/vger-regular.woff2") format("woff2"),
+       url("/fonts/vger-regular.woff") format("woff"),
+       url("/fonts/vger-regular.ttf") format("truetype");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Voyager Grotesque";
+  font-weight: 300;
+  font-style: normal;
+  src: url("/fonts/vger-light.woff2") format("woff2"),
+       url("/fonts/vger-light.woff") format("woff"),
+       url("/fonts/vger-light.ttf") format("truetype");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Voyager Grotesque";
+  font-weight: 700;
+  font-style: normal;
+  src: url("/fonts/vger-bold.woff") format("woff"),
+       url("/fonts/vger-bold.ttf") format("truetype");
+  font-display: swap;
+}
+
+/* Sentinel (serif, headings) */
+@font-face {
+  font-family: "Sentinel Book";
+  font-weight: 400;
+  font-style: normal;
+  src: url("/fonts/Sentinel-Book.woff2") format("woff2"),
+       url("/fonts/Sentinel-Book.woff") format("woff"),
+       url("/fonts/Sentinel-Book.ttf") format("truetype");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Sentinel Book";
+  font-weight: 300;
+  font-style: normal;
+  src: url("/fonts/Sentinel-Light.woff2") format("woff2"),
+       url("/fonts/Sentinel-Light.woff") format("woff");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Sentinel Italic";
+  font-weight: 400;
+  font-style: italic;
+  src: url("/fonts/Sentinel-LightItalic.woff2") format("woff2"),
+       url("/fonts/Sentinel-LightItalic.woff") format("woff"),
+       url("/fonts/Sentinel-LightItalic.ttf") format("truetype");
+  font-display: swap;
+}
+
+@theme {
+  --font-sans: "Voyager Grotesque", "-apple-system", BlinkMacSystemFont,
+               "San Francisco", "Helvetica Neue", "Helvetica", "Ubuntu",
+               "Roboto", "Noto", "Segoe UI", "Arial", sans-serif;
+  --font-serif: "Sentinel Book", Georgia, serif;
+  --font-mono: "Operator Mono", Consolas, Menlo, Monaco, "source-code-pro",
+               "Courier New", monospace;
+  --color-accent: #f65d2e;
+}
+
+/*
+ * Color tokens — light defaults on :root, dark overrides on .dark.
+ * The dark class is set by an inline script in the BaseLayout <head>
+ * before first paint, so there's no flash of the wrong theme.
+ */
+:root {
+  --color-bg: #fafafa;
+  --color-fg: #1a1a1b;
+  --color-secondary: #73737d;
+  --color-card: #ffffff;
+  --color-footer-bg: #1a1a1b;
+  --color-footer-fg: #fafafa;
+  --color-rule: rgba(8, 8, 11, 0.15);
+  --color-hover: rgba(0, 0, 0, 0.07);
+  color-scheme: light;
+}
+
+:root.dark {
+  --color-bg: #1a1a1b;
+  --color-fg: #ffffff;
+  --color-secondary: #a2aeb6;
+  --color-card: #111111;
+  --color-footer-bg: #fafafa;
+  --color-footer-fg: #1a1a1b;
+  --color-rule: rgba(255, 255, 255, 0.15);
+  --color-hover: rgba(255, 255, 255, 0.07);
+  color-scheme: dark;
+}
+
+html {
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+body {
+  font-family: var(--font-sans);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+a {
+  color: inherit;
+}
+
+a:hover {
+  color: var(--color-accent);
+}

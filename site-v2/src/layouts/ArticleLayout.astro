@@ -1,0 +1,151 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  date?: Date;
+  topic?: string;
+}
+
+const { title, description, date, topic } = Astro.props;
+---
+
+<BaseLayout title={`${title} — Gian Faye`} description={description}>
+  {/* Reading-progress-bar slot — populated in Phase 4 */}
+  <div id="reading-progress" class="reading-progress" aria-hidden="true"></div>
+
+  <article class="article">
+    <div class="article__inner">
+      <aside class="article__aside">
+        <div class="article__aside-sticky">
+          <h1 class="article__title">{title}</h1>
+          {date && (
+            <p class="article__meta">
+              <time datetime={date.toISOString()}>
+                {date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+              </time>
+              {topic && <span> · {topic}</span>}
+            </p>
+          )}
+
+          {/* Share buttons slot — populated in Phase 4 */}
+          <div class="article__share" data-share-slot></div>
+        </div>
+      </aside>
+
+      <div class="article__body">
+        <slot />
+
+        {/* Disqus comments slot — populated in Phase 5 */}
+        <section class="article__comments" data-disqus-slot aria-label="Comments">
+          <div id="disqus_thread"></div>
+        </section>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .reading-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    width: 0;
+    background: var(--color-accent);
+    z-index: 100;
+    transition: width 0.1s linear;
+  }
+
+  .article {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 3rem 2.5rem 5rem;
+  }
+  .article__inner {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  .article__aside-sticky {
+    position: sticky;
+    top: 6rem;
+  }
+  .article__title {
+    font-family: var(--font-serif);
+    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    line-height: 1.2;
+    margin: 0 0 1rem;
+  }
+  .article__meta {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    letter-spacing: 0.125em;
+    text-transform: uppercase;
+    color: var(--color-secondary);
+    margin: 0;
+  }
+  .article__share {
+    margin-top: 2rem;
+  }
+  .article__body {
+    font-family: var(--font-serif);
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: var(--color-fg);
+  }
+  .article__body :global(p),
+  .article__body :global(ul),
+  .article__body :global(ol),
+  .article__body :global(blockquote) {
+    margin: 0 0 1.25rem;
+  }
+  .article__body :global(h2),
+  .article__body :global(h3),
+  .article__body :global(h4) {
+    font-family: var(--font-serif);
+    margin: 2.5rem 0 1rem;
+    line-height: 1.3;
+  }
+  .article__body :global(h2) { font-size: 1.75rem; }
+  .article__body :global(h3) { font-size: 1.375rem; }
+  .article__body :global(a) {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .article__body :global(img) {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+  }
+  .article__body :global(pre) {
+    background: var(--color-card);
+    padding: 1rem 1.25rem;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    margin: 1.5rem 0;
+  }
+  .article__body :global(code) {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+  }
+  .article__comments {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-rule);
+  }
+
+  @media (max-width: 1024px) {
+    .article { padding: 2rem 1.5rem 3rem; }
+    .article__inner {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    .article__aside-sticky { position: static; }
+  }
+</style>

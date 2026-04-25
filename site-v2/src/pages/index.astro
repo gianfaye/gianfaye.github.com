@@ -1,6 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
-import '../styles/global.css';
+import BaseLayout from '../layouts/BaseLayout.astro';
 
 const posts = await getCollection('posts');
 const projects = await getCollection('projects');
@@ -12,38 +12,75 @@ const sortedProjects = [...projects].sort(
 );
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>gianfaye.com — Phase 1 content sanity check</title>
-  </head>
-  <body class="min-h-screen bg-neutral-50 text-neutral-900 antialiased">
-    <main class="mx-auto max-w-3xl px-6 py-12">
-      <h1 class="text-4xl font-bold tracking-tight">gianfaye.com</h1>
-      <p class="mt-2 text-neutral-600">
-        Phase 1: content collections wired up. {posts.length} posts, {projects.length} projects.
-      </p>
+<BaseLayout>
+  <section class="home">
+    <h1>gianfaye.com</h1>
+    <p class="home__lede">
+      Phase 2: layout, header, footer, dark mode wired up.
+      {posts.length} posts, {projects.length} projects ready for Phase 3 listing pages.
+    </p>
 
-      <h2 class="mt-10 text-2xl font-semibold">Posts ({posts.length})</h2>
-      <ul class="mt-3 space-y-1 text-sm">
-        {sortedPosts.slice(0, 5).map((p) => (
-          <li>
-            <span class="text-neutral-500">{p.data.date.toISOString().slice(0, 10)}</span> · {p.data.title}
-          </li>
-        ))}
-        <li class="text-neutral-500">…and {posts.length - 5} more</li>
-      </ul>
+    <h2>Posts ({posts.length})</h2>
+    <ul class="home__list">
+      {sortedPosts.slice(0, 5).map((p) => (
+        <li>
+          <span class="home__date">{p.data.date.toISOString().slice(0, 10)}</span>
+          {' · '}
+          {p.data.title}
+        </li>
+      ))}
+      <li class="home__more">…and {posts.length - 5} more</li>
+    </ul>
 
-      <h2 class="mt-10 text-2xl font-semibold">Projects ({projects.length})</h2>
-      <ul class="mt-3 space-y-1 text-sm">
-        {sortedProjects.map((p) => (
-          <li>
-            <span class="text-neutral-500">{p.data.date.toISOString().slice(0, 10)}</span> · {p.data.title} <span class="text-neutral-400">({p.data.work})</span>
-          </li>
-        ))}
-      </ul>
-    </main>
-  </body>
-</html>
+    <h2>Projects ({projects.length})</h2>
+    <ul class="home__list">
+      {sortedProjects.map((p) => (
+        <li>
+          <span class="home__date">{p.data.date.toISOString().slice(0, 10)}</span>
+          {' · '}
+          {p.data.title}
+          <span class="home__work"> ({p.data.work})</span>
+        </li>
+      ))}
+    </ul>
+  </section>
+</BaseLayout>
+
+<style>
+  .home {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem;
+  }
+  .home h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin: 0 0 0.5rem;
+  }
+  .home__lede {
+    color: var(--color-secondary);
+    margin: 0 0 2.5rem;
+  }
+  .home h2 {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    margin: 2rem 0 0.75rem;
+  }
+  .home__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 0.9375rem;
+  }
+  .home__list li {
+    padding: 0.25rem 0;
+  }
+  .home__date,
+  .home__work {
+    color: var(--color-secondary);
+  }
+  .home__more {
+    color: var(--color-secondary);
+    font-style: italic;
+  }
+</style>

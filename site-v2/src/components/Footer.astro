@@ -1,0 +1,246 @@
+---
+const social = [
+  { name: 'github', label: 'GitHub', url: 'https://github.com/gianfaye' },
+  { name: 'linkedin', label: 'LinkedIn', url: 'https://www.linkedin.com/in/gianfaye/' },
+  { name: 'twitter', label: 'Twitter', url: 'https://twitter.com/gianfaye' },
+  { name: 'stackoverflow', label: 'Stack Exchange', url: 'https://stackexchange.com/users/2642726/gian-faye?tab=accounts' },
+  { name: 'mailto', label: 'Email', url: 'mailto:contact@gianfaye.com' },
+];
+
+const works = [
+  { href: '/works/website/', label: 'Websites' },
+  { href: '/works/landing-page/', label: 'Landing Pages' },
+  { href: '/works/print/', label: 'Print' },
+  { href: '/works/software/', label: 'Software' },
+];
+
+const topics = [
+  { href: '/topics/web-development/', label: 'Web Development' },
+  { href: '/topics/artificial-intelligence/', label: 'Artificial Intelligence' },
+  { href: '/topics/internet-of-things/', label: 'Internet of Things' },
+  { href: '/topics/augmented-reality/', label: 'Augmented Reality' },
+  { href: '/topics/visual-design/', label: 'Visual Design' },
+  { href: '/topics/business/', label: 'Business' },
+  { href: '/topics/cybersecurity/', label: 'Cybersecurity' },
+  { href: '/topics/machine-learning/', label: 'Machine Learning' },
+  { href: '/topics/maker-culture/', label: 'Maker Culture' },
+  { href: '/topics/data-analytics/', label: 'Data Analytics' },
+  { href: '/topics/photography/', label: 'Photography' },
+  { href: '/topics/personal-growth/', label: 'Personal Growth' },
+];
+
+const mainLeft = [
+  { href: '/', label: 'Home' },
+  { href: '/blog/', label: 'Blog' },
+  { href: '/project/', label: 'Projects' },
+];
+const mainRight = [
+  { href: '/about/', label: 'About' },
+  { href: '/timeline/', label: 'Timeline' },
+  { href: '/topics/', label: 'Topics' },
+];
+---
+
+<footer class="site-footer">
+  <div class="site-footer__top">
+    <h2 class="site-footer__heading">Everything Else.</h2>
+
+    <div class="site-footer__grid">
+      <div class="site-footer__main">
+        <ul>
+          {mainLeft.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
+        </ul>
+        <ul>
+          {mainRight.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
+        </ul>
+      </div>
+
+      <div class="site-footer__columns">
+        <div>
+          <h3>Works</h3>
+          <ul class="site-footer__sublist">
+            {works.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
+          </ul>
+        </div>
+        <div>
+          <h3>Topics</h3>
+          <ul class="site-footer__sublist site-footer__sublist--two">
+            {topics.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="site-footer__bottom">
+    <ul class="site-footer__social" aria-label="Social links">
+      {social.map((s) => (
+        <li>
+          <a
+            href={s.url}
+            target={s.name === 'mailto' ? undefined : '_blank'}
+            rel={s.name === 'mailto' ? undefined : 'noopener nofollow'}
+            aria-label={s.label}
+            title={s.label}
+          >
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
+              {s.name === 'github' && (
+                <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.01-.02-1.99-3.2.7-3.88-1.54-3.88-1.54-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.78 1.19 1.78 1.19 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.27-5.24-5.66 0-1.25.45-2.27 1.18-3.07-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.15 1.17.91-.25 1.89-.38 2.86-.38.97 0 1.95.13 2.86.38 2.18-1.48 3.14-1.17 3.14-1.17.62 1.59.23 2.76.11 3.05.74.8 1.18 1.82 1.18 3.07 0 4.4-2.69 5.36-5.25 5.65.41.36.78 1.05.78 2.12 0 1.53-.01 2.77-.01 3.15 0 .31.21.68.8.56C20.21 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z"/>
+              )}
+              {s.name === 'linkedin' && (
+                <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.05-1.86-3.05-1.86 0-2.15 1.45-2.15 2.96v5.66H9.34V9h3.41v1.56h.05c.47-.9 1.64-1.86 3.37-1.86 3.61 0 4.28 2.37 4.28 5.46v6.29zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/>
+              )}
+              {s.name === 'twitter' && (
+                <path d="M22.46 6c-.77.35-1.6.59-2.46.7a4.27 4.27 0 0 0 1.88-2.36 8.59 8.59 0 0 1-2.71 1.04 4.28 4.28 0 0 0-7.29 3.9A12.13 12.13 0 0 1 3 4.79a4.28 4.28 0 0 0 1.32 5.71c-.7-.02-1.36-.21-1.93-.53v.05a4.28 4.28 0 0 0 3.43 4.19c-.65.18-1.34.21-2.01.08a4.28 4.28 0 0 0 4 2.97A8.6 8.6 0 0 1 2 19.07 12.14 12.14 0 0 0 8.58 21c7.9 0 12.21-6.54 12.21-12.21 0-.19-.01-.37-.02-.56A8.7 8.7 0 0 0 22.46 6z"/>
+              )}
+              {s.name === 'stackoverflow' && (
+                <path d="M17.36 20.2v-5.38h1.79V22H3v-7.18h1.79v5.38h12.57zM6.78 14.41l8.79 1.83.37-1.76-8.78-1.83-.38 1.76zm1.16-4.21l8.14 3.79.76-1.62-8.15-3.81-.75 1.64zm2.26-4.02l6.92 5.74 1.15-1.36-6.92-5.74-1.15 1.36zM14.66 1l-1.45 1.07 5.34 7.21 1.45-1.07L14.66 1zM6.6 18.41h8.94v-1.78H6.6v1.78z"/>
+              )}
+              {s.name === 'mailto' && (
+                <path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm9 7.62L3.74 6.5h16.52L12 12.62zM4 8.07v9.93h16V8.07l-7.41 5.5a1 1 0 0 1-1.18 0L4 8.07z"/>
+              )}
+            </svg>
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <p class="site-footer__copy">© 2010–{new Date().getFullYear()} Gian Faye Paguirigan</p>
+
+    <ul class="site-footer__sublinks" aria-label="Site links">
+      <li><a href="/privacy/">Privacy</a></li>
+      <li><a href="/terms/">Terms of Use</a></li>
+      <li><a href="/rss.xml">RSS</a></li>
+    </ul>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--color-footer-bg);
+    color: var(--color-footer-fg);
+    margin-top: 4rem;
+  }
+  .site-footer a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  .site-footer a:hover { color: var(--color-accent); }
+
+  .site-footer__top {
+    max-width: 1220px;
+    margin: 0 auto;
+    padding: 3rem 4rem 0;
+  }
+  .site-footer__heading {
+    font-family: var(--font-serif);
+    font-size: clamp(2.25rem, 5vw, 3.75rem);
+    letter-spacing: 0.02em;
+    margin: 0 0 2rem;
+  }
+  .site-footer__grid {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    gap: 3rem;
+    border-bottom: 1px solid var(--color-rule);
+    padding-bottom: 3rem;
+  }
+  .site-footer__main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+  .site-footer__main ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .site-footer__main a {
+    display: block;
+    font-size: 1.5rem;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.625rem;
+    border-bottom: 2px solid currentColor;
+  }
+  .site-footer__columns {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 1.25rem;
+  }
+  .site-footer__columns h3 {
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.125em;
+    text-transform: uppercase;
+    margin: 0 0 1rem;
+  }
+  .site-footer__sublist {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .site-footer__sublist li {
+    font-size: 1.125rem;
+    margin-bottom: 0.625rem;
+  }
+  .site-footer__sublist--two {
+    columns: 2;
+    column-gap: 0.625rem;
+  }
+
+  .site-footer__bottom {
+    max-width: 1220px;
+    margin: 0 auto;
+    padding: 2rem 4rem 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .site-footer__social {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .site-footer__copy {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    letter-spacing: 0.125em;
+    text-transform: uppercase;
+    margin: 0;
+  }
+  .site-footer__sublinks {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .site-footer__sublinks a {
+    font-family: var(--font-sans);
+    font-size: 0.625rem;
+    letter-spacing: 0.125em;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 1024px) {
+    .site-footer__top { padding: 2rem 1.5rem 0; }
+    .site-footer__bottom {
+      padding: 1.5rem;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .site-footer__grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    .site-footer__columns { grid-template-columns: 1fr; }
+  }
+</style>
