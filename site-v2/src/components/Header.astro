@@ -14,7 +14,7 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
 
 <header id="site-header" class="site-header">
   <div class="site-header__inner">
-    <a href="/" class="site-header__logo" aria-label="Navigate to home">
+    <a href="/" class="site-header__logo" aria-label="Navigate back to the homepage">
       <Logo />
     </a>
 
@@ -34,19 +34,28 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
       </ul>
 
       <button
-        id="dark-mode-toggle"
-        class="site-header__toggle"
+        id="copy-email"
+        class="site-header__icon-btn"
         type="button"
-        aria-label="Toggle dark mode"
-        title="Toggle dark mode"
+        aria-label="Copy my email to your clipboard"
+        title="Copy my email to your clipboard"
       >
-        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <circle cx="12" cy="12" r="4"></circle>
-          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+          <polyline points="22,6 12,13 2,6"/>
         </svg>
-        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-        </svg>
+        <span class="site-header__tooltip" data-state="idle">Email copied</span>
+      </button>
+
+      <button
+        id="dark-mode-toggle"
+        class="site-header__icon-btn site-header__toggle"
+        type="button"
+        aria-label="Activate dark mode"
+        title="Activate dark mode"
+      >
+        <span class="moon-or-sun" aria-hidden="true"></span>
+        <span class="moon-mask" aria-hidden="true"></span>
       </button>
 
       <button
@@ -96,8 +105,8 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
     display: flex;
     align-items: center;
     color: var(--color-fg);
-    text-decoration: none;
   }
+
   .site-header__nav {
     display: flex;
     align-items: center;
@@ -113,46 +122,170 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
   }
   .site-header__link {
     display: inline-block;
-    padding: 0.5rem 1rem;
+    padding: 1.25rem 1.25rem;
+    font-family: var(--font-sans);
     font-size: 0.75rem;
     font-weight: 600;
     letter-spacing: 0.125em;
     text-transform: uppercase;
     color: var(--color-fg);
-    text-decoration: none;
-    transition: opacity 0.2s ease;
+    transition: opacity 0.4s ease, color 0.2s ease;
   }
-  .site-header__menu:hover .site-header__link {
-    opacity: 0.5;
-  }
+  .site-header__menu:hover .site-header__link { opacity: 0.5; }
   .site-header__menu .site-header__link:hover {
     opacity: 1;
     color: var(--color-accent);
   }
-  .site-header__link.active {
-    color: var(--color-accent);
-  }
-  .site-header__toggle,
-  .site-header__hamburger {
+  .site-header__link.active { color: var(--color-accent); }
+
+  /* Icon buttons (mailto, dark mode) */
+  .site-header__icon-btn {
+    position: relative;
     background: transparent;
     border: 0;
     padding: 0.5rem;
+    margin-left: 0.5rem;
     color: var(--color-fg);
     cursor: pointer;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    width: 40px;
+    height: 40px;
   }
-  .site-header__toggle .icon-sun,
-  .site-header__toggle .icon-moon {
+
+  /* Tooltip on the email button after copy */
+  .site-header__tooltip {
+    position: absolute;
+    padding: 5px 13px;
+    background: rgba(0, 0, 0, 0.1);
+    color: var(--color-fg);
+    border-radius: 5px;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    bottom: -42px;
+    right: -18px;
+    opacity: 0;
+    transform: translateY(0);
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+  :root.dark .site-header__tooltip {
+    background: #000;
+    color: #fff;
+  }
+  .site-header__tooltip::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: -6px;
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 6px solid rgba(0, 0, 0, 0.1);
+  }
+  :root.dark .site-header__tooltip::after { border-bottom-color: #000; }
+  .site-header__tooltip[data-state="copied"] {
+    opacity: 1;
+    transform: translateY(-3px);
+  }
+
+  /* Moon-to-sun morph — recreated from the original CSS in
+   * Navigation.Header.tsx (MoonOrSun + MoonMask). The MoonOrSun is a
+   * disc; in light mode it's a full circle with sun-rays projected
+   * via box-shadow on its ::after pseudo. In dark mode the disc
+   * shrinks and the ::before sibling ring (offset, masked by MoonMask
+   * background-colored to the page) carves out a crescent. */
+  .site-header__toggle .moon-or-sun {
+    position: relative;
+    display: block;
     width: 20px;
     height: 20px;
+    border-radius: 50%;
+    border: 2px solid var(--color-fg);
+    background: var(--color-fg);
+    transform: scale(1);
+    transition: all 0.45s ease;
+    overflow: hidden;
+    top: -1px;
   }
-  .site-header__toggle .icon-sun { display: none; }
-  :root.dark .site-header__toggle .icon-sun { display: block; }
-  :root.dark .site-header__toggle .icon-moon { display: none; }
+  .site-header__toggle .moon-or-sun::before {
+    content: "";
+    position: absolute;
+    right: -9px;
+    top: -9px;
+    height: 24px;
+    width: 24px;
+    border: 2px solid var(--color-fg);
+    border-radius: 50%;
+    transform: translate(0, 0);
+    opacity: 1;
+    transition: transform 0.45s ease;
+  }
+  .site-header__toggle .moon-or-sun::after {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin: -4px 0 0 -4px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    box-shadow:
+      0 -23px 0 var(--color-fg),
+      0 23px 0 var(--color-fg),
+      23px 0 0 var(--color-fg),
+      -23px 0 0 var(--color-fg),
+      15px 15px 0 var(--color-fg),
+      -15px 15px 0 var(--color-fg),
+      15px -15px 0 var(--color-fg),
+      -15px -15px 0 var(--color-fg);
+    transform: scale(0);
+    transition: all 0.35s ease;
+  }
+  .site-header__toggle .moon-mask {
+    position: absolute;
+    right: -1px;
+    top: -8px;
+    height: 24px;
+    width: 24px;
+    border-radius: 50%;
+    border: 0;
+    background: var(--color-bg);
+    transform: translate(0, 0);
+    opacity: 1;
+    transition: background 0.25s ease, transform 0.45s ease;
+  }
+  /* Dark-mode state: disc shrinks, ring drifts away to reveal crescent,
+   * sun rays slide into view, mask hides off-screen. */
+  :root.dark .site-header__toggle .moon-or-sun {
+    border-width: 4px;
+    transform: scale(0.55);
+    overflow: visible;
+  }
+  :root.dark .site-header__toggle .moon-or-sun::before {
+    transform: translate(14px, -14px);
+    opacity: 0;
+  }
+  :root.dark .site-header__toggle .moon-or-sun::after {
+    transform: scale(1);
+  }
+  :root.dark .site-header__toggle .moon-mask {
+    transform: translate(14px, -14px);
+    opacity: 0;
+  }
 
+  /* Hamburger */
   .site-header__hamburger {
+    background: transparent;
+    border: 0;
+    padding: 0.5rem;
+    margin-left: 0.5rem;
+    color: var(--color-fg);
+    cursor: pointer;
     display: none;
     flex-direction: column;
     gap: 4px;
@@ -168,9 +301,7 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
   .site-header__hamburger[aria-expanded="true"] span:nth-child(1) {
     transform: translateY(6px) rotate(45deg);
   }
-  .site-header__hamburger[aria-expanded="true"] span:nth-child(2) {
-    opacity: 0;
-  }
+  .site-header__hamburger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
   .site-header__hamburger[aria-expanded="true"] span:nth-child(3) {
     transform: translateY(-6px) rotate(-45deg);
   }
@@ -190,12 +321,12 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
   .site-header__mobile a {
     display: block;
     padding: 0.75rem 0;
+    font-family: var(--font-sans);
     font-size: 0.875rem;
     font-weight: 600;
     letter-spacing: 0.125em;
     text-transform: uppercase;
     color: var(--color-fg);
-    text-decoration: none;
     border-bottom: 1px solid var(--color-rule);
   }
 
@@ -204,12 +335,8 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
       padding: 1.25rem 1.5rem;
     }
     .site-header__menu,
-    .site-header__toggle {
-      display: none;
-    }
-    .site-header__hamburger {
-      display: inline-flex;
-    }
+    .site-header__icon-btn { display: none; }
+    .site-header__hamburger { display: inline-flex; }
   }
 </style>
 
@@ -228,11 +355,34 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
   const toggle = document.getElementById('dark-mode-toggle');
   toggle?.addEventListener('click', () => {
     const root = document.documentElement;
-    const next = !root.classList.contains('dark');
-    root.classList.toggle('dark', next);
+    const isDarkNext = !root.classList.contains('dark');
+    root.classList.toggle('dark', isDarkNext);
+    toggle.setAttribute('aria-label', isDarkNext ? 'Activate light mode' : 'Activate dark mode');
+    toggle.setAttribute('title', isDarkNext ? 'Activate light mode' : 'Activate dark mode');
     try {
-      localStorage.setItem('color-mode', next ? 'dark' : 'light');
+      localStorage.setItem('color-mode', isDarkNext ? 'dark' : 'light');
     } catch (_) {}
+  });
+  // Sync aria-label on first paint with whatever the bootstrap script chose
+  if (toggle) {
+    const startsDark = document.documentElement.classList.contains('dark');
+    toggle.setAttribute('aria-label', startsDark ? 'Activate light mode' : 'Activate dark mode');
+    toggle.setAttribute('title', startsDark ? 'Activate light mode' : 'Activate dark mode');
+  }
+
+  // Copy email to clipboard
+  const emailBtn = document.getElementById('copy-email');
+  emailBtn?.addEventListener('click', async () => {
+    const tooltip = emailBtn.querySelector<HTMLSpanElement>('.site-header__tooltip');
+    try {
+      await navigator.clipboard.writeText('contact@gianfaye.com');
+      if (tooltip) {
+        tooltip.dataset.state = 'copied';
+        setTimeout(() => { tooltip.dataset.state = 'idle'; }, 1200);
+      }
+    } catch (_) {
+      // Clipboard API unavailable — silently no-op
+    }
   });
 
   // Mobile menu toggle

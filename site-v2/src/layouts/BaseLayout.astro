@@ -35,10 +35,57 @@ const {
     </script>
   </head>
   <body class="min-h-screen flex flex-col">
+    <div id="cursor" class="cursor cursor--hidden" aria-hidden="true"></div>
     <Header />
     <main class="flex-1">
       <slot />
     </main>
     <Footer />
+
+    <script>
+      // Custom mix-blend-mode cursor — only on hover-capable pointers
+      const supportsHover = window.matchMedia('(hover: hover)').matches;
+      const cursor = document.getElementById('cursor');
+
+      if (cursor && supportsHover) {
+        let raf = 0;
+        let nextX = -100;
+        let nextY = -100;
+
+        const apply = () => {
+          cursor.style.left = nextX + 'px';
+          cursor.style.top = nextY + 'px';
+          raf = 0;
+        };
+
+        document.addEventListener('mousemove', (e) => {
+          nextX = e.clientX;
+          nextY = e.clientY;
+          cursor.classList.remove('cursor--hidden');
+          if (!raf) raf = requestAnimationFrame(apply);
+        });
+
+        document.addEventListener('mouseleave', () => cursor.classList.add('cursor--hidden'));
+        document.addEventListener('mouseenter', () => cursor.classList.remove('cursor--hidden'));
+        document.addEventListener('mousedown', () => cursor.classList.add('cursor--clicked'));
+        document.addEventListener('mouseup', () => cursor.classList.remove('cursor--clicked'));
+
+        const linkSelector = 'a, button';
+        const onOver = (e: Event) => {
+          if ((e.target as Element).closest(linkSelector)) {
+            cursor.classList.add('cursor--link-hovered');
+          }
+        };
+        const onOut = (e: Event) => {
+          if ((e.target as Element).closest(linkSelector)) {
+            cursor.classList.remove('cursor--link-hovered');
+          }
+        };
+        document.addEventListener('mouseover', onOver);
+        document.addEventListener('mouseout', onOut);
+      } else if (cursor) {
+        cursor.remove();
+      }
+    </script>
   </body>
 </html>
