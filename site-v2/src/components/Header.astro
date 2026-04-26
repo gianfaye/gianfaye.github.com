@@ -120,23 +120,26 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
     margin: 0;
     padding: 0;
   }
+  /* Menu link styling copied verbatim from the original styled MenuLink
+   * (Navigation.Header.tsx). Note the original has NO &.active rule —
+   * the active item looks identical to inactive ones. Hover dims sibling
+   * links to opacity 0.5; the hovered one stays at 1. No accent color
+   * on hover or active — original keeps colors.primary throughout. */
   .site-header__link {
     display: inline-block;
-    padding: 1.25rem 1.25rem;
+    position: relative;
+    padding: 20px;
     font-family: var(--font-sans);
-    font-size: 0.75rem;
+    font-size: 12px;
     font-weight: 600;
-    letter-spacing: 0.125em;
+    line-height: 1.32;
+    letter-spacing: 2px;
     text-transform: uppercase;
     color: var(--color-fg);
-    transition: opacity 0.4s ease, color 0.2s ease;
+    transition: 0.4s;
   }
   .site-header__menu:hover .site-header__link { opacity: 0.5; }
-  .site-header__menu .site-header__link:hover {
-    opacity: 1;
-    color: var(--color-accent);
-  }
-  .site-header__link.active { color: var(--color-accent); }
+  .site-header__menu .site-header__link:hover { opacity: 1; }
 
   /* Icon buttons (mailto, dark mode) */
   .site-header__icon-btn {

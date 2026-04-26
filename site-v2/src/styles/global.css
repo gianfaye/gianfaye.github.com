@@ -1,6 +1,17 @@
 @import "tailwindcss";
 
-/* Voyager Grotesque (sans / display) */
+/*
+ * Voyager Grotesque (sans / display)
+ *
+ * Match the original Gatsby theme's @font-face set EXACTLY: only `light`
+ * (300) and `regular` (400) are declared. The original styled-components
+ * use `font-weight: 600` for menu and other UI text — with no 600 or 700
+ * face available, the browser's font-weight matching falls back to 400.
+ * Loading `vger-bold` (700) here would pull those 600 requests UP to 700
+ * and the menu would render visibly bolder than the original. Don't add
+ * the bold face unless we're matching a place where the original loads
+ * one too.
+ */
 @font-face {
   font-family: "Voyager Grotesque";
   font-weight: 400;
@@ -17,14 +28,6 @@
   src: url("/fonts/vger-light.woff2") format("woff2"),
        url("/fonts/vger-light.woff") format("woff"),
        url("/fonts/vger-light.ttf") format("truetype");
-  font-display: swap;
-}
-@font-face {
-  font-family: "Voyager Grotesque";
-  font-weight: 700;
-  font-style: normal;
-  src: url("/fonts/vger-bold.woff") format("woff"),
-       url("/fonts/vger-bold.ttf") format("truetype");
   font-display: swap;
 }
 
