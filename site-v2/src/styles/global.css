@@ -95,7 +95,10 @@
   --color-footer-fg: #1a1a1b;
   --color-rule: rgba(255, 255, 255, 0.15);
   --color-hover: rgba(255, 255, 255, 0.07);
-  --color-cursor: #1a1a1b;
+  /* Cursor stays white in both modes — mix-blend-mode: difference
+   * inverts it against whatever's behind it, so white reads as black
+   * over light areas and white over dark areas naturally. */
+  --color-cursor: #fafafa;
   color-scheme: dark;
 }
 
