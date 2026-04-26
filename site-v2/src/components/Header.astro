@@ -81,12 +81,20 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
 </header>
 
 <style>
+  /* Two-tier container matches the original NavToolbar / NavContainer:
+   * the outer .site-header carries the 40px horizontal padding so the
+   * 1140px content area inside has no horizontal padding of its own.
+   * On viewports wider than 1220px the inner centers; on narrower
+   * viewports the 40px outer padding keeps content off the screen edges
+   * without ever shrinking the usable content width below 1140px on a
+   * wide enough screen. */
   .site-header {
     position: sticky;
     top: 0;
     z-index: 50;
     width: 100%;
     background: var(--color-bg);
+    padding: 0 40px;
     transition: box-shadow 0.2s ease, background 0.25s ease;
   }
   .site-header.is-scrolled {
@@ -95,7 +103,7 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
   .site-header__inner {
     max-width: 1140px;
     margin: 0 auto;
-    padding: 1.5rem 2.5rem;
+    padding: 1.5rem 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -334,9 +342,8 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
   }
 
   @media (max-width: 1024px) {
-    .site-header__inner {
-      padding: 1.25rem 1.5rem;
-    }
+    .site-header { padding: 0 1.5rem; }
+    .site-header__inner { padding: 1.25rem 0; }
     .site-header__menu,
     .site-header__icon-btn { display: none; }
     .site-header__hamburger { display: inline-flex; }
