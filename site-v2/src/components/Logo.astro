@@ -1,0 +1,31 @@
+---
+interface Props {
+  class?: string;
+}
+const { class: className = '' } = Astro.props;
+---
+
+<span class:list={['logo', className]} role="img" aria-label="Gian Faye Paguirigan"></span>
+
+<style>
+  .logo {
+    display: inline-block;
+    width: 250px;
+    height: 82px;
+    background-color: currentColor;
+    mask-image: url('/logo.svg');
+    mask-repeat: no-repeat;
+    mask-position: left center;
+    mask-size: contain;
+    -webkit-mask-image: url('/logo.svg');
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: left center;
+    -webkit-mask-size: contain;
+  }
+  @media (max-width: 1024px) {
+    .logo {
+      width: 149px;
+      height: 56px;
+    }
+  }
+</style>

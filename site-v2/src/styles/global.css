@@ -1,1 +1,165 @@
 @import "tailwindcss";
+
+/*
+ * Voyager Grotesque (sans / display)
+ *
+ * Match the original Gatsby theme's @font-face set EXACTLY: only `light`
+ * (300) and `regular` (400) are declared. The original styled-components
+ * use `font-weight: 600` for menu and other UI text — with no 600 or 700
+ * face available, the browser's font-weight matching falls back to 400.
+ * Loading `vger-bold` (700) here would pull those 600 requests UP to 700
+ * and the menu would render visibly bolder than the original. Don't add
+ * the bold face unless we're matching a place where the original loads
+ * one too.
+ */
+@font-face {
+  font-family: "Voyager Grotesque";
+  font-weight: 400;
+  font-style: normal;
+  src: url("/fonts/vger-regular.woff2") format("woff2"),
+       url("/fonts/vger-regular.woff") format("woff"),
+       url("/fonts/vger-regular.ttf") format("truetype");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Voyager Grotesque";
+  font-weight: 300;
+  font-style: normal;
+  src: url("/fonts/vger-light.woff2") format("woff2"),
+       url("/fonts/vger-light.woff") format("woff"),
+       url("/fonts/vger-light.ttf") format("truetype");
+  font-display: swap;
+}
+
+/* Sentinel (serif / body) */
+@font-face {
+  font-family: "Sentinel Book";
+  font-weight: 400;
+  font-style: normal;
+  src: url("/fonts/Sentinel-Book.woff2") format("woff2"),
+       url("/fonts/Sentinel-Book.woff") format("woff"),
+       url("/fonts/Sentinel-Book.ttf") format("truetype");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Sentinel Book";
+  font-weight: 300;
+  font-style: normal;
+  src: url("/fonts/Sentinel-Light.woff2") format("woff2"),
+       url("/fonts/Sentinel-Light.woff") format("woff");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Sentinel Italic";
+  font-weight: 400;
+  font-style: italic;
+  src: url("/fonts/Sentinel-LightItalic.woff2") format("woff2"),
+       url("/fonts/Sentinel-LightItalic.woff") format("woff"),
+       url("/fonts/Sentinel-LightItalic.ttf") format("truetype");
+  font-display: swap;
+}
+
+@theme {
+  --font-sans: "Voyager Grotesque", "-apple-system", BlinkMacSystemFont,
+               "San Francisco", "Helvetica Neue", "Helvetica", "Ubuntu",
+               "Roboto", "Noto", "Segoe UI", "Arial", sans-serif;
+  --font-serif: "Sentinel Book", "BlinkMacSystemFont", "San Francisco",
+                "Helvetica Neue", "Helvetica", "Ubuntu", "Roboto", "Noto",
+                "Segoe UI", "Arial", sans-serif;
+  --font-mono: "Operator Mono", Consolas, Menlo, Monaco, "source-code-pro",
+               "Courier New", monospace;
+  --color-accent: #f65d2e;
+}
+
+/*
+ * Color tokens — light defaults on :root, dark overrides on .dark.
+ * The dark class is set by an inline script in BaseLayout <head>
+ * before first paint, so there's no flash of the wrong theme.
+ */
+:root {
+  --color-bg: #fafafa;
+  --color-fg: #1a1a1b;
+  --color-secondary: #73737d;
+  --color-card: #ffffff;
+  --color-footer-bg: #1a1a1b;
+  --color-footer-fg: #fafafa;
+  --color-rule: rgba(8, 8, 11, 0.15);
+  --color-hover: rgba(0, 0, 0, 0.07);
+  --color-cursor: #fafafa;
+  color-scheme: light;
+}
+
+:root.dark {
+  --color-bg: #1a1a1b;
+  --color-fg: #ffffff;
+  --color-secondary: #a2aeb6;
+  --color-card: #111111;
+  --color-footer-bg: #fafafa;
+  --color-footer-fg: #1a1a1b;
+  --color-rule: rgba(255, 255, 255, 0.15);
+  --color-hover: rgba(255, 255, 255, 0.07);
+  /* Cursor stays white in both modes — mix-blend-mode: difference
+   * inverts it against whatever's behind it, so white reads as black
+   * over light areas and white over dark areas naturally. */
+  --color-cursor: #fafafa;
+  color-scheme: dark;
+}
+
+/* Body uses Sentinel Book (serif) — matches the original; nav and uppercase
+ * micro-copy opt into Voyager Grotesque explicitly. */
+html {
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-serif);
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+body {
+  font-family: var(--font-serif);
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--color-accent);
+}
+
+/* Custom cursor (pointer-following dot with mix-blend-mode: difference)
+ * — only on devices with a real hover-capable pointer, so it never
+ * shows on touch. The .cursor element lives in BaseLayout. */
+@media (hover: hover) {
+  .cursor {
+    width: 30px;
+    height: 30px;
+    border: 1px solid var(--color-cursor);
+    border-radius: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: difference;
+    transition: width 300ms ease, height 300ms ease, opacity 300ms ease,
+                background-color 300ms ease, transform 100ms ease;
+  }
+  .cursor--hidden { opacity: 0; }
+  .cursor--clicked {
+    transform: translate(-50%, -50%) scale(0.9);
+    background-color: var(--color-cursor);
+  }
+  .cursor--link-hovered {
+    width: 70px;
+    height: 70px;
+    background-color: var(--color-cursor);
+  }
+  a:hover { cursor: crosshair !important; }
+}
